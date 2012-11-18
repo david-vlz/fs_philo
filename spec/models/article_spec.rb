@@ -17,8 +17,6 @@ require 'spec_helper'
 
 describe Article do
 	
-	
-	
 	before { 
 		@article = Article.new(
 			fs_user_id: 3, 
@@ -31,6 +29,7 @@ describe Article do
 	
 	subject { @article }
 
+	it { should be_valid }
 
 	it { should respond_to(:id) }
 	it { should respond_to(:title) }
