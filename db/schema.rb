@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118164149) do
+ActiveRecord::Schema.define(:version => 20121118180630) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
-    t.string   "creator"
     t.text     "body"
     t.integer  "version"
     t.string   "modifier"
     t.boolean  "active"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "fs_user_id"
   end
 
 end
