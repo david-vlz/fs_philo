@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string(255)
 #  creator    :string(255)
-#  text       :text
+#  html       :text
 #  version    :integer
 #  modifier   :string(255)
 #  active     :boolean
@@ -14,5 +14,9 @@
 #
 
 class Article < ActiveRecord::Base
-  attr_accessible :active, :creator, :modifier, :text, :title, :version
+  
+	attr_accessible :active, :creator, :modifier, :body, :title, :version
+  
+	validates(:title, presence: true)
+  
 end

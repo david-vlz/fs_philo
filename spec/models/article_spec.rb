@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string(255)
 #  creator    :string(255)
-#  text       :text
+#  html       :text
 #  version    :integer
 #  modifier   :string(255)
 #  active     :boolean
@@ -21,7 +21,7 @@ describe Article do
 		@article = Article.new(
 			creator: 'david', 
 			title: 'Erster Test Artikel', 
-			text: '<p>some marked up text</p>', 
+			body: '<p>some marked up text</p>', 
 			version: 0
 		) 
 	}
@@ -31,7 +31,7 @@ describe Article do
 	it { should respond_to(:id) }
 	it { should respond_to(:title) }
 	it { should respond_to(:creator) }
-	it { should respond_to(:text) }
+	it { should respond_to(:body) }
 	it { should respond_to(:version) }
 	it { should respond_to(:modifier) }
 	it { should respond_to(:active) }
