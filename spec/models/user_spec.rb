@@ -22,6 +22,7 @@ describe User do
 			password_confirmation: "swordfish234!%&/"
 		) 
 	}
+	
 	subject { @user }
 	
 	it { should respond_to(:email) }

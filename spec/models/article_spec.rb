@@ -2,15 +2,16 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  body       :text
-#  version    :integer
-#  modifier   :string(255)
-#  active     :boolean
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  fs_user_id :integer
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  body           :text
+#  version        :integer
+#  modifier       :string(255)
+#  active         :boolean
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  fs_user_id     :integer
+#  fs_category_id :integer
 #
 
 require 'spec_helper'
@@ -20,6 +21,7 @@ describe Article do
 	before { 
 		@article = Article.new(
 			fs_user_id: 3, 
+			fs_category_id: 4,
 			title: 'Erster Test Artikel', 
 			body: '<p>some marked up text</p>', 
 			version: 0,
@@ -34,6 +36,7 @@ describe Article do
 	it { should respond_to(:id) }
 	it { should respond_to(:title) }
 	it { should respond_to(:fs_user_id) }
+	it { should respond_to(:fs_category_id) }
 	it { should respond_to(:body) }
 	it { should respond_to(:version) }
 	it { should respond_to(:modifier) }
@@ -62,8 +65,13 @@ describe Article do
 		it { should_not be_valid }
 	end
 	
-	describe "when no user is assigned to the article" do
+	describe "when no user is assigned" do
 		before { @article.fs_user_id = nil }
+		it { should_not be_valid }
+	end
+	
+	describe "when no category is assigned" do
+		before { @article.fs_category_id = nil }
 		it { should_not be_valid }
 	end
 	
