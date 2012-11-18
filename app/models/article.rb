@@ -1,3 +1,3 @@
 class Article < ActiveRecord::Base
-  attr_accessible :active, :created, :creator, :modified, :modifier, :text, :title, :version
+  attr_accessible :active, :creator, :modifier, :text, :title, :version
 end
