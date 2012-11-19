@@ -34,4 +34,10 @@ FsPhilo::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+    # BCrypts cost-Funktion senken, um Tests zu beschleunigen
+  require 'bcrypt'
+  silence_warnings do 
+  	BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
+  end
 end
