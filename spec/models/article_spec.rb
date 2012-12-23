@@ -2,14 +2,14 @@
 #
 # Table name: articles
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  body        :text
-#  version     :integer
-#  modifier    :string(255)
-#  active      :boolean
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  body           :text
+#  version        :integer
+#  modifier       :string(255)
+#  active         :boolean
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #  user_id     :integer
 #  category_id :integer
 #
@@ -23,23 +23,42 @@ describe Article do
 			user_id: 3, 
 			category_id: 4,
 			title: 'Erster Test Artikel', 
-			body: '<p>some marked up text</p>', 
-			version: 0,
+			body: '<p>some marked up text</p>',
+			active: false
+		)
+		@edition = Article.new(
+			user_id: 5,
+			category_id: 4,
+			parent_id: 3,
+			title: 'Erster Test Artikel-v2',
+			body: '<p>some changed text</p>',
 			active: true
 		)
+		
 	}
 	
 	subject { @article }
-
-	it { should be_valid }
+	
+	describe "when a new article is saved" do
+		before { @article.active = true; @article.save }
+		it { should be_valid }
+	end
+	
+#	describe "when a new article is saved and subsequently editied" do
+#		before { @article.active = true; @article.save!; @edition.save_edition }
+#		it { should be_valid }
+#	end
 
 	it { should respond_to(:id) }
 	it { should respond_to(:title) }
 	it { should respond_to(:user_id) }
 	it { should respond_to(:category_id) }
+	it { should respond_to(:parent_id) }
+	it { should respond_to(:user) }
+	it { should respond_to(:category) }
+	it { should respond_to(:versions) }
+	it { should respond_to(:parent) }
 	it { should respond_to(:body) }
-	it { should respond_to(:version) }
-	it { should respond_to(:modifier) }
 	it { should respond_to(:active) }
 	it { should respond_to(:created_at) }
 	it { should respond_to(:updated_at) }
@@ -55,16 +74,6 @@ describe Article do
 		it { should_not be_valid }
 	end
 	
-	describe "when version is not present" do
-		before { @article.version = nil }
-		it { should_not be_valid }
-	end
-	
-	describe "when active is not set" do
-		before { @article.active = nil }
-		it { should_not be_valid }
-	end
-	
 	describe "when no user is assigned" do
 		before { @article.user_id = nil }
 		it { should_not be_valid }
@@ -75,7 +84,9 @@ describe Article do
 		it { should_not be_valid }
 	end
 	
-	
-	
+#	describe "when multiple active versions of an article exist" do
+#		before { @article.active = true; @edition.save_edition; @article.save; }
+#		it { should_not be_valid }
+#	end
 	
 end

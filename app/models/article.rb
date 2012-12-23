@@ -28,12 +28,15 @@ class Article < ActiveRecord::Base
 	has_many :versions, :class_name => "Article", :foreign_key => "parent_id"
 	belongs_to :parent, :class_name => "Article"	
 	
+	# use the "[].replace" to create a copy of versions
+	# this protects the database from rails automagic, which will
+	# create a parent_id for every element, that you push to self.versions
 	def all_versions
 		if (parent) then
-			result = parent.versions
+			result = [].replace(parent.versions)
 			result.push(parent)
 		elsif
-			result = versions
+			result = [].replace(versions)
 			result.push(self)
 		end
 		result
@@ -44,13 +47,13 @@ class Article < ActiveRecord::Base
 	end
 	
 	# this should only be one
-	# TODO: test for multiples
+	# TODO: test for multiples, raise exception
 	# TODO: raise exception if this is empty
 	def active_versions
-		all_versions.select { |version| version.active = true }
+		all_versions.select { |version| version.active == true }
 	end
 	
-	def set_others_inactive
+	def set_all_inactive
 		active_versions.each do |version|
 			version.active = false
 			version.save!
@@ -58,7 +61,7 @@ class Article < ActiveRecord::Base
 	end
 	
 	def set_active
-		set_others_inactive
+		set_all_inactive
 		self.active = true
 	end
 	
@@ -66,11 +69,20 @@ class Article < ActiveRecord::Base
 		set_active
 		save!
 	end
+	
+	def check_acitivity_status
+		if (active_versions.length != 1)
+			errors.add(:active, "Exactly one active article should correspond to this one, there are #{active_versions.length}")
+			return false
+		end
+		true
+	end
 		
 	
 	validates(:title, presence: true)
 	validates(:body, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
-
+	validate :check_acitivity_status
+	
 end
