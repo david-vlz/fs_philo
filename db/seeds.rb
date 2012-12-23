@@ -42,16 +42,16 @@ Article.create([
 	{	
 		user_id: User.find_by_name('david').id, 
 		category_id: Category.find_by_name('Veranstaltungen').id, 
-		parent_id: Article.find_by_title('Zweiter Test Artikel').id,
-		title: 'Zweiter Test Artikel-v2', 
+		parent_id: Article.find_by_title('Erster Test Artikel').id,
+		title: 'Erster Test Artikel-v2', 
 		body: '<p>some changed text</p>', 
 		active: false 
 	},
 	{	
 		user_id: User.find_by_name('david').id, 
 		category_id: Category.find_by_name('Veranstaltungen').id, 
-		parent_id: Article.find_by_title('Zweiter Test Artikel').id,
-		title: 'Zweiter Test Artikel-v3', 
+		parent_id: Article.find_by_title('Erster Test Artikel').id,
+		title: 'Erster Test Artikel-v3', 
 		body: '<p>some text changed again</p>', 
 		active: true 
 	}
