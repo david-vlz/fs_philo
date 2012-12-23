@@ -10,8 +10,8 @@
 #  active         :boolean
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  fs_user_id     :integer
-#  fs_category_id :integer
+#  user_id     :integer
+#  category_id :integer
 #
 
 require 'spec_helper'
@@ -20,8 +20,8 @@ describe Article do
 	
 	before { 
 		@article = Article.new(
-			fs_user_id: 3, 
-			fs_category_id: 4,
+			user_id: 3, 
+			category_id: 4,
 			title: 'Erster Test Artikel', 
 			body: '<p>some marked up text</p>', 
 			version: 0,
@@ -35,8 +35,8 @@ describe Article do
 
 	it { should respond_to(:id) }
 	it { should respond_to(:title) }
-	it { should respond_to(:fs_user_id) }
-	it { should respond_to(:fs_category_id) }
+	it { should respond_to(:user_id) }
+	it { should respond_to(:category_id) }
 	it { should respond_to(:body) }
 	it { should respond_to(:version) }
 	it { should respond_to(:modifier) }
@@ -66,12 +66,12 @@ describe Article do
 	end
 	
 	describe "when no user is assigned" do
-		before { @article.fs_user_id = nil }
+		before { @article.user_id = nil }
 		it { should_not be_valid }
 	end
 	
 	describe "when no category is assigned" do
-		before { @article.fs_category_id = nil }
+		before { @article.category_id = nil }
 		it { should_not be_valid }
 	end
 	
