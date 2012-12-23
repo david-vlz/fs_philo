@@ -6,5 +6,7 @@ FsPhilo::Application.routes.draw do
   
   match 'contact', 			to: 'static_pages#contact'
   match 'veranstaltungen', 	to: 'static_pages#veranstaltungen'
+  
+  match 'cats', 			to: 'categories'
 
 end
