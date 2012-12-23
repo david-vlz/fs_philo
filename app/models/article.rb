@@ -16,13 +16,15 @@
 
 class Article < ActiveRecord::Base
 	
-	attr_accessible :active, :user_id, :category_id, :modifier, :body, :title, :version
-
-	has_many :articles
+	attr_accessible :active, :user_id, :category_id, :parent_id, :body, :title
   
+	belongs_to :user
+	belongs_to :category
+	has_many :versions, :class_name => "Article", :foreign_key => "parent_id"
+	belongs_to :parent, :class_name => "Article"
+
 	validates(:title, presence: true)
 	validates(:body, presence: true)
-	validates(:version, presence: true)
 	validates(:active, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
