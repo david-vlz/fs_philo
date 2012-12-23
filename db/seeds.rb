@@ -22,6 +22,6 @@ users = User.create([
 
 
 Article.create([
-	{ fs_user_id: User.find_by_name('Jill').id, fs_category_id: Category.find_by_name('Kontakt').id, title: 'Erster Test Artikel', body: '<p>some marked up text</p>', version: 0, active: true },
-	{ fs_user_id: User.find_by_name('Jill').id, fs_category_id: Category.find_by_name('Veranstaltungen').id, title: 'Zweiter Test Artikel', body: '<p>some marked up text</p>', version: 0, active: true },
+	{ user_id: User.find_by_name('Jill').id, category_id: Category.find_by_name('Kontakt').id, title: 'Erster Test Artikel', body: '<p>some marked up text</p>', version: 0, active: true },
+	{ user_id: User.find_by_name('Jill').id, category_id: Category.find_by_name('Veranstaltungen').id, title: 'Zweiter Test Artikel', body: '<p>some marked up text</p>', version: 0, active: true },
 ])
