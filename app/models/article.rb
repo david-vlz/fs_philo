@@ -58,7 +58,7 @@ class Article < ActiveRecord::Base
 	end
 	
 	def set_active
-		falsify_different_versions()
+		set_others_inactive
 		self.active = true
 	end
 	
