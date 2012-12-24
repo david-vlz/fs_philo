@@ -10,7 +10,7 @@
 categories = Category.create([
 	{ name: 'Veranstaltungen' },
 	{ name: 'Bilder' },
-	{ name: 'Kontakt'}
+	{ name: 'Kontakt', single_page: true}
 ])
 
 
@@ -21,15 +21,22 @@ users = User.create([
 ])
 
 
-Article.create(
+Article.create([
 	{ 	
 		user_id: User.find_by_name('Jill').id, 
-		category_id: Category.find_by_name('Kontakt').id,
+		category_id: Category.find_by_name('Veranstaltungen').id,
 		title: 'Erster Test Artikel', 
 		body: '<p>some marked up text</p>', 
 		active: true 
+	},
+	{
+		user_id: User.find_by_name('Example User').id,
+		category_id: Category.find_by_name('Kontakt').id,
+		title: 'Kontakt',
+		body: '<ul><li>Telefon: ######</li><li>Raumnr.: #######</li><li>mail: fs-philo@uni-koeln.de</li></ul>',
+		active: true
 	}
-)
+])
 
 Article.create(
 	{	

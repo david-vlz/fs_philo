@@ -5,13 +5,12 @@
 #  id          :integer          not null, primary key
 #  title       :string(255)
 #  body        :text
-#  version     :integer
-#  modifier    :string(255)
 #  active      :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :integer
 #  category_id :integer
+#  parent_id   :integer
 #
 
 

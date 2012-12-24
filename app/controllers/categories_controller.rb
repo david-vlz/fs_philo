@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def show
   	@categories = getCategories
-  	@articles = Category.find(params[:id]).articles
+  	@articles = Category.find_by_id(params[:id]).articles
   end
 
   def new
