@@ -21,14 +21,17 @@ users = User.create([
 ])
 
 
-Article.create([
+Article.create(
 	{ 	
 		user_id: User.find_by_name('Jill').id, 
 		category_id: Category.find_by_name('Kontakt').id,
 		title: 'Erster Test Artikel', 
 		body: '<p>some marked up text</p>', 
 		active: true 
-	},
+	}
+)
+
+Article.create(
 	{	
 		user_id: User.find_by_name('Jill').id, 
 		category_id: Category.find_by_name('Veranstaltungen').id, 
@@ -36,7 +39,7 @@ Article.create([
 		body: '<p>some marked up text</p>', 
 		active: false
 	}
-])
+)
 
 Article.create([
 	{	

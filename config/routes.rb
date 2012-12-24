@@ -1,8 +1,12 @@
 FsPhilo::Application.routes.draw do
   
-  get "articles/new"
-  
-  ressources :categories
+#  get "categories/show"
+
+#  get "categories/new"
+
+#  get "articles/new"
+
+  resources :categories
 
   root to: 'static_pages#home'
   

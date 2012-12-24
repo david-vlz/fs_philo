@@ -1,0 +1,12 @@
+<div class="row-fluid">
+	<div class="span2">
+		sidebar-content
+	</div>
+	<div class="span10">
+		<% @articles.each do |article| %>
+			<section class="well">
+				<h3><%=article.title%></h3>
+			</section>
+		<% end %>
+	</div>
+</div>
