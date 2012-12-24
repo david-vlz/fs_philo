@@ -9,8 +9,8 @@
 				<div class="navbar">
 					<div class="navbar-inner">
 						<ul class="nav nav-pills">
-						<% @categories.each do |cat| %>
-							<li><a href="#"><%= cat.name %></a></li>
+						<% @categories.each do |category| %>
+							<li><%=link_to category.name, category_path(@id=category.id) %></li>
 						<% end %>
 						</ul>
 					</div>
