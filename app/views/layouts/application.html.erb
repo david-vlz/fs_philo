@@ -9,11 +9,16 @@
 <body>
 <div>
 	<div class="container-fluid">
-	
 		<%= render "layouts/header" %>
-		
-		<%= yield %>
-		
+		<div class="row-fluid">
+<!--			<div class="span2">-->
+<!--				<%= render "layouts/sidebar" %>-->
+<!--			</div>-->
+			<div class="span12">
+				<%= yield %>
+			</div>
+		</div>
+		<%= debug(params) if Rails.env.development? %>
 	</div>
 </div>
 </body>

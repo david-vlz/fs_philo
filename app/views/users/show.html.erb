@@ -1,0 +1,11 @@
+<section>
+	<h3><smal><%= @user.name %></h3>
+	<p><small>email:</small> <%= @user.email %></p>
+	<h4>Articles by <%= @user.name %></h4>
+	<% @articles_by_user.each do |article| %>
+		<section class="well">
+			<h5><%=link_to(article.title, article_path(@id=article.id))%></h5>
+			<div class="small"><%= truncate(article.body)%></div>
+		</section>
+	<% end %>
+</section>

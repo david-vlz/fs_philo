@@ -1,6 +1,10 @@
 FsPhilo::Application.routes.draw do
 
-  resources :categories, :articles
+  get "users/show"
+
+  get "users/new"
+
+  resources :categories, :articles, :users
 
   root to: 'static_pages#home'
   
