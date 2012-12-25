@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 		@categories = getCategories
 		@user = User.new(params[:user])
 		if @user.save
-			#TODO susccessfull save behandeln
+			flash[:success] = "Willkommen bei der Fachschaft!"
+			redirect_to @user
 		else
 			render 'new'
 		end
