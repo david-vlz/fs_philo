@@ -14,4 +14,15 @@ class UsersController < ApplicationController
 		@categories = getCategories
 		@users = User.all
 	end
+	
+	def create
+		@categories = getCategories
+		@user = User.new(params[:user])
+		if @user.save
+			#TODO susccessfull save behandeln
+		else
+			render 'new'
+		end
+	end
+	
 end

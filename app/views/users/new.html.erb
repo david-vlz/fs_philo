@@ -1,6 +1,5 @@
-<% provide(:title, 'Anmeldung') %>
-<h3>Anmeldung</h3>
-
+<% provide(:title, 'Anmelden') %>
+<h3>User anmelden</h3>
 <div class="row-fluid">
 	<div class="span6 offset3">
 		<%= form_for(@user) do |f| %>
@@ -16,7 +15,7 @@
 			<%= f.label :password_confirmation, "Passwort best&auml;tigen".html_safe %>
 			<%= f.password_field :password_confirmation %>
 			
-			<%= f.submit "Account erstellen", class: "btn btn-large btn-primary" %>
+			<p><%= f.submit "Account erstellen", class: "btn btn-primary" %></p>
 		<% end %>
 	</div>
 </div>
