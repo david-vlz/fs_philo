@@ -1,3 +1,6 @@
+# coding: utf-8
+# above: magic comment to handle umlaute in field names
+
 require 'spec_helper'
 
 describe "User pages" do
@@ -34,7 +37,7 @@ describe "User pages" do
 				fill_in "Name",		with: "Schlimo Schlowi"
 				fill_in "Email",	with: "ssd@example.com"
 				fill_in "Passwort",	with: "blaBBBlubb2345//"
-				fill_in "Passwort best&auml;tigen", with: "blaBBBlubb2345//"
+				fill_in "Passwort bestätigen", with: "blaBBBlubb2345//"
 			end
 
 			it "should create a user" do
