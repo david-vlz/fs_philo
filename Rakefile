@@ -7,4 +7,4 @@ require File.expand_path('../config/application', __FILE__)
 FsPhilo::Application.load_tasks
 
 # added according to https://github.com/errbit/errbit/issues/179
-Rake::Task[:default].clear if Rake::Task.task_defined?(:default)
+# Rake::Task[:default].clear if Rake::Task.task_defined?(:default)
