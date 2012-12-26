@@ -9,7 +9,7 @@ describe "Authentication" do
 	describe "login page" do
 		before { visit login_path }
 		
-		it { should have_selector('h1', text: 'Login') }
+		it { should have_selector('h3', text: 'Login') }
 		it { should have_selector('title', text: 'Login | ') }
 	end
 	

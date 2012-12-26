@@ -10,6 +10,7 @@
 					<div class="navbar-inner">
 						<ul class="nav nav-pills">
 						<li><%=link_to("Home", root_path)%>
+						<% @categories = getCategories %>
 						<% @categories.each do |category| %>
 							<li><%=link_to(category.name, category_path(@id=category.id))%></li>
 						<% end %>

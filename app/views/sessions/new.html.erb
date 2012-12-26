@@ -1,2 +1,19 @@
 <% provide(:title, 'Login') %>
-<h1>Login</h1>
+<h3>Login</h3>
+<div class="row-fluid">
+	<div class="span6 offset3">
+		<%= form_for(:session, url: sessions_path) do |f| %>
+			
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			
+			<%= f.label :password, "Passwort" %>
+			<%= f.password_field :password %>
+			
+			<p><%= f.submit "Login", class: "btn btn-primary" %></p>
+		<% end %>
+		
+		<p><%= link_to('Neuen Account erstellen', anmeldung_path) %></p>
+	</div>
+</div>
+
