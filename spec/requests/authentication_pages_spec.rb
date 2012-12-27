@@ -18,16 +18,22 @@ describe "Authentication" do
 		
 		describe "with invalid information" do
 			before { click_button 'Login' }
+			let(:error_msg) { 'Email und/oder Passwort sind ungültig' }
 			
-			it { should have_selector('title', 'Login') }
-			it { should have_selector('div.alert.alert-error', text: 'Email und/oder Passwort sind ungültig') }
+			it { should have_selector('title', text: 'Login | ') }
+			it { should have_selector('div.alert.alert-error', text: error_msg) }
+			
+			describe "after visiting another page" do
+				before { click_link 'Home' }
+				it { should_not have_content(error_msg) }
+			end
 		end
 		
 		describe "with valid information" do
 			let(:user) { FactoryGirl.create(:user) }
 			before do
 				fill_in "Email", with: user.email
-				fill_in "Password", with: user.password
+				fill_in "Passwort", with: user.password
 				click_button "Login"
 			end
 			
