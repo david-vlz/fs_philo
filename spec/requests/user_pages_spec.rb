@@ -77,6 +77,7 @@ describe "User pages" do
 				it { should have_selector('p', text: user.email) }
 				it { should have_selector('i.icon-user') }
 				it { should have_selector('h4', text: 'Articles') }
+				it { should have_link('Logout') }
 			end
 		end
 		
