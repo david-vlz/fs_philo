@@ -2,15 +2,18 @@
 <h3>Login</h3>
 <div class="row-fluid">
 	<div class="span6 offset3">
-		<%= form_for(:session, url: sessions_path) do |f| %>
-			
-			<%= f.label :email, 'Email: ' %>
-			<%= f.text_field :email %>
-			
-			<%= f.label :password, 'Passwort: ' %>
-			<%= f.password_field :password %>
-			
-			<p><%= f.submit "Login", class: "btn btn-primary" %></p>
+		<%= form_tag sessions_path do %>
+			<div class="field">
+				<%= label_tag :email %>
+				<%= text_field_tag :email, params[:email] %>
+			</div>
+			<div class="field">
+				<%= label_tag :password, 'Passwort' %>
+				<%= password_field_tag :password %>
+			</div>
+			<div class="actions">
+				<%= submit_tag 'Login' %>
+			</div>
 		<% end %>
 		
 		<p><%= link_to('Neuen Account erstellen', anmeldung_path) %></p>
