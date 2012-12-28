@@ -72,7 +72,7 @@ describe "User pages" do
 				it { should have_selector('div.alert.alert-success', text: 'Willkommen bei der Fachschaft!') }
 				it { should have_selector('p', text: user.email) }
 				it { should have_selector('i.icon-user') }
-				it { should have_link('Logout') }
+				it { should have_link('Logout', href: logout_path) }
 			end
 		end
 		
@@ -90,7 +90,26 @@ describe "User pages" do
 		
 		describe "with invalid information" do
 			before { click_button 'Ok' }
-			it { should have_content('Fehler') }
+			it { should have_content('Fehler gefunden') }
+		end
+		
+		describe "with invalid information" do
+			let(:new_name) { "New Name" }
+			let(:new_email) { "new@example.com" }
+			before do
+				fill_in "Name",					with: new_name
+				fill_in "Email",				with: new_email
+				fill_in "Passwort", 			with: user.password
+				fill_in "Passwort bestätigen",	with: user.password
+				click_button 'Ok'
+			end
+			
+			it { should have_selector('title', text: "User #{new_name} | ") }
+			it { should have_selector('div.alert.alert-success', text: 'Änderungen übernommen!') }
+			it { should have_selector('p', text: new_email) }
+			specify { user.reload.name.should == new_name }
+			specify { user.reload.email.should == new_email }
+			
 		end
 	end
 	

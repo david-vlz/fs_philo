@@ -32,12 +32,10 @@ describe "Authentication" do
 		describe "with valid information" do
 			let(:user) { FactoryGirl.create(:user) }
 			before do
-				fill_in "Email", with: user.email
-				fill_in "Passwort", with: user.password
-				click_button "Login"
+				sign_in user
 			end
 			
-			it { should have_selector('title', text: user.name) }
+			it { should have_selector('title', text: "User " + user.name + " | ") }
 			it { should have_link('Profil', href: user_path(user)) }
 			it { should have_link('Logout', href: logout_path) }
 			it { should_not have_link('Login', href: login_path) }
