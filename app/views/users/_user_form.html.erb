@@ -1,0 +1,20 @@
+<div class="row-fluid">
+	<div class="span6 offset3">
+		<%= form_for(@user) do |f| %>
+			<%= render 'shared/error_messages' %>
+			<%= f.label :name%>
+			<%= f.text_field :name %>
+			
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			
+			<%= f.label :password, "Passwort" %>
+			<%= f.password_field :password %>
+			
+			<%= f.label :password_confirmation, "Passwort best&auml;tigen".html_safe %>
+			<%= f.password_field :password_confirmation %>
+			
+			<p><%= f.submit yield(:submit_text), class: "btn btn-primary" %></p>
+		<% end %>
+	</div>
+</div>

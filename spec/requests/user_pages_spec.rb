@@ -34,9 +34,7 @@ describe "User pages" do
 			it { should have_selector('label[for="user_password_confirmation"]', text: 'Passwort bestätigen') }
 			it { should have_selector('input[id="user_password_confirmation"]') }
 			it { should have_selector('input[class="btn btn-primary"][name="commit"][type="submit"][value="Account erstellen"]') }
-			
 		end
-		
 		
 		let(:submit) { "Account erstellen" }
 		
@@ -54,8 +52,6 @@ describe "User pages" do
 			end
 		end
 		
-		
-		
 		describe "with valid information" do
 			before do
 				fill_in "Name",		with: "Schlimo Schlowi"
@@ -70,7 +66,7 @@ describe "User pages" do
 			
 			describe "after saving the user" do
 				before { click_button submit }
-				let(:user) { User.find_by_email('ssd@example.com') } # spec/factories.rb
+				let(:user) { User.find_by_email('ssd@example.com') }
 				
 				it { should have_selector('title', text: "User #{user.name} |") }
 				it { should have_selector('div.alert.alert-success', text: 'Willkommen bei der Fachschaft!') }
@@ -81,6 +77,23 @@ describe "User pages" do
 		end
 		
 	end
+	
+	
+	describe "edit" do
+		let(:user) { FactoryGirl.create(:user) }
+		before { visit edit_user_path(user) }
+		
+		describe "page" do
+			it { should have_selector('h3', text: 'Profil bearbeiten') }
+			it { should have_selector('title', text: 'Profil bearbeiten: ' + user.name + ' | ') }
+		end
+		
+		describe "with invalid information" do
+			before { click_button 'Ok' }
+			it { should have_content('Fehler') }
+		end
+	end
+	
 
 
 end

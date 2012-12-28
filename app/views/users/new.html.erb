@@ -1,23 +1,6 @@
 <% provide(:title, 'Anmelden') %>
 <h3>User anmelden</h3>
-<div class="row-fluid">
-	<div class="span6 offset3">
-		<%= form_for(@user) do |f| %>
-			<%= render 'shared/error_messages' %>
-			<%= f.label :name%>
-			<%= f.text_field :name %>
-			
-			<%= f.label :email %>
-			<%= f.text_field :email %>
-			
-			<%= f.label :password, "Passwort" %>
-			<%= f.password_field :password %>
-			
-			<%= f.label :password_confirmation, "Passwort best&auml;tigen".html_safe %>
-			<%= f.password_field :password_confirmation %>
-			
-			<p><%= f.submit "Account erstellen", class: "btn btn-primary" %></p>
-		<% end %>
-	</div>
-</div>
+
+<% provide(:submit_text, 'Account erstellen') %>
+<%= render "users/user_form" %>
 
