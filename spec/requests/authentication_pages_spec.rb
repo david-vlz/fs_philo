@@ -56,6 +56,32 @@ describe "Authentication" do
 		describe "for non signed in users" do
 			let(:user) { FactoryGirl.create(:user) }
 			
+			describe "when attempting to visit a protected page" do
+				before do
+					visit edit_user_path(user) # ungültiger Bearbeitungsversuch -> Weiterleitung zur Login-Seite
+					fill_in "Email", with: user.email # Login nach Weiterleitung
+					fill_in "Passwort", with: user.password
+					click_button "Login"
+				end
+				
+				describe "after signing in" do # weiterleitung zur Bearbeitunsseite
+					it "should render the desired protected page" do
+						page.should have_selector('title', text: "Profil bearbeiten: #{user.name} | ")
+					end
+					
+					describe "and logging out and in again" do
+						before do
+							sign_out
+							sign_in user
+						end
+						
+						it "should not redirect to the protected page again" do
+							page.should_not have_selector('title', text: 'Profil bearbeiten')
+						end
+					end
+				end
+			end
+			
 			describe "visiting the edit page" do
 				before { visit edit_user_path(user) }
 				it { should have_selector('title', text: "Login | ") }

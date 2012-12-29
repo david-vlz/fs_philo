@@ -8,3 +8,6 @@ def sign_in(user)
 	cookies[:remember_token] = user.remember_token
 end
 
+def sign_out
+	click_link 'Logout'
+end

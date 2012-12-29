@@ -53,6 +53,7 @@ class UsersController < ApplicationController
 	
 		def signed_in_user
 			if not signed_in?
+				store_location
 				flash[:notice] = "Bitte loggen sie sich ein, um diese Funktion zu nutzen."
 				redirect_to login_url
 			end
