@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
+	before_filter :signed_in_user, only: [:edit, :update]
+	
+	
 	def show
 		@user = User.find_by_id(params[:id])
 		@articles_by_user = @user.articles
 	end
 
+
 	def new
 		@user = User.new
 	end
 	
+	
 	def index
 		@users = User.all
 	end
+	
 	
 	def create
 		@user = User.new(params[:user])
@@ -23,9 +29,11 @@ class UsersController < ApplicationController
 		end
 	end
 	
+	
 	def edit
 		@user = User.find_by_id(params[:id])
 	end
+	
 	
 	def update
 		@user = User.find_by_id(params[:id])
@@ -37,5 +45,15 @@ class UsersController < ApplicationController
 			render 'edit'
 		end
 	end
+	
+	
+	
+	private
+		def signed_in_user
+			if not signed_in?
+				flash[:notice] = "Bitte loggen sie sich ein, um dieses Feature zu benutzen."
+				redirect_to login_url
+			end
+		end
 	
 end
