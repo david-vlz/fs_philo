@@ -13,6 +13,7 @@ describe "Authentication" do
 		it { should have_selector('title', text: 'Login | ') }
 	end
 	
+	
 	describe "login" do
 		before { visit login_path }
 		
@@ -45,6 +46,24 @@ describe "Authentication" do
 				it { should_not have_link('Logout') }
 				it { should_not have_link('Profil') }
 				it { should have_link('Login') }
+			end
+		end
+	end
+	
+	
+	describe "authorization" do
+		
+		describe "for non signed in users" do
+			let(:user) { FactoryGirl.create(:user) }
+			
+			describe "visiting the edit page" do
+				before { visit edit_user_path(user) }
+				it { should have_selector('title', text: "Login | ") }
+			end
+			
+			describe "submitting to the update action" do
+				before { put user_path(user) }
+				specify { response.should redirect_to(login_path) }
 			end
 		end
 	end
