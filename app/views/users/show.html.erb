@@ -3,7 +3,9 @@
 	
 	<h3><i class="icon-user" style="vertical-align:middle"></i> <%= @user.name %></h3>
 	<p><%= @user.email %></p>
-	
+	<% if @user == current_user %>
+		<p><%= link_to('Profil bearbeiten', edit_user_path(current_user)) %></p>
+	<% end %>
 	<% if @articles_by_user.any? %>
 		<h4>Articles</h4>
 		<% @articles_by_user.each do |article| %>
