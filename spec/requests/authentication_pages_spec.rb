@@ -82,14 +82,22 @@ describe "Authentication" do
 				end
 			end
 			
-			describe "visiting the edit page" do
-				before { visit edit_user_path(user) }
-				it { should have_selector('title', text: "Login | ") }
-			end
+			describe "in the Users controller" do
 			
-			describe "submitting to the update action" do
-				before { put user_path(user) }
-				specify { response.should redirect_to(login_path) }
+				describe "visiting the edit page" do
+					before { visit edit_user_path(user) }
+					it { should have_selector('title', text: "Login | ") }
+				end
+			
+				describe "submitting to the update action" do
+					before { put user_path(user) }
+					specify { response.should redirect_to(login_path) }
+				end
+				
+				describe "visiting the user index" do
+					before { visit users_path } # we expect the appropriate redirect to the login url
+					it { should have_selector('title', text: 'Login | ') }
+				end
 			end
 		end
 		
