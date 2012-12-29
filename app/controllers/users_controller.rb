@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :signed_in_user, only: [:edit, :update]
+	before_filter :correct_user, only: [:edit, :update]
 	
 	
 	def show
@@ -31,12 +32,12 @@ class UsersController < ApplicationController
 	
 	
 	def edit
-		@user = User.find_by_id(params[:id])
+		#@user = User.find_by_id(params[:id]) # handled by before_filter
 	end
 	
 	
 	def update
-		@user = User.find_by_id(params[:id])
+		#@user = User.find_by_id(params[:id]) # handled by before_filter
 		if @user && @user.update_attributes(params[:user])
 			flash[:success] = "&Auml;nderungen &uuml;bernommen!".html_safe
 			sign_in @user
@@ -49,11 +50,17 @@ class UsersController < ApplicationController
 	
 	
 	private
+	
 		def signed_in_user
 			if not signed_in?
-				flash[:notice] = "Bitte loggen sie sich ein, um dieses Feature zu benutzen."
+				flash[:notice] = "Bitte loggen sie sich ein, um diese Funktion zu nutzen."
 				redirect_to login_url
 			end
+		end
+		
+		def correct_user
+			@user = User.find_by_id(params[:id])
+			redirect_to root_path unless current_user?(@user)
 		end
 	
 end
