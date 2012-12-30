@@ -17,7 +17,7 @@ categories = Category.create([
 users = User.create([
 	{ name: 'david', email: 'dave@this.com', password: '345blauerFracK2/&%$', password_confirmation: '345blauerFracK2/&%$' },
 	{ name: 'Example User', email: 'user@example.com', password: 'swordfish234!%&/', password_confirmation: 'swordfish234!%&/' },
-	{ name: 'Jill', email: 'jill@stars.gov', password: 'haufenweise45&/(', password_confirmation: 'haufenweise45&/(' }
+	{ name: 'Jill', email: 'jill@stars.gov', password: 'haufenweise45&/(', password_confirmation: 'haufenweise45&/(' },
 	{ name: "red", email: "red@green.com", password: 'red1234', password_confirmation: 'red1234' }
 ])
 
