@@ -8,6 +8,38 @@ describe "User pages" do
 	subject { page }
 	
 	
+	describe "index" do
+		
+		let(:user) { FactoryGirl.create(:user) }
+		
+		before(:each) do
+			sign_in user
+			visit users_path
+		end
+		
+		it { should have_selector('title',	text: 'Userübersicht') }
+		it { should have_selector('h3',		text: 'Userübersicht') }
+		
+		describe "pagination" do
+			
+			before(:all) { 30.times { FactoryGirl.create(:user) } }
+			after(:all) { User.delete_all }
+			
+			it { should have_selector('div.pagination') }
+			
+			it "should list each users id, name and email" do
+				User.paginate(page: 1).each do |user|
+					page.should have_selector('a', text: user.name, href: user_path(user))
+					page.should have_selector('td', text: user.id.to_s)
+					page.should have_selector('td', text: user.email)
+				end
+			end
+			
+		end
+		
+	end
+	
+	
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
 		before { visit user_path(user) }
