@@ -34,7 +34,25 @@ describe "User pages" do
 					page.should have_selector('td', text: user.email)
 				end
 			end
+		end
+		
+		describe "delete link" do
+		
+			it { should_not have_link('User Löschen') }
 			
+			describe 'as an admin user' do
+				let(:admin) { FactoryGirl.create(:admin) }
+				before do
+					sign_in admin
+					visit users_path
+				end
+				
+				it { should have_link('User Löschen', href: user_path(User.first)) }
+				it "should be able to delete another user" do
+					expect { click_link('Löschen') }.to change(User, :count).by(-1)
+				end
+				it { should_not have_link('User Löschen', href: user_path(admin)) }
+			end
 		end
 		
 	end

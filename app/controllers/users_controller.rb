@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :signed_in_user, only: [:index, :edit, :update]
+	before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
 	before_filter :correct_user, only: [:edit, :update]
 	
 	
@@ -44,6 +44,18 @@ class UsersController < ApplicationController
 			redirect_to @user
 		else
 			render 'edit'
+		end
+	end
+	
+	
+	def destroy
+		@user = User.find_by_id(params[:id])
+		if @user && @user.destroy
+			flash[:success] = 'Der Benutzer wurde entfernt'
+			redirect_to users_path
+		else
+			flash[:error] = 'Irgendetwas ist schiefgelaufen. Bitte wende dich an den Systemadministrator'
+			redirect_to users_path
 		end
 	end
 	
