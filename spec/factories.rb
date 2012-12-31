@@ -15,8 +15,13 @@ FactoryGirl.define do
 	end
 	
 	factory :article do
-		sequence(:title)	{ |n| "Title #{n}" }
-		sequence(:body)		{ |n| "Body Text #{n}" }
+		sequence(:title)	{ |n| "Section Title #{n}" }
+		sequence(:body)		{ |n| "Section Text #{n}" }
 		active 				true
+	end
+	
+	factory :section do 
+		sequence(:title)	{ |n| "Section Title #{n}" }
+		sequence(:body)		{ |n| "Section Text #{n}" }
 	end
 end
