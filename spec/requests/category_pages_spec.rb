@@ -21,6 +21,6 @@ describe "Category pages" do
 		it { should have_selector('h3', text: article.title) }
 		it { should have_link(article.title, href: article_path(article)) }
 		it { should have_link('Artikel hinzufügen', href: new_article_path) }
-	end
+	end 
 	
 end

@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe 'Article Pages' do
+
+	subject { page }
 	
 	describe 'when creating an article' do
 		
