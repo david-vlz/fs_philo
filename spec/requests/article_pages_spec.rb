@@ -14,7 +14,8 @@ describe 'Article Pages' do
 			it { should have_selector('div.short-info', text: 'Jeder Beitrag ist in Abschnitte gegliedert') }
 			it { should have_selector('i.icon-info-sign') }
 			it { should have_selector('h4', text: 'Abschnitt: 1') }
-			it { should have_button('Neuen Abschnitt hinzufügen') }
+			it { should have_button('Neuer Abschnitt') }
+			it { should have_button('Alles absenden') }
 		end
 		
 	end
