@@ -1,5 +1,8 @@
 <% provide(:title, @article.title) %>
 <section class="well">
-	<h3><%=@article.title%></h3>
-	<p><%=@article.body.html_safe%></p>
+	<h3><%= @article.title %></h3>
+	<% @article.sections.each do |section| %>
+		<h4><%= section.title.html_safe %></h4>
+		<p><%= section.body.html_safe %></p>
+	<% end %>
 </section>
