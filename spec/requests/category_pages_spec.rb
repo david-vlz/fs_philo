@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe "Category pages" do
+describe "Category page" do
 	
 	subject { page }
 	
@@ -11,7 +11,8 @@ describe "Category pages" do
 		let(:user) { FactoryGirl.create(:user) }
 		let(:articles_amount) { 4 }
 		let(:sections_amount) { 3 }
-		before do 
+		before do
+			sign_in user
 			articles_amount.times do |n| 
 				# TODO: Implement test for this that fails, user_id not to be changed that easily
 				# category.articles.create!(title: "title #{n}", body: "Lorem Ipsum", active: true, user_id: user.id)
@@ -29,6 +30,7 @@ describe "Category pages" do
 		end
 		it { should have_selector('div#preview-section', text: "Lorem Ipsum..."), count: 4 }
 		it { should have_link('Beitrag hinzufügen', href: new_article_path(category: category.id) ) }
-	end 
+		
+	end
 	
 end

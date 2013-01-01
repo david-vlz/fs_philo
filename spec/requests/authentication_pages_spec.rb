@@ -115,6 +115,11 @@ describe "Authentication" do
 				end
 				
 			end
+			
+			describe "when visiting a categories overview" do
+				before { visit category_path(category) }
+				it { should_not have_link('Beitrag hinzufügen') }
+			end
 		end
 		
 		describe "as wrong user" do

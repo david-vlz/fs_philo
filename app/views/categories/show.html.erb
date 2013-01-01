@@ -7,6 +7,8 @@
 	</section>
 <% end %>
 
+<% if signed_in? %>
 <%= link_to('<i class="icon-plus pull-right"></i>'.html_safe, 
 			new_article_path(category: @category.id ), 
 			title: 'Beitrag hinzuf&uuml;gen'.html_safe )%>
+<% end %>
