@@ -14,6 +14,11 @@
 							<% @categories.each do |category| %>
 								<li><%= link_to(category.name, category_path(@id=category.id)) %></li>
 							<% end %>
+							<% if signed_in? %>
+								<li>
+									<%= link_to('+'.html_safe, new_category_path, title: 'Neue Seite anlegen' )%>
+								</li>
+							<% end %>
 						</ul>
 						<ul class="nav nav-pills pull-right">
 							<% if signed_in? %>
