@@ -10,9 +10,12 @@ describe 'Article Pages' do
 		
 		let(:category) { FactoryGirl.create(:category) }
 		let(:user) { FactoryGirl.create(:user) }
-		before(:each) { visit new_article_path(category: category.id) }
+		before do
+			sign_in user	
+			visit new_article_path(category: category.id)
+		end
 		
-		describe 'the basic page layout' do
+		describe 'basic page layout' do
 			it { should have_selector('title', text: 'Beitrag erstellen | ') }
 			it { should have_selector('h3', text: 'Beitrag erstellen') }
 #			it { should have_selector('div.info-box', text: 'Jeder Beitrag hat mehrere Abschnitte') }
@@ -24,25 +27,18 @@ describe 'Article Pages' do
 			it { should have_button('Beitrag absenden') }
 		end
 		
-		describe 'signed in' do
+		describe 'with valid input' do
 			before(:each) do
-				sign_in user
 				visit new_article_path(category: category.id)
 				fill_in_article_form
 			end
-			after(:each) { sign_out }
 			
-			describe 'with valid input' do
-				it 'should create an article' do
-					expect { click_button 'Beitrag absenden' }.to change(Article, :count).by(1)
-				end
-				it 'should create sections' do
-					expect { click_button 'Beitrag absenden' }.to change(Section, :count).by(2)
-				end
+			it 'should create an article' do
+				expect { click_button 'Beitrag absenden' }.to change(Article, :count).by(1)
 			end
-		
-		
-			
+			it 'should create sections' do
+				expect { click_button 'Beitrag absenden' }.to change(Section, :count).by(2)
+			end
 			
 		end
 		

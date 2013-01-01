@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+	before_filter :signed_in_user, only: [:new, :create]
 
 	def show
 		@article = Article.find(params[:id])
@@ -15,8 +16,8 @@ class ArticlesController < ApplicationController
 				flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator!'
 			end
 		else
-			flash[:error] = 'Da ist etwas schief gelaufen. 3 Bitte kontaktiere einen Administrator!'
-			# handle attempts by users not logged in
+			flash[:error] = 'Bitte logge dich ein, um diese Funktion zu nutzen.'
+			redirect_to login_path
 		end
 	end
 

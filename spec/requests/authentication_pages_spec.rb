@@ -54,7 +54,9 @@ describe "Authentication" do
 	describe "authorization" do
 		
 		describe "for non signed in users" do
-			let(:user) { FactoryGirl.create(:user) }
+			let(:user) 		{ FactoryGirl.create(:user) }
+			let(:category)	{ FactoryGirl.create(:category) }
+			let(:article)	{ FactoryGirl.create(:article, user_id: user.id, category_id: category.id) }
 			
 			describe "when attempting to visit a protected page" do
 				before do
@@ -98,6 +100,20 @@ describe "Authentication" do
 					before { visit users_path } # we expect the appropriate redirect to the login url
 					it { should have_selector('title', text: 'Login | ') }
 				end
+			end
+			
+			describe "in the Articles controller" do
+				
+				describe "visiting the new page" do
+					before { visit new_article_path }
+					it { should have_selector('title', text: 'Login | ')}
+				end
+				
+				describe "submitting to the create action" do
+					before { post articles_path(article) }
+					specify { response.should redirect_to(login_path) }
+				end
+				
 			end
 		end
 		
