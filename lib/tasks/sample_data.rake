@@ -29,7 +29,11 @@ namespace :db do
 		])
 		
 		categories.each do |category|
-			amount = category.single_page? ? 1 : rand(7..12)
+			if category.single_page?
+				amount = 1
+			else
+				amount = rand(4..7)
+			end
 			amount.times do
 				title = Faker::Lorem.words(rand(1..5)).join(' ')
 				article = users[rand(0..user_amount)].articles.create!(title: title, category_id: category.id)
