@@ -1,5 +1,7 @@
 <% provide(:title, @category.name) %>
 
+<h3><%= yield(:title) %></h3>
+
 <% @articles.each do |article| %>
 	<section class="well">
 		<h3><%=link_to(article.title, article_path(@id=article.id))%></h3>

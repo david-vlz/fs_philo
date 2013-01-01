@@ -1,2 +1,11 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<% provide(:title, 'Seite erstellen') %>
+
+<h3>Seite erstellen</h3>
+
+<%= form_for(@category) do |f| %>
+	<%= f.label :name, 'Name' %>
+	<%= f.text_field :name %>
+	
+	<p><%= f.submit 'Erstellen', class: "btn btn-primary" %></p>
+<% end%>
+

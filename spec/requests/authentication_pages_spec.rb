@@ -106,14 +106,26 @@ describe "Authentication" do
 				
 				describe "visiting the new page" do
 					before { visit new_article_path }
-					it { should have_selector('title', text: 'Login | ')}
+					it { should have_selector('title', text: 'Login | ') }
 				end
 				
 				describe "submitting to the create action" do
 					before { post articles_path(article) }
 					specify { response.should redirect_to(login_path) }
 				end
+			end
+			
+			describe "in the Categories controller" do
 				
+				describe "visiting the create category page" do
+					before { visit new_category_path }
+					it { should have_selector('title', text: 'Login | ') }
+				end
+				
+				describe "submitting to the create action" do
+					before { post categories_path(category) }
+					specify { response.should redirect_to(login_path) }
+				end
 			end
 			
 			describe "when visiting a categories overview" do
