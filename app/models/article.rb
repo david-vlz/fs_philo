@@ -29,6 +29,17 @@ class Article < ActiveRecord::Base
 	has_many :versions, :class_name => "Article", :foreign_key => "parent_id"
 	belongs_to :parent, :class_name => "Article"	
 	
+	
+	
+	## FUNCTIONS FOR CREATING AND CHANGING THE ARTICLE BODY ##
+	# stubs, TODO: add formats for article headings
+#	def make_body_from_sections(sections = self.sections)
+#		sections.each { |s| self.body += s.title + s.body } if sections.class == Array
+#		sections.each { |s| self.body += s[:title] + s[:body] } if sections.class == Hash
+#	end
+	
+	
+	
 	## FUNCTIONS FOR VERSIONING ##
 	# use the "[].replace" to create a copy of versions
 	# this protects the database from rails automagic, which will
@@ -82,7 +93,7 @@ class Article < ActiveRecord::Base
 		
 	
 	validates(:title, presence: true)
-	validates(:body, presence: true)
+#	validates(:body, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
 	validate :check_acitivity_status
