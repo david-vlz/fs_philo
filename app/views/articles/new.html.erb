@@ -1,3 +1,20 @@
 <% provide(:title, 'Beitrag erstellen') %>
 
 <h3>Beitrag erstellen</h3>
+
+<!--<%= render 'shared/info_box', text: 'Jeder Beitrag hat mehrere Abschnitte' %>-->
+
+<%= form_for(@article) do |f| %>
+	<%= f.text_field :title %>
+	<br />
+	
+	<%= f.fields_for :sections do |s| %>
+		<%= s.text_field :title %>
+		<br />
+		<%= s.text_area :body, rows: 5 %>
+		<br />
+	<% end %>
+	
+<%= f.submit 'Beitrag absenden', class: 'btn btn-primary' %>
+
+<% end %>

@@ -13,11 +13,13 @@ describe 'Article Pages' do
 		describe 'the basic page layout' do
 			it { should have_selector('title', text: 'Beitrag erstellen | ') }
 			it { should have_selector('h3', text: 'Beitrag erstellen') }
-			it { should have_selector('div.short-info', text: 'Jeder Beitrag ist in Abschnitte gegliedert') }
-			it { should have_selector('i.icon-info-sign') }
-			it { should have_selector('h4', text: 'Abschnitt: 1') }
-			it { should have_button('Neuer Abschnitt') }
-			it { should have_button('Alles absenden') }
+#			it { should have_selector('div.info-box', text: 'Jeder Beitrag hat mehrere Abschnitte') }
+#			it { should have_selector('i.icon-info-sign') }
+			it { should have_selector('input[value="Neuer Betirag"]') }
+			2.times { |n| it { should have_selector("input[value=\"Abschnitt #{n+1}\"]") } }
+			2.times { |n| it { should have_selector("textarea[name=\"article[sections_attributes][#{n}][body]\"]") } }
+#			it { should have_button('Neuer Abschnitt') }
+			it { should have_button('Beitrag absenden') }
 		end
 		
 	end

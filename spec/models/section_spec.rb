@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: sections
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  article_id :integer
+#
+
 require 'spec_helper'
 
 describe Section do

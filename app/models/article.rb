@@ -25,9 +25,11 @@ class Article < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :category
 	has_many :sections
+	accepts_nested_attributes_for :sections
 	has_many :versions, :class_name => "Article", :foreign_key => "parent_id"
 	belongs_to :parent, :class_name => "Article"	
 	
+	## FUNCTIONS FOR VERSIONING ##
 	# use the "[].replace" to create a copy of versions
 	# this protects the database from rails automagic, which will
 	# create a parent_id for every element, that you push to self.versions
