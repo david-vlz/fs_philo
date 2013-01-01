@@ -9,6 +9,7 @@ describe 'Article Pages' do
 	describe 'creating an article' do
 		
 		let(:category) { FactoryGirl.create(:category) }
+		let(:user) { FactoryGirl.create(:user) }
 		before(:each) { visit new_article_path(category: category.id) }
 		
 		describe 'the basic page layout' do
@@ -23,22 +24,25 @@ describe 'Article Pages' do
 			it { should have_button('Beitrag absenden') }
 		end
 		
-		describe 'with valid input' do
+		describe 'signed in' do
 			before(:each) do
-				fill_in 'article_title', 						with: 'Test Heading'
-				fill_in 'article_sections_attributes_0_title', 	with: 'Test Section Heading'
-				fill_in 'article_sections_attributes_0_body', 	with: 'Lorem Ipsum dolor sit amet'
-				fill_in 'article_sections_attributes_1_title', 	with: 'Test Section Heading'
-				fill_in 'article_sections_attributes_1_body', 	with: 'Lorem Ipsum dolor sit amet'
+				sign_in user
+				visit new_article_path(category: category.id)
+				fill_in_article_form
 			end
+			after(:each) { sign_out }
 			
-			it 'should create an article' do
-				expect { click_button 'Beitrag absenden' }.to change(Article, :count).by(1)
+			describe 'with valid input' do
+				it 'should create an article' do
+					expect { click_button 'Beitrag absenden' }.to change(Article, :count).by(1)
+				end
+				it 'should create sections' do
+					expect { click_button 'Beitrag absenden' }.to change(Section, :count).by(2)
+				end
 			end
+		
+		
 			
-			it 'should create sections' do
-				expect { click_button 'Beitrag absenden' }.to change(Section, :count).by(2)
-			end
 			
 		end
 		

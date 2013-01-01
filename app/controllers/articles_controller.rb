@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 				flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator!'
 			end
 		else
+			flash[:error] = 'Da ist etwas schief gelaufen. 3 Bitte kontaktiere einen Administrator!'
 			# handle attempts by users not logged in
 		end
 	end

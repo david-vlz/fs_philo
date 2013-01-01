@@ -11,3 +11,11 @@ end
 def sign_out
 	click_link 'Logout'
 end
+
+def fill_in_article_form
+	fill_in 'article_title', 						with: 'Test Heading'
+	fill_in 'article_sections_attributes_0_title', 	with: 'Test Section Heading'
+	fill_in 'article_sections_attributes_0_body', 	with: 'Lorem Ipsum dolor sit amet'
+	fill_in 'article_sections_attributes_1_title', 	with: 'Test Section Heading'
+	fill_in 'article_sections_attributes_1_body', 	with: 'Lorem Ipsum dolor sit amet'
+end
