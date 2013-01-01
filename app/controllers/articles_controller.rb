@@ -5,16 +5,22 @@ class ArticlesController < ApplicationController
 	end
 	
 	def create
-		@article = Article.new(params[:article])
-		if @article && @article.save!
-			flash[:success] = 'Artikel gespeichert!'
-			redirect_to @article
+		@user = current_user
+		if @user
+			@article = @user.articles.build(params[:article])
+			if @article && @article.save!
+				flash[:success] = 'Artikel gespeichert!'
+				redirect_to @article
+			else
+				flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator!'
+			end
 		else
-			flash[:error] = 'Etwas lief furchtbar schief. Bitte kontaktiere einen Administrator!'
+			# handle attempts by users not logged in
 		end
 	end
 
 	def new
+		@category_id = params[:category]
 		@article = Article.new(title: "Neuer Betirag")
 		2.times { |n| @article.sections.build(title: "Abschnitt #{n+1}") }
 	end

@@ -68,11 +68,8 @@ describe Article do
 		before { @article.title = " " }
 		it { should_not be_valid }
 	end
-	
-	describe "when text is not present" do
-		before { @article.body = " " }
-		it { should_not be_valid }
-	end
+
+
 	
 	describe "when no user is assigned" do
 		before { @article.user_id = nil }
@@ -83,7 +80,12 @@ describe Article do
 		before { @article.category_id = nil }
 		it { should_not be_valid }
 	end
-	
+
+# This now only validates on edit, TODO: tests for taht	
+#	describe "when text is not present" do
+#		before { @article.body = " " }
+#		it { should_not be_valid }
+#	end
 #	describe "when multiple active versions of an article exist" do
 #		before { @article.active = true; @edition.save_edition; @article.save; }
 #		it { should_not be_valid }

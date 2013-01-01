@@ -5,4 +5,6 @@
 		<p class="lead"><%=(article.body[0...266]+"...").html_safe%></p>
 	</section>
 <% end %>
-<%= link_to('<i class="icon-plus pull-right"></i>'.html_safe, new_article_path, title: 'Artikel hinzuf&uuml;gen'.html_safe) %>
+<%= link_to('<i class="icon-plus pull-right"></i>'.html_safe, 
+			new_article_path(category: @category.id ), 
+			title: 'Beitrag hinzuf&uuml;gen'.html_safe )%>

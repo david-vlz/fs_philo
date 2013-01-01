@@ -84,7 +84,7 @@ class Article < ActiveRecord::Base
 	end
 	
 	def check_acitivity_status
-		if (active_versions.length != 1)
+		if active_versions.length != 1
 			errors.add(:active, "Exactly one active article should correspond to this one, there are #{active_versions.length}")
 			return false
 		end
@@ -96,6 +96,6 @@ class Article < ActiveRecord::Base
 #	validates(:body, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
-	validate :check_acitivity_status
+	validate :check_acitivity_status, on: :edit
 	
 end

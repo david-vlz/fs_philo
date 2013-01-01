@@ -8,7 +8,8 @@ describe 'Article Pages' do
 	
 	describe 'creating an article' do
 		
-		before(:each) { visit new_article_path }
+		let(:category) { FactoryGirl.create(:category) }
+		before(:each) { visit new_article_path(category: category.id) }
 		
 		describe 'the basic page layout' do
 			it { should have_selector('title', text: 'Beitrag erstellen | ') }
