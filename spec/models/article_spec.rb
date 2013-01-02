@@ -11,6 +11,7 @@
 #  user_id     :integer
 #  category_id :integer
 #  parent_id   :integer
+#  display     :boolean
 #
 
 require 'spec_helper'

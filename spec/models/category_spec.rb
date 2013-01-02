@@ -7,6 +7,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  single_page :boolean
+#  display     :boolean
 #
 
 require 'spec_helper'
