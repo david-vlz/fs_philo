@@ -21,7 +21,7 @@
 #
 class Article < ActiveRecord::Base
 	
-	attr_accessible :active, :user_id, :category_id, :parent_id, :body, :title, :sections_attributes
+	attr_accessible :active, :user_id, :category_id, :parent_id, :body, :title, :sections_attributes, :display
   
 	belongs_to :user
 	belongs_to :category
@@ -45,6 +45,11 @@ class Article < ActiveRecord::Base
 	# use the "[].replace" to create a copy of versions
 	# this protects the database from rails automagic, which will
 	# create a parent_id for every element, that you push to self.versions
+	#
+	# These need to be redone. Saving a duplicate of a version does not result
+	# in it being shown in article.parent.versions immediately
+	# but only when starting a new session
+	# rails doesn't seem to question the db at all times here
 	def all_versions
 		if (parent) then
 			result = [].replace(parent.versions)

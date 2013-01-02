@@ -12,7 +12,7 @@
 
 class Category < ActiveRecord::Base
 	
-	attr_accessible :name, :single_page
+	attr_accessible :name, :single_page, :display
 	
 	has_many :articles
 
