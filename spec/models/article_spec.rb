@@ -26,15 +26,16 @@ describe Article do
 			body: '<p>some marked up text</p>',
 			active: false
 		)
-		@edition = Article.new(
+		@edition = @article.versions.build(
 			user_id: 5,
 			category_id: 4,
-			parent_id: 3,
 			title: 'Erster Test Artikel-v2',
 			body: '<p>some changed text</p>',
 			active: true
 		)
-		
+		3.times do |n|
+			@article.sections.build(title: "Section Title #{n}", body: "Section Body #{n}")
+		end
 	}
 	
 	subject { @article }
@@ -81,8 +82,19 @@ describe Article do
 		before { @article.category_id = nil }
 		it { should_not be_valid }
 	end
+	
+	describe "when the article has no sections" do
+		before { @article.sections.delete_all }
+		describe "and it is not new" do
+			it { should_not be_valid }
+		end
+		describe "and it is new" do
+			before { @article.other_versions.each { |v| v.delete } }
+			it { should be_valid }
+		end
+	end
 
-# This now only validates on edit, TODO: tests for taht	
+# This now only validates on edit, TODO: tests for that	
 #	describe "when text is not present" do
 #		before { @article.body = " " }
 #		it { should_not be_valid }

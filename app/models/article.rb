@@ -50,6 +50,8 @@ class Article < ActiveRecord::Base
 	# in it being shown in article.parent.versions immediately
 	# but only when starting a new session
 	# rails doesn't seem to question the db at all times here
+	#
+	# TODO: tests for all of these
 	def all_versions
 		if (parent) then
 			result = [].replace(parent.versions)
@@ -89,6 +91,10 @@ class Article < ActiveRecord::Base
 		save!
 	end
 	
+	def is_new?
+		self.other_versions.any?
+	end
+	
 	def check_acitivity_status
 		if active_versions.length != 1
 			errors.add(:active, "Exactly one active article should correspond to this one, there are #{active_versions.length}")
@@ -102,6 +108,7 @@ class Article < ActiveRecord::Base
 #	validates(:body, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
+#	validates(:sections, presence: true) unless is_new?
 	validate :check_acitivity_status, on: :edit
 	
 end
