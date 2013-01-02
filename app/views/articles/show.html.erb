@@ -1,7 +1,16 @@
 <% provide(:title, @article.title) %>
 <section class="well">
-	<h3 data-mercury="simple"><%=@article.title%></h3>
+	
+	<% if signed_in? %>
+		<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, '/editor' + request.fullpath, title: 'Beitrag bearbeiten') %>
+	<% end %>
+
+	<h3 data-mercury="simple">
+		<%= @article.title %>
+	</h3>
+	
 	<section data-mercury="full">
-		<%=@article.body.html_safe%>
+		<%= @article.body.html_safe %>
 	</section>
+
 </section>

@@ -3,21 +3,36 @@
 require 'spec_helper'
 
 describe 'Article Pages' do
+
+	subject { page }
 	
-#	describe 'when creating an article' do
-#		
-#		before { visit new_article_path }
-#		
-#		describe 'the basic page layout' do
-#			it { should have_selector('title', text: 'Beitrag erstellen | ') }
-#			it { should have_selector('h3', text: 'Beitrag erstellen') }
-#			it { should have_selector('div.short-info', text: 'Jeder Beitrag ist in Abschnitte gegliedert') }
-#			it { should have_selector('i.icon-info-sign') }
-#			it { should have_selector('h4', text: 'Abschnitt: 1') }
-#			it { should have_button('Neuer Abschnitt') }
-#			it { should have_button('Alles absenden') }
-#		end
-#		
-#	end
-	
+	let(:category) 	{ FactoryGirl.create(:category) }
+	let(:user)		{ FactoryGirl.create(:user) }
+	let(:article) 	{ FactoryGirl.create(:article, category_id: category.id, user_id: user.id) }
+
+	describe 'presentation of basic page layout' do
+		
+		before { visit article_path(article.id) }
+		
+		shared_examples_for 'all article presentation pages' do
+			it { should have_selector('title', text: article.title) }
+			it { should have_selector('section', text: article.body) }
+		end
+		
+		describe 'for non-signed-in users' do
+			it_should_behave_like 'all article presentation pages'
+			it { should_not have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
+		end
+		
+		describe 'for signed-in users' do
+			before do
+				sign_in user
+				visit article_path(article)
+			end
+			
+			it_should_behave_like 'all article presentation pages'
+			it { should have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
+		end
+		
+	end	
 end
