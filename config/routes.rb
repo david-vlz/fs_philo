@@ -1,5 +1,7 @@
 FsPhilo::Application.routes.draw do
 
+  mount Mercury::Engine => '/'
+
   resources :categories, :articles, :users
   resources :sessions, only: [:new, :create, :destroy]
 
