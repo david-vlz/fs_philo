@@ -19,8 +19,18 @@ describe "Category pages" do
 			it { should have_selector('h3', text: "title #{n}") }
 			it { should have_selector('p.lead', text: "Lorem Ipsum #{n}") }
 		end
-		it { should have_link(article.title, href: article_path(article)) }
-		it { should have_link('Artikel hinzufügen', href: new_article_path(category: category.id)) }
+		
+		describe "for users not signed in" do
+			it { should_not have_link('Artikel hinzufügen', href: new_article_path(category: category.id)) }
+		end
+		
+		describe "for users signed in" do
+			before do
+			  sign_in user
+			  visit category_path(category)
+			end
+			it { should have_link('Artikel hinzufügen', href: new_article_path(category: category.id)) }
+		end
 	end
 	
 end
