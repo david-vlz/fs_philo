@@ -10,12 +10,12 @@
   <body>
     <script type="text/javascript">
       // Set to the url that you want to save any given page to, leave null for default handling.
-      var saveUrl = null;
+      var saveUrl = "<%= fetch_save_url %>";
 
       // Instantiate the PageEditor
       new Mercury.PageEditor(saveUrl, {
         saveStyle:  'form', // 'form', or 'json' (default json)
-        saveMethod: null, // 'PUT', or 'POST', (create, vs. update -- default PUT)
+        saveMethod: 'POST', // 'PUT', or 'POST', (create, vs. update -- default PUT)
         visible:    true  // boolean - if the interface should start visible or not
       });
     </script>

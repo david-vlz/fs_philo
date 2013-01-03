@@ -450,3 +450,8 @@ window.Mercury = {
   debug: false
 
 };
+
+// On save let Mercury redirect beck to the edited path
+$(window).bind('mercury:saved', function() {
+  window.location = window.location.href.replace(/\/editor\//i, '/');
+});

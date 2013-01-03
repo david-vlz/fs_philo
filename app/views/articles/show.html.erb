@@ -2,11 +2,8 @@
 <section class="well">
 	
 	<% if signed_in? %>
-		<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, 
-					'/editor' + request.fullpath, 
-					title: 'Beitrag bearbeiten',
-					id: "edit_link", 
-					data: {save_url: mercury_update_article_path(@article)}) %>
+		<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, '/editor' + request.fullpath, title: 'Beitrag bearbeiten', ) %>
+		<% store_save_url mercury_update_article_path(@article) %>
 	<% end %>
 
 	<h3 id="article_title" data-mercury="simple"><%= @article.title %></h3>
