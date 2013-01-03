@@ -82,6 +82,6 @@ class Article < ActiveRecord::Base
 	validates(:body, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
-	validate :check_acitivity_status
+#	validate :check_acitivity_status
 	
 end
