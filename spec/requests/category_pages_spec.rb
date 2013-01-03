@@ -21,15 +21,19 @@ describe "Category pages" do
 		end
 		
 		describe "for users not signed in" do
-			it { should_not have_link('Artikel hinzufügen', href: new_article_path(category: category.id)) }
+			it { should_not have_link('Beitrag hinzufügen', href: new_article_path(category: category.id)) }
 		end
 		
 		describe "for users signed in" do
-			before do
-			  sign_in user
-			  visit category_path(category)
+			before { sign_in user }
+			before(:each) { visit category_path(category) }
+			it { should have_link('Beitrag hinzufügen', href: new_article_path(category: category.id)) }
+			
+			describe "creating an article" do
+				it "should create an article" do
+					expect { click_link('Beitrag hinzufügen') }.to change(Article, :count).by(1)
+				end
 			end
-			it { should have_link('Artikel hinzufügen', href: new_article_path(category: category.id)) }
 		end
 	end
 	
