@@ -6,11 +6,11 @@ describe "Category pages" do
 	
 	subject { page }
 	
-	describe "with multiple articles" do
+	describe "presentation with multiple articles" do
 		let(:category) { FactoryGirl.create(:category) }
 		let(:user) { FactoryGirl.create(:user) }
 		before do 
-			3.times { |n| category.articles.create!(title: "title #{n}", body: "Lorem Ipsum #{n}", active: true, user_id: user.id) } 
+			3.times { |n| user.articles.create!(title: "title #{n}", body: "Lorem Ipsum #{n}", active: true, category_id: category.id) } 
 			visit category_path(category)
 		end
 		let(:article) { category.articles.first }
@@ -20,7 +20,7 @@ describe "Category pages" do
 			it { should have_selector('p.lead', text: "Lorem Ipsum #{n}") }
 		end
 		it { should have_link(article.title, href: article_path(article)) }
-		it { should have_link('Artikel hinzufügen', href: new_article_path) }
+		it { should have_link('Artikel hinzufügen', href: new_article_path(category: category.id)) }
 	end
 	
 end
