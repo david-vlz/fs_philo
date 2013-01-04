@@ -23,65 +23,13 @@ class Article < ActiveRecord::Base
 	attr_accessible :active, :user_id, :category_id, :parent_id, :body, :title
   
 	belongs_to :user
-	belongs_to :category
-	has_many :versions, :class_name => "Article", :foreign_key => "parent_id"
-	belongs_to :parent, :class_name => "Article"	
+	belongs_to :category	
 	
-	# use the "[].replace" to create a copy of versions
-	# this protects the database from rails automagic, which will
-	# create a parent_id for every element, that you push to self.versions
-	def all_versions
-		if (parent) then
-			result = [].replace(parent.versions)
-			result.push(parent)
-		elsif
-			result = [].replace(versions)
-			result.push(self)
-		end
-		result
-	end
-	
-	def other_versions
-		all_versions - [self]
-	end
-	
-	# this should only be one
-	# TODO: test for multiples, raise exception
-	# TODO: raise exception if this is empty
-	def active_versions
-		all_versions.select { |version| version.active == true }
-	end
-	
-	def set_all_inactive
-		active_versions.each do |version|
-			version.active = false
-			version.save!
-		end
-	end
-	
-	def set_active
-		set_all_inactive
-		self.active = true
-	end
-	
-	def save_edition
-		set_active
-		save!
-	end
-	
-	def check_acitivity_status
-		if (active_versions.length != 1)
-			errors.add(:active, "Exactly one active article should correspond to this one, there are #{active_versions.length}")
-			return false
-		end
-		true
-	end
-		
+	has_paper_trail
 	
 	validates(:title, presence: true)
 	validates(:body, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
-#	validate :check_acitivity_status
 	
 end

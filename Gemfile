@@ -9,6 +9,7 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'mercury-rails', '0.9.0'
+gem 'paper_trail', '2.7.0'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

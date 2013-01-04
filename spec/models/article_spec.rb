@@ -55,8 +55,6 @@ describe Article do
 	it { should respond_to(:parent_id) }
 	it { should respond_to(:user) }
 	it { should respond_to(:category) }
-	it { should respond_to(:versions) }
-	it { should respond_to(:parent) }
 	it { should respond_to(:body) }
 	it { should respond_to(:active) }
 	it { should respond_to(:created_at) }
