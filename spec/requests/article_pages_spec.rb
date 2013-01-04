@@ -32,6 +32,7 @@ describe 'Article Pages' do
 			
 			it_should_behave_like 'all article presentation pages'
 			it { should have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
+#			it { should have_link('Versionen anzeigen', href: 
 		end
 		
 	end	

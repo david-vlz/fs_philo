@@ -42,11 +42,6 @@ describe Article do
 		before { @article.active = true; @article.save }
 		it { should be_valid }
 	end
-	
-#	describe "when a new article is saved and subsequently editied" do
-#		before { @article.active = true; @article.save!; @edition.save_edition }
-#		it { should be_valid }
-#	end
 
 	it { should respond_to(:id) }
 	it { should respond_to(:title) }
@@ -57,6 +52,7 @@ describe Article do
 	it { should respond_to(:category) }
 	it { should respond_to(:body) }
 	it { should respond_to(:active) }
+	it { should respond_to(:versions) }
 	it { should respond_to(:created_at) }
 	it { should respond_to(:updated_at) }
 	
@@ -80,10 +76,5 @@ describe Article do
 		before { @article.category_id = nil }
 		it { should_not be_valid }
 	end
-	
-#	describe "when multiple active versions of an article exist" do
-#		before { @article.active = true; @edition.save_edition; @article.save; }
-#		it { should_not be_valid }
-#	end
 	
 end
