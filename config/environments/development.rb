@@ -34,4 +34,7 @@ FsPhilo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Only use ssl in production
+  # config.force_ssl = false
 end
