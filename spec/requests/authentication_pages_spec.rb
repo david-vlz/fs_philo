@@ -99,6 +99,16 @@ describe "Authentication" do
 					it { should have_selector('title', text: 'Login | ') }
 				end
 			end
+			
+			describe "in the Articles controller" do
+				let(:category) { FactoryGirl.create(:category) }
+				let(:article) { FactoryGirl.create(:article, category_id: category.id, user_id: user.id) }
+				
+				describe "issuing a GET request to create a new article" do
+					before { get new_article_path(category: category.id) }
+					specify { response.should redirect_to(login_path) }
+				end
+			end
 		end
 		
 		describe "as wrong user" do
