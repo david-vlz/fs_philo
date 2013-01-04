@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 		if @user
 			@article = @user.articles.build(category_id: params[:category],
 											title: "Beitrag #{Article.count+1}",
-											body: "Hier einfach weiterschreiben")
+											body: "Hier einfach weiterschreiben :3")
 			if @article && @article.save
 				redirect_to @article
 			else 
@@ -19,10 +19,6 @@ class ArticlesController < ApplicationController
 			flash[:error] = 'Bitte logge dich ein, um diese Funktion zu nutzen.'
 			redirect_to login_path
 		end
-	end
-	
-	def update
-
 	end
 	
 	def mercury_update
