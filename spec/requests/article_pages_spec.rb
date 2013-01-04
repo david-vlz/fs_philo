@@ -22,6 +22,7 @@ describe 'Article Pages' do
 		describe 'for non-signed-in users' do
 			it_should_behave_like 'all article presentation pages'
 			it { should_not have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
+			it { should_not have_link('Versionen anzeigen', href: versions_path(article.id)) }
 		end
 		
 		describe 'for signed-in users' do
@@ -32,7 +33,7 @@ describe 'Article Pages' do
 			
 			it_should_behave_like 'all article presentation pages'
 			it { should have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
-#			it { should have_link('Versionen anzeigen', href: 
+			it { should have_link('Versionen anzeigen', href: versions_path(article.id)) }
 		end
 		
 	end	
