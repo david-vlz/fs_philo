@@ -14,15 +14,9 @@ describe 'Article Pages' do
 		
 		before { visit article_path(article.id) }
 		
-		shared_examples_for 'all article presentation pages' do
-			it { should have_selector('title', text: article.title) }
-			it { should have_selector('section', text: article.body) }
-		end
-		
 		describe 'for non-signed-in users' do
 			it_should_behave_like 'all article presentation pages'
-			it { should_not have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
-			it { should_not have_link('Versionen anzeigen', href: versions_path(article.id)) }
+			it_should_behave_like 'all article presentation pages for signed-out users'
 		end
 		
 		describe 'for signed-in users' do
@@ -32,8 +26,7 @@ describe 'Article Pages' do
 			end
 			
 			it_should_behave_like 'all article presentation pages'
-			it { should have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
-			it { should have_link('Versionen anzeigen', href: versions_path(article.id)) }
+			it_should_behave_like 'all article presentation pages for signed-in users'
 		end
 		
 	end	

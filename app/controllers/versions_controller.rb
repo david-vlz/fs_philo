@@ -5,7 +5,8 @@ class VersionsController < ApplicationController
 	end
 
 	def list
-		@versions = Article.find_by_id(params[:id]).versions
+		@article = Article.find_by_id(params[:id])
+		@versions = @article.versions.reverse
 	end
 	
 	

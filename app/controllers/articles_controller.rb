@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 		end
 	end
 	
-	def mercury_update
+	def update
 		@article = Article.find_by_id(params[:id])
 		@article.title = params[:content][:article_title][:value]
 		@article.body = params[:content][:article_body][:value]

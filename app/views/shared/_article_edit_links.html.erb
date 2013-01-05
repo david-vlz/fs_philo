@@ -1,0 +1,8 @@
+<% require 'uri' %>
+
+<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, 
+			'/editor/articles/' + article.id.to_s, 
+			title: 'Beitrag bearbeiten' ) %>
+<%= link_to('<i class="icon-th-list pull-right"></i>'.html_safe, 
+			versions_path(article), 
+			title: 'Versionen anzeigen', ) %>

@@ -39,15 +39,5 @@ module SessionsHelper
 		redirect_to(session[:return_to] || default)
 		session.delete(:return_to)
 	end
-	
-	
-	
-	def store_save_url(url)
-		session[:save_url] = url
-	end
-	
-	def fetch_save_url
-		session[:save_url]
-	end
 
 end

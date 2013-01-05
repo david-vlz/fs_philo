@@ -1,0 +1,30 @@
+<% provide(:title, "#{@article.title} - Versionen") %>
+<h3>Versionsübersicht f&uuml;r: <br><%= @article.title  %></h3>
+<section>
+
+	<table class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>id</th><th>Aktion</th><th>Urheber</th><th>Datum</th><th><!--empty header for actions row--></th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @versions.each do |version| %>
+			<tr>
+				<td><%= version.id %></td>
+				<td><%= version.event %></td>
+				<td>
+					<% @originator = version.originator || '?' %>
+					<% @user = User.find_by_id(@originator.to_i) %>
+					<%= @user ? @user.name : @originator %>
+				</td>
+				<td><%= version.created_at %></td>
+				<td>
+
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+	
+</section>
