@@ -23,7 +23,6 @@ FactoryGirl.define do
 	end
 	
 	factory :article do
-		sequence(:id)		{ |n| }
 		sequence(:title)	{ |n| "Title #{n}" }
 		sequence(:body)		{ |n| "Body Text #{n}" }
 	end

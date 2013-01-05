@@ -6,3 +6,13 @@
 <%= link_to('<i class="icon-th-list pull-right"></i>'.html_safe, 
 			versions_path(article), 
 			title: 'Versionen anzeigen', ) if article.versions.count > 1 %>
+
+<% if article.visible? %>
+	<%= link_to('<i class="icon-eye-close pull-right"></i>'.html_safe, 
+				edit_article_path(article, visible: '0'), 
+				title: 'Beitrag verbergen' ) %>
+<% else %>
+	<%= link_to('<i class="icon-eye-open pull-right"></i>'.html_safe, 
+				edit_article_path(article, visible: '1'), 
+				title: 'Beitrag sichtbar machen' ) %>
+<% end %>

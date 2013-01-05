@@ -4,7 +4,11 @@ class CategoriesController < ApplicationController
 
 	def show
 		@category = Category.find_by_id(params[:id])
-		@articles = @category.articles
+		if @category && @category.single_page?
+			redirect_to @category.articles.first
+		else
+			@articles = @category.articles
+		end
 	end
 
 	def new
@@ -14,6 +18,9 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(params[:category])
 		if @category && @category.save
+			if @category.single_page?
+				current_user.articles.create(title: @category.name, body: 'Hier einfach weiterschreiben ;)', category_id: @category.id)
+			end
 			flash[:success] = 'Seite erstellt!'
 			redirect_to @category
 		else

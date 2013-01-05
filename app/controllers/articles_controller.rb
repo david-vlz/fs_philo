@@ -18,6 +18,12 @@ class ArticlesController < ApplicationController
 		end
 	end
 	
+	def edit
+		@article = Article.find(params[:id])
+		@article.update_attributes(visible: (params[:visible]=='1') ) if params[:visible]
+		redirect_back_or_default(@article)
+	end
+	
 	def update
 		@article = Article.find_by_id(params[:id])
 		@article.title = params[:content][:article_title][:value]
