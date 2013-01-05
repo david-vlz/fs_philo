@@ -5,4 +5,4 @@
 
 <%= link_to('<i class="icon-th-list pull-right"></i>'.html_safe, 
 			versions_path(article), 
-			title: 'Versionen anzeigen', ) if article.versions.any? %>
+			title: 'Versionen anzeigen', ) if article.versions.count > 1 %>

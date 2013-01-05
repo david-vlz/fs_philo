@@ -10,19 +10,21 @@
 		</thead>
 		<tbody>
 		<% @versions.each do |version| %>
-			<tr>
-				<td><%= version.id %></td>
-				<td><%= version.event %></td>
-				<td>
-					<% @originator = version.originator || '?' %>
-					<% @user = User.find_by_id(@originator.to_i) %>
-					<%= @user ? @user.name : @originator %>
-				</td>
-				<td><%= version.created_at %></td>
-				<td>
+			<% if version.object != nil %>
+				<tr>
+					<td><%= version.id %></td>
+					<td><%= version.event %></td>
+					<td>
+						<% @originator = version.originator || version.reify.user_id || '?' %>
+						<% @user = User.find_by_id(@originator.to_i) if '?' != @originator %>
+						<%= @user.name || @originator %>
+					</td>
+					<td><%= version.created_at %></td>
+					<td>
 
-				</td>
-			</tr>
+					</td>
+				</tr>
+			<% end %>
 		<% end %>
 		</tbody>
 	</table>
