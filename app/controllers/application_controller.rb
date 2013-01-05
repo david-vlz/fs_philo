@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 	include SessionsHelper
 	
+	def show
+		@categories = Cateogry.all
+	end
+	
 	private
 	
 		def signed_in_user

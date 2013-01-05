@@ -1,5 +1,7 @@
 <% provide(:title, @category.name) %>
 
+<h3><%= @category.name %></h3>
+
 <% @articles.each do |article| %>
 	<section class="well">
 		<%= render('shared/article_edit_links', article: article) if signed_in? %>
