@@ -16,7 +16,12 @@ describe Category do
 	before { @category = Category.new( name: 'Test Kategorie 123' ) }
 
 	subject { @category }
-
+	
+	it { should respond_to(:name) }
+	it { should respond_to(:single_page) }
+	it { should respond_to(:visible) }
+	it { should respond_to(:articles) }
+	
 	it { should be_valid }
 
 	describe "when name is not present" do

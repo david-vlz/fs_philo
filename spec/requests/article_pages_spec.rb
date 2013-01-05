@@ -30,7 +30,15 @@ describe 'Article Pages' do
 			it { should have_selector('title', text: article.title) }
 			it { should have_selector('section', text: article.body) }
 			it { should have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
-			it { should have_link('Versionen anzeigen', href: versions_path(article.id)) }
+			it { should_not have_link('Versionen anzeigen', href: versions_path(article.id)) }
+			
+			describe 'after an article has been updated' do
+				before do 
+					article.update_attributes(title: 'updated') 
+					visit article_path(article)
+				end
+				it { should have_link('Versionen anzeigen', href: versions_path(article.id)) }
+			end
 		end
 		
 	end	

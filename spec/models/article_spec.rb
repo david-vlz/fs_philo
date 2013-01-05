@@ -43,6 +43,7 @@ describe Article do
 	it { should respond_to(:versions) }
 	it { should respond_to(:created_at) }
 	it { should respond_to(:updated_at) }
+	it { should respond_to(:visible) }
 	
 
 	describe "when title is not present" do

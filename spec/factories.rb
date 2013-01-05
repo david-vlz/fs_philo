@@ -12,6 +12,14 @@ FactoryGirl.define do
 	
 	factory :category do
 		name	"Test Kategorie"
+		
+		factory :visible_category do
+			visible true
+		end
+		
+		factory :single_page_category do
+			single_page true
+		end
 	end
 	
 	factory :article do

@@ -11,7 +11,7 @@
 
 class Category < ActiveRecord::Base
 	
-	attr_accessible :name, :single_page
+	attr_accessible :name, :single_page, :visible
 	
 	has_many :articles
 
