@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 	
-	before_filter :signed_in_user, only:[:new, :mercury_update]
+	before_filter :signed_in_user, only:[:new, :update]
 	
 	def show
 		@article = Article.find_by_id(params[:id])

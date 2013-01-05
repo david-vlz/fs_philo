@@ -55,6 +55,8 @@ describe "Authentication" do
 		
 		describe "for non signed in users" do
 			let(:user) { FactoryGirl.create(:user) }
+			let(:category)	{ FactoryGirl.create(:category) }
+			let(:article)	{ FactoryGirl.create(:article, user_id: user.id, category_id: category.id) }
 			
 			describe "when attempting to visit a protected page" do
 				before do
@@ -101,11 +103,22 @@ describe "Authentication" do
 			end
 			
 			describe "in the Articles controller" do
-				let(:category) { FactoryGirl.create(:category) }
-				let(:article) { FactoryGirl.create(:article, category_id: category.id, user_id: user.id) }
 				
-				describe "issuing a GET request to create a new article" do
+				describe "issuing a GET request to initialize a new empty article" do
 					before { get new_article_path(category: category.id) }
+					specify { response.should redirect_to(login_path) }
+				end
+			end
+			
+			describe "in the Categories controller" do
+				
+				describe "visiting the create category page" do
+					before { visit new_category_path }
+					it { should have_selector('title', text: 'Login | ') }
+				end
+				
+				describe "submitting to the create action" do
+					before { post categories_path(category) }
 					specify { response.should redirect_to(login_path) }
 				end
 			end

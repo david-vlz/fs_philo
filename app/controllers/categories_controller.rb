@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 
+	before_filter :signed_in_user, except: [:show]
+
 	def show
 		@category = Category.find_by_id(params[:id])
 		@articles = @category.articles
@@ -15,7 +17,7 @@ class CategoriesController < ApplicationController
 			flash[:success] = 'Seite erstellt!'
 			redirect_to @category
 		else
-			flash[:error] = 'Da ist etwas furchtbar schiefgelaufen. Bitte kontaktiere einen Administrator'
+			flash[:error] = 'Da ist etwas ziemlich schiefgelaufen. Bitte kontaktiere einen Administrator'
 			redirect_to root_path
 		end
 	end
