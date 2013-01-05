@@ -15,8 +15,10 @@ describe 'Article Pages' do
 		before { visit article_path(article.id) }
 		
 		describe 'for non-signed-in users' do
-			it_should_behave_like 'all article presentation pages'
-			it_should_behave_like 'all article presentation pages for signed-out users'
+			it { should have_selector('title', text: article.title) }
+			it { should have_selector('section', text: article.body) }
+			it { should_not have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
+			it { should_not have_link('Versionen anzeigen', href: versions_path(article.id)) }
 		end
 		
 		describe 'for signed-in users' do
@@ -25,8 +27,10 @@ describe 'Article Pages' do
 				visit article_path(article)
 			end
 			
-			it_should_behave_like 'all article presentation pages'
-			it_should_behave_like 'all article presentation pages for signed-in users'
+			it { should have_selector('title', text: article.title) }
+			it { should have_selector('section', text: article.body) }
+			it { should have_link('Beitrag bearbeiten', href: '/editor/articles/' + article.id.to_s ) }
+			it { should have_link('Versionen anzeigen', href: versions_path(article.id)) }
 		end
 		
 	end	

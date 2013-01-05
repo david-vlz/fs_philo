@@ -10,7 +10,7 @@ describe "Category pages" do
 		let(:category) { FactoryGirl.create(:category) }
 		let(:user) { FactoryGirl.create(:user) }
 		before do 
-			3.times { |n| user.articles.create!(title: "title #{n}", body: "Lorem Ipsum #{n}", active: true, category_id: category.id) } 
+			3.times { |n| user.articles.create!(title: "title #{n}", body: "Lorem Ipsum #{n}", category_id: category.id) } 
 			visit category_path(category)
 		end
 		let(:article) { category.articles.first }

@@ -18,6 +18,5 @@ FactoryGirl.define do
 		sequence(:id)		{ |n| }
 		sequence(:title)	{ |n| "Title #{n}" }
 		sequence(:body)		{ |n| "Body Text #{n}" }
-		active 				true
 	end
 end

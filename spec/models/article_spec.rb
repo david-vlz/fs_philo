@@ -23,23 +23,13 @@ describe Article do
 			category_id: 4,
 			title: 'Erster Test Artikel', 
 			body: '<p>some marked up text</p>',
-			active: false
-		)
-		@edition = Article.new(
-			user_id: 5,
-			category_id: 4,
-			parent_id: 3,
-			title: 'Erster Test Artikel-v2',
-			body: '<p>some changed text</p>',
-			active: true
-		)
-		
+		)		
 	}
 	
 	subject { @article }
 	
 	describe "when a new article is saved" do
-		before { @article.active = true; @article.save }
+		before { @article.save }
 		it { should be_valid }
 	end
 
@@ -47,11 +37,9 @@ describe Article do
 	it { should respond_to(:title) }
 	it { should respond_to(:user_id) }
 	it { should respond_to(:category_id) }
-	it { should respond_to(:parent_id) }
 	it { should respond_to(:user) }
 	it { should respond_to(:category) }
 	it { should respond_to(:body) }
-	it { should respond_to(:active) }
 	it { should respond_to(:versions) }
 	it { should respond_to(:created_at) }
 	it { should respond_to(:updated_at) }

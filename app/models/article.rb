@@ -20,7 +20,7 @@
 #
 class Article < ActiveRecord::Base
 	
-	attr_accessible :active, :user_id, :category_id, :parent_id, :body, :title
+	attr_accessible :user_id, :category_id, :body, :title
   
 	belongs_to :user
 	belongs_to :category	
