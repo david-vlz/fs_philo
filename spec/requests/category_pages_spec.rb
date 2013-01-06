@@ -43,7 +43,7 @@ describe "Category pages" do
 		describe "with valid input for a single page category" do
 			before do
 				fill_in 'Name', with: 'Test mit einem Beitrag'
-				choose 	'Seite mit einem Beitrag'
+				choose 	'einfache Seite mit einem einzelnen Beitrag'
 			end
 			
 			it "should create the category" do

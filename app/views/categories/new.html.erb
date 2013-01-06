@@ -2,21 +2,4 @@
 
 <h3>Seite erstellen</h3>
 
-<%= form_for(@category) do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	
-	<br>
-	
-	<%= f.radio_button	:single_page, true %>
-	<%= f.label :single_page_true, 'Seite mit einem Beitrag', class: 'box-label' %>
-
-	<br>
-	
-	<%= f.radio_button	:single_page, false %>
-	<%= f.label :single_page_false, 'blogartige Seite mit mehreren Beitr&auml;gen'.html_safe, class: 'box-label' %>
-
-	<br>
-	
-	<%= f.submit 'Erstellen', class: 'btn btn-primary' %>
-<% end %>
+<%= render('categories/category_form', submit_text: 'Erstellen', category: @category) %>

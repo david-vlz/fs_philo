@@ -28,4 +28,10 @@ class CategoriesController < ApplicationController
 			redirect_to root_path
 		end
 	end
+	
+	def edit
+		@category = Category.find(params[:id])
+	end
+	
+	
 end

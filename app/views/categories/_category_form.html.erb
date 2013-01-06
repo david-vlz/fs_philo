@@ -1,0 +1,30 @@
+<%= form_for(category) do |f| %>
+	
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	
+	<br>
+	<br>
+	
+	<%= f.label :single_Page, 'Art der Seite' %>
+	
+	<%= f.radio_button	:single_page, true %>
+	<%= f.label :single_page_true, 'einfache Seite mit einem einzelnen Beitrag', class: 'box-label' %>
+
+	<br>
+	
+	<%= f.radio_button	:single_page, false %>
+	<%= f.label :single_page_false, 'blogartige Seite mit mehreren Beitr&auml;gen'.html_safe, class: 'box-label' %>
+	
+	<br>
+	<br>
+
+	<%= f.label 'Sichtbarkeit' %>
+	<%= f.check_box :visible %>
+	<%= f.label :visible, 'Die Seite ist sichtbar', class: 'box-label' %>
+
+	<br>
+	<br>
+	
+	<%= f.submit submit_text, class: 'btn btn-primary' %>
+<% end %>
