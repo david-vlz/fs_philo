@@ -18,12 +18,12 @@
 		</tr>
 		<% @versions.each do |version| %>
 			<tr>
-				<td><%= version.id %></td>
-				<td><%= version.object ? link_to(version.event, version) : version.event %></td>
+				<td><%= version.object ? link_to(version.id, version, title: 'Zur Version') : version.id %></td>
+				<td><%= version.event %></td>
 				<% user = whodunnit_user(version) %>
 				<td><%= user ? link_to(user.name, user) : '?' %></td>
 				<td><%= string_from_time(version.created_at) %></td>
-				<td><!-- TODO: Fill this with actions to be performed on the version, e.g. revert to this --></td>
+				<td><%= link_to('<i class="icon-time"></i>'.html_safe, revert_version_path(version), title: 'Auf diese Version zur&uuml;cksetzen'.html_safe) %></td>
 			</tr>
 		<% end %>
 		</tbody>
