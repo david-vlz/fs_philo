@@ -7,7 +7,7 @@
 		<p><%= link_to('Profil bearbeiten', edit_user_path(current_user)) %></p>
 	<% end %>
 	<% if @articles_by_user.any? %>
-		<h4>Articles</h4>
+		<h4>Beitr&auml;ge von <%= @user.name %></h4>
 		<% @articles_by_user.each do |article| %>
 			<section class="well well-small">
 				<h5><%=link_to(article.title, article_path(@id=article.id))%></h5>
