@@ -33,5 +33,15 @@ class CategoriesController < ApplicationController
 		@category = Category.find(params[:id])
 	end
 	
+	def update
+		@category = Category.find(params[:id])
+		if @category && @category.update_attributes(params[:category])
+			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
+			redirect_to @category
+		else
+			render 'edit'
+		end
+	end
+	
 	
 end
