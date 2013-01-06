@@ -1,6 +1,6 @@
 <% provide(:title, @category.name) %>
 
-<h3><%= @category.name %><%= render('shared/category_edit_links', category: @category) if signed_in? %></h3>
+<h2><%= @category.name %><%= render('shared/category_edit_links', category: @category) if signed_in? %></h2>
 
 <% @articles.each do |article| %>
 	

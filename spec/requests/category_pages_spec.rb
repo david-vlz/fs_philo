@@ -35,7 +35,7 @@ describe "Category pages" do
 				
 				it { should have_link(category.name, href: category_path(category.id) ) }
 				it { should have_selector('title', text: "#{category.name} | ") }
-				it { should have_selector('h3', text: category.name) }
+				it { should have_selector('h2', text: category.name) }
 				# it { should have_link('Beitrag hinzufügen', href: new_article_path ) } # TODO: fix
 			end
 		end
