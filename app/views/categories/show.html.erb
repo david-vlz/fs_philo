@@ -7,22 +7,12 @@
 	<% if article.visible? %>
 		<section class="well well-small">
 			<%= render('shared/article_edit_links', article: article, is_version: false) if signed_in? %>
-			<h3>
-				<%= link_to(article.title, article_path(@id=article.id)) %>
-			</h3>
-			<p class="lead">
-				<%= (article.body[0...266]+"...").html_safe %>
-			</p>
+			<%= render('shared/article_preview', article: article) %>
 		</section>
 	<% elsif signed_in? %>
 		<section class="well well-small muted">
 			<%= render('shared/article_edit_links', article: article, is_version: false) %>
-			<h3>
-				<%= link_to(article.title, article_path(@id=article.id)) %>
-			</h3>
-			<p class="lead">
-				<%= (article.body[0...266]+"...").html_safe %>
-			</p>
+			<%= render('shared/article_preview', article: article) %>
 		</section>
 	<% end %>
 	
