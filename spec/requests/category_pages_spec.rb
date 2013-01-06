@@ -113,9 +113,10 @@ describe "Category pages" do
 		let(:category) { FactoryGirl.create(:category, single_page: true) }
 		let(:user) { FactoryGirl.create(:user) }
 		let(:single_article) { FactoryGirl.create(:article, user_id: user.id, category_id: category.id, visible: true) }
+		before { single_article.save }
 		
 		describe "should redirect to that article" do
-			before { visit category_path(category) }
+			before { get category_path(category) }
 			specify { response.should redirect_to article_path(single_article) }
 		end
 	end
