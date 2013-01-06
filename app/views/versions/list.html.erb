@@ -13,27 +13,18 @@
 			<td></td>
 			<td><%= link_to('aktuelle Version', @article) %></td>
 			<td></td>
-			<td><%= @article.updated_at %></td>
-			<td>
-
-			</td>
+			<td><%= string_from_time(@article.updated_at) %></td>
+			<td></td>
 		</tr>
 		<% @versions.each do |version| %>
-			<% if version.object != nil %>
-				<tr>
-					<td><%= version.id %></td>
-					<td><%= version.event %></td>
-					<td>
-						<% @who = version.whodunnit || '?' %>
-						<% @user = User.find_by_id(@who.to_i) if '?' != @who %>
-						<%= @user ? @user.name : @who %>
-					</td>
-					<td><%= version.created_at %></td>
-					<td>
-
-					</td>
-				</tr>
-			<% end %>
+			<tr>
+				<td><%= version.id %></td>
+				<td><%= version.object ? link_to(version.event, version) : version.event %></td>
+				<% user = whodunnit_user(version) %>
+				<td><%= user ? link_to(user.name, user) : '?' %></td>
+				<td><%= string_from_time(version.created_at) %></td>
+				<td><!-- TODO: Fill this with actions to be performed on the version, e.g. revert to this --></td>
+			</tr>
 		<% end %>
 		</tbody>
 	</table>

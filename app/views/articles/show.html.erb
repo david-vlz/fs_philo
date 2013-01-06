@@ -1,14 +1,1 @@
-<% provide(:title, @article.title) %>
-<section class="well">
-	
-	<% if signed_in? %>
-		<%= render 'shared/article_edit_links', article: @article %>
-	<% end %>
-
-	<h3 id="article_title" data-mercury="simple"><%= @article.title %></h3>
-	
-	<section id="article_body" data-mercury="full">
-		<%= @article.body.html_safe %>
-	</section>
-
-</section>
+<%= render 'shared/article_full_view', article: @article, is_version: false %>

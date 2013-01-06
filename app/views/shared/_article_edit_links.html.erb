@@ -1,18 +1,20 @@
 
 <%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, 
 			'/editor/articles/' + article.id.to_s, 
-			title: 'Beitrag bearbeiten' ) %>
+			title: 'Beitrag bearbeiten' ) unless is_version %>
 
 <%= link_to('<i class="icon-th-list pull-right"></i>'.html_safe, 
 			versions_path(article), 
-			title: 'Versionen anzeigen', ) if article.versions.count > 1 %>
+			title: 'Versionen anzeigen', ) if article.versions.any? %>
 
-<% if article.visible? %>
-	<%= link_to('<i class="icon-eye-close pull-right"></i>'.html_safe, 
-				edit_article_path(article, visible: '0'), 
-				title: 'Beitrag verbergen' ) %>
-<% else %>
-	<%= link_to('<i class="icon-eye-open pull-right"></i>'.html_safe, 
-				edit_article_path(article, visible: '1'), 
-				title: 'Beitrag sichtbar machen' ) %>
+<% unless is_version %>
+	<% if article.visible? %>
+		<%= link_to('<i class="icon-eye-close pull-right"></i>'.html_safe, 
+					edit_article_path(article, visible: '0'), 
+					title: 'Beitrag verbergen' ) %>
+	<% else %>
+		<%= link_to('<i class="icon-eye-open pull-right"></i>'.html_safe, 
+					edit_article_path(article, visible: '1'), 
+					title: 'Beitrag sichtbar machen' ) %>
+	<% end %>
 <% end %>

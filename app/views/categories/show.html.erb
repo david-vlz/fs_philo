@@ -6,7 +6,7 @@
 	
 	<% if article.visible? %>
 		<section class="well well-small">
-			<%= render('shared/article_edit_links', article: article) if signed_in? %>
+			<%= render('shared/article_edit_links', article: article, is_version: false) if signed_in? %>
 			<h3>
 				<%= link_to(article.title, article_path(@id=article.id)) %>
 			</h3>
@@ -16,7 +16,7 @@
 		</section>
 	<% elsif signed_in? %>
 		<section class="well well-small muted">
-			<%= render('shared/article_edit_links', article: article) %>
+			<%= render('shared/article_edit_links', article: article, is_version: false) %>
 			<h3>
 				<%= link_to(article.title, article_path(@id=article.id)) %>
 			</h3>
