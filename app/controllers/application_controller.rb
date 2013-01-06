@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 		def signed_in_user
 			if not signed_in?
 				store_location
-				flash[:notice] = "Bitte logge dich ein, um diese Funktion nutzen zu k&ouml;.".html_safe
+				flash[:notice] = "Bitte logge dich ein, um diese Funktion nutzen zu k&ouml;nnen.".html_safe
 				redirect_to login_url
 			end
 		end
