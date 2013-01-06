@@ -11,10 +11,13 @@
 
 class Category < ActiveRecord::Base
 	
-	attr_accessible :name, :single_page, :visible
+	attr_accessible :name, :single_page, :visible, :precursor_id
 	
 	has_many :articles
+	
+	belongs_to :precursor, class_name: 'Category'
 
 	validates(:name, presence: true)
+	validates(:precursor_id, uniqueness: true)
   
 end

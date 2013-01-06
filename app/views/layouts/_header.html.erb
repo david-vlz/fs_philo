@@ -12,9 +12,12 @@
 						
 							<li><%= link_to("Home", root_path) %></li>
 							
-							<% @categories = getCategories %>
-							<% @categories.each do |category| %>
-								<li><%= link_to(category.name, category_path(@id=category.id)) %></li>
+							<% i = 1 %>
+							<% @category = getFirstCategory %>
+							<% while i <= Category.count %>
+								<li><%= link_to(@category.name, category_path(@category)) %></li>
+								<% @category = Category.find_by_precursor_id(@category.id) %>
+								<% i+=1 %>
 							<% end %>
 							
 							<% if signed_in? %>

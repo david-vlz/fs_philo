@@ -10,8 +10,14 @@ module ApplicationHelper
 		end
 	end
 	
+	
+	
 	def getCategories
 		Category.all
+	end
+	
+	def getFirstCategory
+		Category.find_by_precursor_id(nil)
 	end
 	
 end

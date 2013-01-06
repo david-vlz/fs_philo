@@ -5,7 +5,7 @@
 	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
-				<th>id</th><th>Aktion</th><th>Urheber</th><th>Datum</th><th><!--empty header for actions row--></th>
+				<th>id</th><th>Aktion</th><th>ge&auml;ndert durch</th><th>Datum</th><th><!--empty header for actions row--></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -15,9 +15,9 @@
 					<td><%= version.id %></td>
 					<td><%= version.event %></td>
 					<td>
-						<% @originator = version.originator || version.reify.user_id || '?' %>
-						<% @user = User.find_by_id(@originator.to_i) if '?' != @originator %>
-						<%= @user.name || @originator %>
+						<% @who = version.whodunnit || '?' %>
+						<% @user = User.find_by_id(@who.to_i) if '?' != @who %>
+						<%= @user ? @user.name : @who %>
 					</td>
 					<td><%= version.created_at %></td>
 					<td>
