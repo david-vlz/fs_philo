@@ -9,6 +9,15 @@
 			</tr>
 		</thead>
 		<tbody>
+		<tr>
+			<td></td>
+			<td><%= link_to('aktuelle Version', @article) %></td>
+			<td></td>
+			<td><%= @article.updated_at %></td>
+			<td>
+
+			</td>
+		</tr>
 		<% @versions.each do |version| %>
 			<% if version.object != nil %>
 				<tr>
