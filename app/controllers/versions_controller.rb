@@ -13,6 +13,18 @@ class VersionsController < ApplicationController
 		@versions = @article.versions.reverse
 	end
 	
+	def revert
+		@version = Version.find(params[:id]).reify
+		@article = Article.find(@version.id)
+		@article = @version
+		if @article.save
+			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
+			redirect_to @article
+		else
+			flash[:error] = 'Da ist was ziemlich schief gelaufen. Bitte kontaktiere einen Administrator'
+			redirect_to root_path
+		end
+	end
 	
 
 end

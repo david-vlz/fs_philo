@@ -9,7 +9,8 @@
 			
 <%= link_to('<i class="icon-time pull-right"></i>'.html_safe, 
 			revert_version_path(@version),
-			title: 'Auf diese Version zur&uuml;cksetzen'.html_safe) if is_version %>
+			title: 'Auf diese Version zur&uuml;cksetzen'.html_safe,
+			method: :post ) if is_version %>
 
 <% unless is_version %>
 	<% if article.visible? %>
