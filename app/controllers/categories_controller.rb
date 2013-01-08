@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-
+	
+	include CategoriesHelper
 	before_filter :signed_in_user, except: [:show]
 
 	def show
@@ -35,12 +36,14 @@ class CategoriesController < ApplicationController
 	
 	def update
 		@category = Category.find(params[:id])
-		if @category && @category.update_attributes(params[:category])
-			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
-			redirect_to @category
-		else
-			render 'edit'
-		end
+		intended_precursor_id = precursor_id_from_input(params[:category][:precursor_id])
+		@category.move_after(intended_precursor_id)
+#		if @category && @category.update_attributes(params[:category])
+#			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
+#			redirect_to @category
+#		else
+#			render 'edit'
+#		end
 	end
 	
 	

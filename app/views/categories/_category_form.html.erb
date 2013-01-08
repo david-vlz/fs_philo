@@ -8,7 +8,7 @@
 	<br>
 	<br>
 	
-	<%= f.label :single_Page, 'Art der Seite' %>
+	<%= f.label :single_Page, 'Art' %>
 	
 	<%= f.radio_button	:single_page, true %>
 	<%= f.label :single_page_true, 'einfache Seite mit einem einzelnen Beitrag', class: 'box-label' %>
@@ -23,8 +23,14 @@
 
 	<%= f.label 'Sichtbarkeit' %>
 	<%= f.check_box :visible %>
-	<%= f.label :visible, 'Die Seite ist sichtbar', class: 'box-label' %>
+	<%= f.label :visible, 'sichtbar f&uuml;r alle Benutzer'.html_safe, class: 'box-label' %>
 
+	<br>
+	<br>
+	
+	<%= f.label :precursor_id, 'Anordnen nach' %>
+	<%= select('category', 'precursor_id', Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Vorne' } ) %>
+	
 	<br>
 	<br>
 	
