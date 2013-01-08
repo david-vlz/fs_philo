@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
 				@article.category.update_attribute(:visible, (params[:visible]=='1') )
 			end
 		end
+		flash[:success] = change_text
 		redirect_back_or_default(@article)
 	end
 	

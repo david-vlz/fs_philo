@@ -16,4 +16,8 @@ module ApplicationHelper
 		Category.all_in_succession
 	end
 	
+	def change_text
+		'&Auml;nderungen &uuml;bernommen'.html_safe
+	end
+	
 end
