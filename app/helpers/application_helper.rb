@@ -12,12 +12,8 @@ module ApplicationHelper
 	
 	
 	
-	def getCategories
-		Category.all
-	end
-	
-	def getFirstCategory
-		Category.find_by_precursor_id(nil)
+	def fetchCategories
+		Category.all_in_succession
 	end
 	
 end
