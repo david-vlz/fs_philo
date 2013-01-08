@@ -6,7 +6,10 @@
 		<%= render 'shared/article_edit_links', article: article, is_version: is_version %>
 	<% end %>
 
-	<h3 id="article_title" data-mercury="simple"><%= article.title %></h3>
+	<h3 id="article_title" data-mercury="simple">
+		<%= article.title %>
+		<%= render('shared/category_edit_links' , category: @category) if single_page_category %>
+	</h3>
 	
 	<section id="article_body" data-mercury="full">
 		<%= article.body.html_safe %>

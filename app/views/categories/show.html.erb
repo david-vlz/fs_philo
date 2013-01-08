@@ -1,25 +1,37 @@
-<% provide(:title, @category.name) %>
+<% if @category.single_page? %>
 
-<h2><%= @category.name %><%= render('shared/category_edit_links', category: @category) if signed_in? %></h2>
 
-<% @articles.each do |article| %>
+	<%= render 'shared/article_full_view', article: @article, is_version: false, single_page_category: true %>
+
+
+<% else %>
+
+
+	<% provide(:title, @category.name) %>
+
+	<h2><%= @category.name %><%= render('shared/category_edit_links', category: @category) if signed_in? %></h2>
+
+	<% @articles.each do |article| %>
 	
-	<% if article.visible? %>
-		<section class="well well-small">
-			<%= render('shared/article_edit_links', article: article, is_version: false) if signed_in? %>
-			<%= render('shared/article_preview', article: article) %>
-		</section>
-	<% elsif signed_in? %>
-		<section class="well well-small muted">
-			<%= render('shared/article_edit_links', article: article, is_version: false) %>
-			<%= render('shared/article_preview', article: article) %>
-		</section>
+		<% if article.visible? %>
+			<section class="well well-small">
+				<%= render('shared/article_edit_links', article: article, is_version: false) if signed_in? %>
+				<%= render('shared/article_preview', article: article) %>
+			</section>
+		<% elsif signed_in? %>
+			<section class="well well-small muted">
+				<%= render('shared/article_edit_links', article: article, is_version: false) %>
+				<%= render('shared/article_preview', article: article) %>
+			</section>
+		<% end %>
+	
 	<% end %>
-	
-<% end %>
 
-<% if signed_in? %>
-	<%= link_to('<i class="icon-plus pull-right"></i>'.html_safe, 
-				new_article_path(category: @category.id), title: 
-				'Beitrag hinzuf&uuml;gen'.html_safe) %>
+	<% if signed_in? %>
+		<%= link_to('<i class="icon-plus pull-right"></i>'.html_safe, 
+					new_article_path(category: @category.id), title: 
+					'Beitrag hinzuf&uuml;gen'.html_safe) %>
+	<% end %>
+
+
 <% end %>

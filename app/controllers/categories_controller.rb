@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 	def show
 		@category = Category.find_by_id(params[:id])
 		if @category && @category.single_page?
-			redirect_to @category.articles.first
+			@article = @category.articles.first
 		else
 			@articles = @category.articles
 		end
@@ -38,12 +38,12 @@ class CategoriesController < ApplicationController
 		@category = Category.find(params[:id])
 		intended_precursor_id = precursor_id_from_input(params[:category][:precursor_id])
 		@category.move_after(intended_precursor_id)
-#		if @category && @category.update_attributes(params[:category])
-#			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
-#			redirect_to @category
-#		else
-#			render 'edit'
-#		end
+		if @category && @category.update_attributes(params[:category])
+			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
+			redirect_to @category
+		else
+			render 'edit'
+		end
 	end
 	
 	

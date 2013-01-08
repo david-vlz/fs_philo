@@ -116,8 +116,8 @@ describe "Category pages" do
 		before { single_article.save }
 		
 		describe "should redirect to that article" do
-			before { get category_path(category) }
-			specify { response.should redirect_to article_path(single_article) }
+			before { visit category_path(category) }
+			it { should_not have_link(single_article.title, href: article_path(single_article.id)) }
 		end
 	end
 	
