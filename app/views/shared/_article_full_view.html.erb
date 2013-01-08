@@ -8,7 +8,7 @@
 
 	<h3 id="article_title" data-mercury="simple">
 		<%= article.title %>
-		<%= render('shared/category_edit_links' , category: @category) if single_page_category %>
+		<%= render('shared/category_edit_links' , category: @category) if single_page_category && signed_in? %>
 	</h3>
 	
 	<section id="article_body" data-mercury="full">
