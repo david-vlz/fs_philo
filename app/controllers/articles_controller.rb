@@ -18,9 +18,16 @@ class ArticlesController < ApplicationController
 		end
 	end
 	
+	# handles only visibility parameter changes. Actual text/heading changed 
+	# via Mercury editor
 	def edit
 		@article = Article.find(params[:id])
-		@article.update_attributes(visible: (params[:visible]=='1') ) if params[:visible]
+		if params[:visible]
+			@article.update_attribute(:visible, (params[:visible]=='1') )
+			if @article.category.single_page?
+				@article.category.update_attribute(:visible, (params[:visible]=='1') )
+			end
+		end
 		redirect_back_or_default(@article)
 	end
 	
