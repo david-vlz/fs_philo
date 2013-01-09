@@ -2,15 +2,15 @@
 #
 # Table name: articles
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  body        :text
-#  active      :boolean
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :integer
-#  category_id :integer
-#  parent_id   :integer
+#  id           :integer          not null, primary key
+#  title        :string(255)
+#  body         :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :integer
+#  category_id  :integer
+#  visible      :boolean          default(FALSE)
+#  precursor_id :integer
 #
 
 require 'spec_helper'

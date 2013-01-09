@@ -2,11 +2,13 @@
 #
 # Table name: categories
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  single_page :boolean
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  single_page  :boolean
+#  visible      :boolean          default(FALSE)
+#  precursor_id :integer
 #
 
 require 'spec_helper'

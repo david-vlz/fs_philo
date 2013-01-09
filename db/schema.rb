@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106151557) do
+ActiveRecord::Schema.define(:version => 20130109103438) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "user_id"
     t.integer  "category_id"
-    t.boolean  "visible",     :default => false
+    t.boolean  "visible",      :default => false
+    t.integer  "precursor_id"
   end
 
   create_table "categories", :force => true do |t|
