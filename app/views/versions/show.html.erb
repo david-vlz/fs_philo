@@ -3,4 +3,4 @@
 	<span class="pull-right"><%= link_to('&gt;&gt; zur aktuellen Version'.html_safe, article_path(@article.id) ) %></span>
 </p>
 
-<%= render 'shared/article_full_view', article: @article, is_version: true %>
+<%= render 'shared/article_full_view', article: @article, is_version: true, single_page_category: false %>
