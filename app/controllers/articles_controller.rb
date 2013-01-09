@@ -10,7 +10,9 @@ class ArticlesController < ApplicationController
 		@user = current_user
 		@article = @user.articles.build(category_id: params[:category],
 										title: "Beitrag #{Article.count+1}",
-										body: "Hier einfach weiterschreiben :3")
+										body: "Hier einfach weiterschreiben :3",
+										precursor_id: Article.maximum('precursor_id')+1
+										)
 		if @article && @article.save
 			redirect_to @article
 		else 
