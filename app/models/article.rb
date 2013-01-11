@@ -25,8 +25,8 @@ class Article < ActiveRecord::Base
 	
 	has_paper_trail
 	
-	validates(:title, presence: true)
 	validates(:body, presence: true)
+	validates(:title, presence: true)
 	validates(:user_id, presence: true)
 	validates(:category_id, presence: true)
 	validates(:precursor_id, uniqueness: true)
