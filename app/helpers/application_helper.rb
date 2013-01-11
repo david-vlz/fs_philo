@@ -20,10 +20,9 @@ module ApplicationHelper
 		'&Auml;nderungen &uuml;bernommen'.html_safe
 	end
 	
-#	def precursor_from_input(id, klass)
-#		id = id.to_i
-#		id = (id == 0) ? nil : id 	# zero because nil.to_i == 0 and ''.to_i == 0
-#		klass.find(id)
-#	end
+	def precursor_id_from_input(id)
+		id = id.to_i
+		id == 0 ? nil : id 	# zero because nil.to_i == 0 and ''.to_i == 0
+	end
 	
 end
