@@ -34,17 +34,25 @@ class CategoriesController < ApplicationController
 		@category = Category.find(params[:id])
 	end
 	
-#	def update
-#		@category = Category.find(params[:id])
-#		@new_precursor = Category.find(precursor_id_from_input(params[:category][:precursor_id]))
-#		if @category.move_after(intended_precursor_id)
-#		if @category && @category.update_attributes(params[:category])
-#			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
-#			redirect_to @category
-#		else
-#			render 'edit'
-#		end
-#	end
+	
+	def update
+		@category = Category.find(params[:id])
+		
+		id = precursor_id_from_input(params[:category][:precursor_id])
+		if !id
+			@category.move_top
+		else
+			new_precursor = Category.find(id)
+			@category.move_after(new_precursor)
+		end
+		
+		if @category && @category.update_attributes(params[:category])
+			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
+			redirect_to @category
+		else
+			render 'edit'
+		end
+	end
 	
 	
 end
