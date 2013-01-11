@@ -12,7 +12,7 @@ module InSuccession
 		# orders the objects according to their primary id
 		def assign_natural_succession
 			transaction do
-				self.all.each { |object| object.update_attribute(:precursor_id, obj.id-1) } # this should not be id-1 for the id might not exist in the db
+				self.all.each { |object| object.update_attribute(:precursor_id, object.id-1) } # this should not be id-1 for the id might not exist in the db
 				self.find(1).update_attribute(:precursor_id, nil) # for the same reason this should not be find 1
 			end
 		end
@@ -20,12 +20,20 @@ module InSuccession
 		# fetches all objects in order of their succession
 		def all_in_succession
 			all = []
-			object = self.where(precursor_id: nil).first
+			object = self.first_in_succession
 			(1..self.maximum('id')).each do
 				all.push(object)
 				object = object.successor
 			end
 			all
+		end
+		
+		def first_in_succession
+			self.where(precursor_id: nil).first
+		end
+		
+		def last_in_succession
+			self.all_in_succession.last
 		end
 		
 		def ps(state=1)
@@ -37,28 +45,80 @@ module InSuccession
 	end
 	
 	
+	def precursor
+		object = self.class.find_by_id(self.precursor_id)
+	end
+
+	def precursor?
+		self.precursor ? true : false
+	end
+	
+	def precursor=(object)
+		object.move_before(self)
+	end
+	
+	
+	
 	def successor
 		self.class.where(precursor_id: id).first # TODO check for multiples raise exception
 	end
 	
+	def successor?
+		self.successor ? true : false
+	end
+	
 	def successor=(object)
-		transaction do
-			self.extract_from_succession
-			new_precursor_id = (object.precursor) ? object.precursor.id : nil
-			object.update_attribute(:precursor_id, self.id)
-			self.update_attribute(:precursor_id, new_precursor_id)
-		end
+		object.move_after(self)
 	end
 	
 	
 	
-	private
+	def move_top
+		self.move_before(self.class.first_in_succession)
+	end
 	
-		def extract_from_succession
+	def move_bottom
+		self.move_after(self.class.last_in_succession)
+	end
+	
+	
+	def move_before(object)
+		return true if self.id == object.id
+		transaction do
+			self.extract_from_succession
+			new_precursor_id = (object.precursor?) ? object.precursor.id : nil
+			object.update_attributes!(precursor_id: self.id)
+			self.update_attributes!(precursor_id: new_precursor_id)
+		end
+	end
+	
+	def move_after(object)
+		return true if self.id == object.id
+		transaction do
+			self.extract_from_succession
+			object.successor.update_attributes!(precursor_id: self.id) if object.successor?
+			self.update_attributes!(precursor_id: object.id)
+		end
+	end
+	
+	# should obly be called within a transaction block
+	def extract_from_succession
+		pre = self.precursor?
+		suc = self.successor?
+		if (pre && suc)
 			transaction do
 				self.successor.update_attribute(:precursor_id, self.precursor.id)
 				self.update_attribute(:precursor_id, nil)
 			end
+		elsif (suc && !pre)
+			transaction do
+				self.successor.update_attribute(:precursor_id, nil)
+				self.update_attribute(:precursor_id, nil)
+			end
+		elsif (pre && !suc)
+			self.update_attribute(:precursor_id, nil)
 		end
+	end
+	protected :extract_from_succession
 	
 end
