@@ -10,9 +10,5 @@ module VersionsHelper
 		uid = version.whodunnit
 		uid ? User.find_by_id(uid.to_i) : nil
 	end
-	
-	def string_from_time(time)
-		time.strftime("%d %b. %Y, %H:%M")
-	end
 
 end
