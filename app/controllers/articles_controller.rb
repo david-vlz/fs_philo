@@ -29,8 +29,12 @@ class ArticlesController < ApplicationController
 			if @article.category.single_page?
 				@article.category.update_attribute(:visible, (params[:visible]=='1') )
 			end
+			flash[:success] = change_text
+		elsif params[:move]
+			if move_to_input_pos(@article, params[:move])
+				flash[:success] = 'Beitrag verschoben!'
+			end
 		end
-		flash[:success] = change_text
 		redirect_back_or_default(@article)
 	end
 	

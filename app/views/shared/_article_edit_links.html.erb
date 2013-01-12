@@ -1,7 +1,9 @@
 
-<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, 
-			'/editor/articles/' + article.id.to_s, 
-			title: 'Beitrag bearbeiten' ) unless is_version %>
+<% unless is_version %>
+	<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, 
+				'/editor/articles/' + article.id.to_s, 
+				title: 'Beitrag bearbeiten' ) %>
+<% end %>
 
 <%= link_to('<i class="icon-th-list pull-right"></i>'.html_safe, 
 			versions_path(article), 
@@ -22,4 +24,5 @@
 					edit_article_path(article, visible: '1'), 
 					title: 'Beitrag sichtbar machen' ) %>
 	<% end %>
+	
 <% end %>

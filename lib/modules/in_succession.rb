@@ -101,6 +101,7 @@ module InSuccession
 		end
 	end
 	
+	
 	# should obly be called within a transaction block
 	def extract_from_succession
 		pre = self.precursor?

@@ -17,12 +17,22 @@ module ApplicationHelper
 	end
 	
 	def change_text
-		'&Auml;nderungen &uuml;bernommen'.html_safe
+		'&Auml;nderungen &uuml;bernommen! '.html_safe
 	end
 	
 	def precursor_id_from_input(id)
 		id = id.to_i
 		id == 0 ? nil : id 	# zero because nil.to_i == 0 and ''.to_i == 0
+	end
+	
+	def move_to_input_pos(object, input)
+		id = precursor_id_from_input(input)
+		if !id
+			object.move_top
+		else
+			new_precursor = object.class.find(id)
+			object.move_after(new_precursor)
+		end
 	end
 	
 end

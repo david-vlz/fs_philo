@@ -1,0 +1,11 @@
+<span class="separator pull-right">&ensp;</span>
+
+<% local_successor = articles.fetch(i+1, articles[0].precursor) %>
+<%= link_to('<i class="icon-arrow-down pull-right"></i>'.html_safe,
+			edit_article_path(articles[i], move: local_successor ? local_successor.id : '0'),
+			title: 'nach unten schieben' ) %>
+			
+<% local_precursor = articles[i-1].precursor %>
+<%= link_to('<i class="icon-arrow-up pull-right"></i>'.html_safe,
+			edit_article_path(articles[i], move: local_precursor ? local_precursor.id : '0'),
+			title: 'nach oben schieben' ) %>

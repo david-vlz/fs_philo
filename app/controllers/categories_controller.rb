@@ -7,8 +7,8 @@ class CategoriesController < ApplicationController
 		@category = Category.find_by_id(params[:id])
 		if @category && @category.single_page?
 			@article = @category.articles.first
-		else
-			@articles = @category.articles
+		elsif @category
+			@articles = Article.all_in_succession.reject { |a| a.category_id != @category.id }
 		end
 	end
 
@@ -37,17 +37,14 @@ class CategoriesController < ApplicationController
 	
 	def update
 		@category = Category.find(params[:id])
-		
-		id = precursor_id_from_input(params[:category][:precursor_id])
-		if !id
-			@category.move_top
-		else
-			new_precursor = Category.find(id)
-			@category.move_after(new_precursor)
+		flash[:success] = ''
+		if @category.insertion_attempt? params[:category][:precursor_id]
+			move_to_input_pos(@category, params[:category][:precursor_id])
+			flash[:success] += 'Beitrag verschoben! '.html_safe
 		end
-		
 		if @category && @category.update_attributes(params[:category])
-			flash[:success] = '&Auml;nderungen &uuml;bernommen!'.html_safe
+			flash[:success] << change_text
+			flash[:success] = flash[:success].html_safe
 			redirect_to @category
 		else
 			render 'edit'
