@@ -16,15 +16,11 @@
 	
 		<% if article.visible? %>
 			<section class="well well-small">
-				<%= render('shared/article_edit_links', article: article, is_version: false) if signed_in? %>
-				<%= render('shared/article_move_links', articles: @articles, i: i) if signed_in? %>
-				<%= render('shared/article_preview', article: article) %>
+				<%= render('shared/article_preview', article: article, articles: @articles, i: i, is_version: false) %>
 			</section>
 		<% elsif signed_in? %>
 			<section class="well well-small muted">
-				<%= render('shared/article_edit_links', article: article, is_version: false) %>
-				<%= render('shared/article_move_links', articles: @articles, i: i) if signed_in? %>
-				<%= render('shared/article_preview', article: article) %>
+				<%= render('shared/article_preview', article: article, articles: @articles, i: i, is_version: false) %>
 			</section>
 		<% end %>
 	
