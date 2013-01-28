@@ -21,9 +21,10 @@ module InSuccession
 		def all_in_succession
 			all = []
 			object = self.first_in_succession
-			(1..self.maximum('id')).each do
+			self.count.times do
 				all.push(object)
-				object = object.successor
+				successor = object.successor
+				object = successor if successor
 			end
 			all
 		end

@@ -7,12 +7,17 @@ describe "User pages" do
 
 	subject { page }
 	
+	before(:each) do
+		FactoryGirl.create(:category)
+		FactoryGirl.create(:article)
+	end
 	
 	describe "index" do
-		
+	
 		let(:user) { FactoryGirl.create(:user) }
 		
 		before(:each) do
+			2.times { FactoryGirl.create(:category) }
 			sign_in user
 			visit users_path
 		end

@@ -11,7 +11,10 @@ FactoryGirl.define do
 	end
 	
 	factory :category do
-		name	"Test Kategorie"
+		sequence(:name)	{ |n| "Test Kategorie #{n}" }
+		sequence(:precursor_id) do
+			Category.maximum('id')
+		end
 		
 		factory :visible_category do
 			visible true
@@ -23,7 +26,12 @@ FactoryGirl.define do
 	end
 	
 	factory :article do
-		sequence(:title)	{ |n| "Title #{n}" }
-		sequence(:body)		{ |n| "Body Text #{n}" }
+		user
+		category
+		sequence(:title)		{ |n| "Title #{n}" }
+		sequence(:body)			{ |n| "Body Text #{n}" }
+		sequence(:precursor_id)	do |n|
+			Article.maximum('id')
+		end
 	end
 end

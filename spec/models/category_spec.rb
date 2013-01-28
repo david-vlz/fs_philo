@@ -15,7 +15,7 @@ require 'spec_helper'
 
 describe Category do
   
-	before { @category = Category.new( name: 'Test Kategorie 123' ) }
+	before { @category = Category.new( name: 'Test Kategorie 123', precursor_id: Category.maximum('id') ) }
 
 	subject { @category }
 	
