@@ -19,16 +19,14 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(params[:category])
 		@category.precursor_id = Category.maximum('id')+1
-		if @category
-			if @category.save
-				if move_to_input_pos(@category, params[:category][:precursor_id])
-					if @category.single_page?
-						current_user.articles.create(title: @category.name, body: 'Hier einfach weiterschreiben ;)', category_id: @category.id)
-					end
-					flash[:success] = 'Seite erstellt!'
-					redirect_to @category
-				end
+		if @category 
+		&& @category.save 
+		&& move_to_input_pos(@category, params[:category][:precursor_id])
+			if @category.single_page?
+				current_user.articles.create(title: @category.name, body: 'Hier einfach weiterschreiben ;)', category_id: @category.id)
 			end
+			flash[:success] = 'Seite erstellt!'
+			redirect_to @category
 		else
 			flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
 			redirect_to new_category_path

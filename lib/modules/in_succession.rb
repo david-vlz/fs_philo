@@ -37,6 +37,7 @@ module InSuccession
 			self.all_in_succession.last
 		end
 		
+		#debug, print state
 		def ps(state=1)
 			alt = (state == 1) ? self.all_in_succession : self.all
 			alt.each { |o| puts o.id.to_s + ' ' + o.precursor_id.to_s }
