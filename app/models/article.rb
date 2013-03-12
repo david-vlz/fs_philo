@@ -21,9 +21,9 @@ class Article < ActiveRecord::Base
   
 	belongs_to :user
 	belongs_to :category
-	belongs_to :precursor, class_name: 'Category'
+	belongs_to :precursor, class_name: 'Article'
 	
-	has_paper_trail
+	has_paper_trail :skip => [:precursor_id]
 	
 	validates(:body, presence: true)
 	validates(:title, presence: true)
