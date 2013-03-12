@@ -19,11 +19,15 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(params[:category])
 		@category.precursor_id = Category.maximum('id')+1
-		if @category 
-		&& @category.save 
-		&& move_to_input_pos(@category, params[:category][:precursor_id])
+		if @category && @category.save  \
+		&& move_to_input_pos(@category, params[:category][:precursor_id]) 
 			if @category.single_page?
-				current_user.articles.create(title: @category.name, body: 'Hier einfach weiterschreiben ;)', category_id: @category.id)
+				Article.create_in_succession( 
+					title: @category.name, 
+					body: 'Hier einfach weiterschreiben ;)', 
+					category_id: @category.id,
+					user_id: current_user.id
+				)
 			end
 			flash[:success] = 'Seite erstellt!'
 			redirect_to @category

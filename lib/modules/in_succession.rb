@@ -21,10 +21,9 @@ module InSuccession
 		def all_in_succession
 			all = []
 			object = self.first_in_succession
-			self.count.times do
+			while object do
 				all.push(object)
-				successor = object.successor
-				object = successor if successor
+				object = object.successor
 			end
 			all
 		end
@@ -42,6 +41,13 @@ module InSuccession
 			alt = (state == 1) ? self.all_in_succession : self.all
 			alt.each { |o| puts o.id.to_s + ' ' + o.precursor_id.to_s }
 			return true
+		end
+
+		def create_in_succession(attributes)
+			id = self.last_in_succession.id
+			puts id
+			attributes[:precursor_id] = self.last_in_succession.id
+			self.create(attributes)
 		end
 	
 	end
