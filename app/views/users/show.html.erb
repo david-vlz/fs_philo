@@ -8,12 +8,9 @@
 	<% end %>
 	<% if @articles_by_user.any? %>
 		<h4>Beitr&auml;ge von <%= @user.name %></h4>
-		<% @articles_by_user.each do |article| %>
-			<section class="well well-small">
-				<h5><%=link_to(article.title, article_path(@id=article.id))%></h5>
-				<div class="small"><%= truncate(article.body)%></div>
-			</section> 
-		<% end %>
+		<div class="well">
+			<%= render 'shared/articles_preview', articles: @articles_by_user, is_version: false, movable: false %>
+		</div>
 	<% end %>
 	
 </section>

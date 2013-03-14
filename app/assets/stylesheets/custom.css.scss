@@ -1,54 +1,125 @@
+// $navbarBackgroundHighlight:	#A51A17;
+// $navbarBackground: 			#A51A17;
+
+
+// Info Alert auf normales Bootstrap zurücksetzen
+$infoText: #3a87ad;
+$infoBackground: #d9edf7;
+
+@import "bootswatch/united/variables";
 @import "bootstrap";
+@import "bootstrap-responsive";
+@import "bootswatch/united/bootswatch";
+@import "font-awesome";
 
-/* universal */
 
-.container-fluid {
-	width : 85%;
+ /* BASIC PAGE LAYOUT */
+
+ body {
+ 	text-align: center;
+ 	background-color: #e6e3e1;
+ }
+
+#main {
+	text-align: left;
+	width: 70%;
+	margin: 0 auto;
+	background-color: white;
 }
 
-.navbar-inner {
-	background-color: #eaeaea;
-	background-image: none;
+@media (max-width: 1180px) {
+	#main {
+		width: 77%;
+	}
 }
+
+@media (max-width: 978px) {
+	#main {
+		width: 85%;
+	}
+}
+
+@media (max-width: 767px) {
+	#main {
+		width: 100%;
+	}
+	.logo img {
+		display: none;
+	}
+}
+
+/* NAVBAR BOOTSTRAP CUSTOMIZATION */
+
+.navbar {
+	.muted {
+		font-style: oblique;
+		text-decoration: line-through !important;
+	}
+	.nav > li > a {
+		border-left: none;
+		border-right: none;
+	}
+}
+
+/* ARTICLES */
+
+$article-border: 1px dotted black;
+
+.article-preview-heading {
+	border-bottom: $article-border;
+	vertical-align: bottom;
+	margin-top: 30px;
+	position: relative;
+
+	// .preview-container {
+	// 	div,h3 {
+	// 		position: absolute;
+	// 		bottom:0;
+	// 	}
+	// }
+
+	//.article-preview-headline {}
+
+	.article-edit-links {
+	 	// padding-bottom: 14px;
+	 	div { 
+	 		position: absolute;
+	 		bottom: 0px;
+	 	}
+	 }
+
+	.article-info ul {
+		right: 0;
+		list-style-type: none;
+		text-align: right;
+		margin-top: 3%;
+	}
+
+}
+
+.article-preview-text {
+	font-size: small;
+}
+
+
+/* GLYPHICONS / FONT-AWESOME ADJUSTMENTS */
 
 i {
 	margin-left: 6px;
 	margin-right: 6px;
+	color: #333333;
 }
 
-h3 {
-	margin-bottom: 9px;
+i.icon-white {
+	color: #FFFFFF;
 }
 
-
-.box-label {
-	display: inline;
+.muted i {
+	color: rgb(153, 153, 153);
 }
 
-
-.navbar .muted {
-	font-style: oblique;
-	text-decoration: line-through !important;
-}
-
-.muted a {
-    color: rgb(153, 153, 153);
-}
-
-.separator {
-	margin-left: 6px;
-	margin-right: 6px;
-}
-
-.article-info ul {
-	list-style-type: none;
-	text-align: right;
-	margin-top: 3%;
-}
 
 /* FORMS */
-
-/* sign up form error messages and fields */
 
 #error_explanation {
   color: #f00;
@@ -62,3 +133,23 @@ h3 {
   @extend .control-group;
   @extend .error;
  }
+
+
+/* MISCELLANEOUS */
+
+h3 {
+	margin-bottom: 9px;
+}
+
+.box-label {
+	display: inline;
+}
+
+.muted a {
+    color: rgb(153, 153, 153);
+}
+
+.separator {
+	margin-left: 6px;
+	margin-right: 6px;
+}

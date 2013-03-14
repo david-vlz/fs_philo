@@ -1,0 +1,21 @@
+<% (0...articles.count).each do |i| %>
+
+	<% article = articles[i] %>
+	
+	<% if article.visible? %>
+			<%= render('shared/article_preview', 
+					   article: article, 
+					   articles: (movable ? articles : []), 
+					   i: i, 
+					   is_version: is_version, 
+					   visible: true) %>
+	<% elsif signed_in? %>
+			<%= render('shared/article_preview', 
+					   article: article, 
+					   articles: (movable ? articles : []), 
+					   i: i, 
+					   is_version: is_version, 
+					   visible: false) %>
+	<% end %>
+
+<% end %>

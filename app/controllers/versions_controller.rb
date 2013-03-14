@@ -6,6 +6,10 @@ class VersionsController < ApplicationController
 	def show
 		@version = Version.find_by_id(params[:id])
 		@article = @version.reify
+		flash.now[:info] = "Das ist eine alte Version von \"#{@article.title}\"! \ 
+			(Version Nr. #{@version.id} ge&auml;ndert durch \ 
+			 \"#{whodunnit_string(@version)}\", am \
+			 #{string_from_time(@version.created_at)})".html_safe
 	end
 
 	def list

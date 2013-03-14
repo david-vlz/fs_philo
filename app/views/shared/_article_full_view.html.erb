@@ -1,17 +1,13 @@
 <% provide(:title, article.title) %>
 
-<section class="well">
+<section>
 	
-	<% if signed_in? %>
-		<%= render 'shared/article_edit_links', article: article, is_version: is_version %>
-	<% end %>
+	<%= render('shared/article_edit_links', article: article, is_version: is_version) if signed_in? %>
 
-	<h3 id="article_title" data-mercury="simple">
-		<%= article.title %>
-		<%= render('shared/category_edit_links' , category: @category) if single_page_category && signed_in? %>
-	</h3>
+	<h2 id="article_title" data-mercury="simple" style="display:inline"><%= article.title %></h3>
+	<%= render('shared/category_edit_links' , category: @category) if single_page_category && signed_in? %>
 	
-	<section id="article_body" data-mercury="full">
+	<section id="article_body" data-mercury="full" style="margin-top:30px">
 		<%= article.body.html_safe %>
 	</section>
 
