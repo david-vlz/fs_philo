@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)).html_safe %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div id="main">
-	<div class="container-fluid">
-		<%= render "layouts/header" %>
-		<div class="row-fluid">
-<!--			<div class="span2">-->
-<!--				<%= render "layouts/sidebar" %>-->
-<!--			</div>-->
-			<div class="span12">
-				<% flash.each do |status, message| %>
-					<%= content_tag(:div, message, class: "alert alert-#{status}") %>
+	<head>
+	  <title><%= full_title(yield(:title)).html_safe %></title>
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div id="main">
+			<div class="container-fluid">
+				<%= render "layouts/header" %>
+				<div class="row-fluid">
+		<!--			<div class="span2">-->
+		<!--				<%= render "layouts/sidebar" %>-->
+		<!--			</div>-->
+					<div class="span12">
+						<% flash.each do |status, message| %>
+							<%= content_tag(:div, message, class: "alert alert-#{status}") %>
+						<% end %>
+						<%= yield %>
+					</div>
+				</div>
+				<% if Rails.env.development? %>
+					<section style="margin-top: 50px">
+						<%= debug(params) %>
+					</section>
 				<% end %>
-				<%= yield %>
 			</div>
 		</div>
-		<% if Rails.env.development? %>
-			<section style="margin-top: 50px">
-				<%= debug(params) %>
-			</section>
-		<% end %>
-	</div>
-</div>
-</body>
+		<%= render "layouts/footer" %>
+	</body>
 </html>

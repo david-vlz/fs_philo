@@ -15,9 +15,11 @@ $infoBackground: #d9edf7;
 
  /* BASIC PAGE LAYOUT */
 
- body {
+$body-bg: #e6e3e1;
+
+body {
  	text-align: center;
- 	background-color: #e6e3e1;
+ 	background-color: $body-bg;
  }
 
 #main {
@@ -152,4 +154,19 @@ h3 {
 .separator {
 	margin-left: 6px;
 	margin-right: 6px;
+}
+
+/* FOOTER */
+
+footer {
+	background-color: $body-bg;
+	// text-align: left;
+	width: 70%;
+	margin: 50px auto;
+	padding-bottom: 50px;
+	font-size: x-small;
+	#links {
+		border-left: 1px dotted black;
+		border-right: 1px dotted black;
+	}
 }
