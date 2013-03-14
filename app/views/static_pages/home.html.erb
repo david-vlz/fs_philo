@@ -1,25 +1,7 @@
 <% provide(:title, '') %>
-<div class="hero-unit">
-	<h1>Alpha 0.1</h1>
-	<br>
-	<p>Hi, </p>
-	<p>
-		Bevor ihr loslegt ein paar Worte zum Geleit. Das hier ist eine <%= link_to('Alphaversion', 'http://de.wikipedia.org/wiki/Alphaversion#Alpha-Version') %>.
-		Die Grundfunktionen der Seite so wie ich sie mir vorstelle stehen, 
-		Fachschaftler k&ouml;nnen sich anmelden und die Seiten halbwegs frei gestalten.
-		Aber das ganze ist noch lange nicht fertig. Das hei&szlig;t vor allem:
-	</p>
-	<p>
-		Es werden noch weitere Funktionen hinzukommen. Welche bestimmt ihr mit.
-	</p>
-	<p>
-		Das Layout kann sich noch drastisch &auml;ndern. Da habe ich noch nicht viel gemacht.
-	<p>
-		Diese Version ist erst mal nur dafür gedacht, um die grundlegenden Funktionen zu testen, herauszufinden, ob die Seite gut bedienbar ist 
-		und <strong> vor allem als Vorlage, um Ideen zu sammeln, was noch alles rein soll</strong>.
-	</p>
-	<p>
-		Schaut euch erst mal ein bischen um und versucht dann herauszufinden, ob und wie ihr euch einen neuen Account erstellen k&ouml;nnt.
-	</p>
-	<p>
+
+<div style="margin-bottom:25px">
+	<h2 style="display:inline">Neues</h2>
 </div>
+
+<%= render 'shared/articles_preview', articles: @articles, is_version: false, movable: false %>
