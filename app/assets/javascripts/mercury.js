@@ -104,11 +104,11 @@ window.Mercury = {
         insertMedia:           ['Media', 'Insert Media (images and videos)', { modal: '/mercury/modals/media.html', regions: ['full', 'markdown'] }],
         insertTable:           ['Table', 'Insert Table', { modal: '/mercury/modals/table.html', regions: ['full', 'markdown'] }],
         insertCharacter:       ['Character', 'Special Characters', { modal: '/mercury/modals/character.html', regions: ['full', 'markdown'] }],
-        snippetPanel:          ['Snippet', 'Snippet Panel', { panel: '/mercury/panels/snippets.html' }],
-        sep2:                  ' ',
-        historyPanel:          ['History', 'Page Version History', { panel: '/mercury/panels/history.html' }],
-        sep3:                  ' ',
-        notesPanel:            ['Notes', 'Page Notes', { panel: '/mercury/panels/notes.html' }]
+        // snippetPanel:          ['Snippet', 'Snippet Panel', { panel: '/mercury/panels/snippets.html' }],
+        // sep2:                  ' ',
+        // historyPanel:          ['History', 'Page Version History', { panel: '/mercury/panels/history.html' }],
+        // sep3:                  ' ',
+        // notesPanel:            ['Notes', 'Page Notes', { panel: '/mercury/panels/notes.html' }]
         },
 
       editable: {
@@ -120,8 +120,8 @@ window.Mercury = {
           sep2:                '-'
           },
         colors:                {
-          backColor:           ['Background Color', null, { palette: '/mercury/palettes/backcolor.html', context: true, preload: true, regions: ['full'] }],
-          sep1:                ' ',
+          // backColor:           ['Background Color', null, { palette: '/mercury/palettes/backcolor.html', context: true, preload: true, regions: ['full'] }],
+          // sep1:                ' ',
           foreColor:           ['Text Color', null, { palette: '/mercury/palettes/forecolor.html', context: true, preload: true, regions: ['full'] }],
           sep2:                '-'
           },
@@ -183,14 +183,14 @@ window.Mercury = {
           }
         },
 
-      snippets: {
-        _custom:               true,
-        actions:               {
-          editSnippet:         ['Edit Snippet Settings'],
-          sep1:                ' ',
-          removeSnippet:       ['Remove Snippet']
-          }
-        }
+      // snippets: {
+      //   _custom:               true,
+      //   actions:               {
+      //     editSnippet:         ['Edit Snippet Settings'],
+      //     sep1:                ' ',
+      //     removeSnippet:       ['Remove Snippet']
+      //     }
+      //   }
       },
 
 
