@@ -29,7 +29,7 @@
 	<br>
 	
 	<%= f.label :precursor_id, 'Anordnen nach' %>
-	<%= select('category', 'precursor_id', Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: 'Vorne' } ) %>
+	<%= select('category', 'precursor_id', Category.all_in_succession.collect { |c| [ c.name, c.id ] }, { include_blank: 'Vorne' } ) %>
 	
 	<br>
 	<br>
