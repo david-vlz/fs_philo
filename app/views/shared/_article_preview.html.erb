@@ -10,7 +10,7 @@
 		<% if signed_in? %>
 		<div class="preview-container span<%=spans[1]%>">
 			<div class="article-edit-links ">
-				<div class="well well-small">
+				<div class="well well-small" style="padding:3px">
 					<%= render('shared/article_edit_links', article: article, is_version: false) %>
 					<%= render('shared/article_move_links', articles: articles, i: i) if articles.any? %>
 				</div>
