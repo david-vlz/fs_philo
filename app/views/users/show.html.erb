@@ -7,7 +7,7 @@
 		<p><%= link_to('Profil bearbeiten', edit_user_path(current_user)) %></p>
 	<% end %>
 	<% if @articles_by_user.any? %>
-		<h4>Beitr&auml;ge von <%= @user.name %></h4>
+		<h4 style="margin-top:50px">Beitr&auml;ge von <%= @user.name %></h4>
 		<div class="well">
 			<%= render 'shared/articles_preview', articles: @articles_by_user, is_version: false, movable: false %>
 		</div>
