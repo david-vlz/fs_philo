@@ -8,7 +8,7 @@ FsPhilo::Application.routes.draw do
   	member { post :mercury_update }
   end
 
-  root to: 'static_pages#home'
+  root to: 'articles#index'
   
   match '/anmeldung', 	to: 'users#new'
   match '/login', 		to: 'sessions#new'

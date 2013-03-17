@@ -1,9 +1,13 @@
 class ArticlesController < ApplicationController
 	
-	before_filter :signed_in_user, except: [:show]
+	before_filter :signed_in_user, except: [:show, :index]
 	
 	def show
 		@article = Article.find_by_id(params[:id])
+	end
+
+	def index
+		@articles = Article.find(:all, order: 'updated_at DESC')
 	end
 
 	def new
