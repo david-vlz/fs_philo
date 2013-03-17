@@ -20,7 +20,7 @@
 		<div class="preview-container span<%=spans[2]%>">
 			<div class="muted article-info">
 				<ul>
-					<li><%= string_from_time(article.created_at) %></li>
+					<li><%= string_from_time(article.updated_at) %></li>
 					<li><%= link_to(article.user.name, user_path(@id=article.user.id)) %></li>
 				</ul>
 			</div>
