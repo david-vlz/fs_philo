@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 										body: "Hier einfach weiterschreiben :3",
 										precursor_id: Article.maximum('precursor_id')+1
 										)
-		if @article && @article.save
+		if @article && @article.save && @article.move_bottom
 			redirect_to @article
 		else 
 			flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator!'
