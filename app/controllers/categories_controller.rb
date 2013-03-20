@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
 		if @category && @category.single_page?
 			@article = @category.articles.first
 		elsif @category
-			@articles = Article.all_in_succession.reject { |a| a.category_id != @category.id }
+			@articles = Article.where(category_id: @category.id).paginate(page: params[:page])
 		end
 	end
 

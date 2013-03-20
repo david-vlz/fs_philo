@@ -49,6 +49,16 @@ module InSuccession
 			attributes[:precursor_id] = self.last_in_succession.id
 			self.create(attributes)
 		end
+
+		def subset_in_succession(subset)
+			result = []
+			ids = subset.map { |obj| obj.id }
+			self.all_in_succession.each do |object|
+				result.push(object) if ids.include?(object.id)
+			end
+			result
+		end
+
 	
 	end
 	

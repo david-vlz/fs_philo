@@ -18,6 +18,8 @@ class Article < ActiveRecord::Base
 	include InSuccession
 	
 	attr_accessible :user_id, :category_id, :body, :title, :visible, :precursor_id
+
+	self.per_page = 8
   
 	belongs_to :user
 	belongs_to :category

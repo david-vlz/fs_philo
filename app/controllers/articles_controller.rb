@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@articles = Article.find(:all, order: 'updated_at DESC')
+		@articles = Article.page(params[:page]).order('updated_at DESC')
 	end
 
 	def new
