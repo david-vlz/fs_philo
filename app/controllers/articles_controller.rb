@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class ArticlesController < ApplicationController
 	
 	before_filter :signed_in_user, except: [:show, :index]
@@ -7,7 +9,9 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@articles = Article.order('updated_at DESC').paginate(page: params[:page])
+		articles = Article.order('updated_at DESC')
+		articles = articles.select { |a| a.visible? } unless signed_in?
+		@articles = articles.paginate(page: params[:page], per_page: 8)
 	end
 
 	def new

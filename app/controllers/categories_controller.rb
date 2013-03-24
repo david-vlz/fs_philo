@@ -10,8 +10,9 @@ class CategoriesController < ApplicationController
 		if @category && @category.single_page?
 			@article = @category.articles.first
 		elsif @category
-			all_in_category = Article.where(category_id: @category.id)
-			@articles = Article.subset_in_succession(all_in_category).paginate(page: params[:page], per_page: 8)
+			articles = Article.where(category_id: @category.id)
+			articles = articles.select { |a| a.visible? } unless signed_in?
+			@articles = Article.subset_in_succession(articles).paginate(page: params[:page], per_page: 8)
 			@condition = Proc.new { |article| article.category_id == @category.id }
 		end
 	end
