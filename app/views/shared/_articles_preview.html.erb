@@ -1,26 +1,21 @@
-<% i = 0 %>
 
-<% articles_ordered = Article.subset_in_succession(articles) %>
-
-<% articles_ordered.each do |article| %>
+<% articles.each do |article| %>
 
 	<% if article.visible? %>
 			<%= render('shared/article_preview', 
 					   article: article, 
-					   articles: (movable ? articles_ordered : []), 
-					   i: i, 
+					   movable: (movable ? movable : false), 
+					   condition: (condition ? condition : nil), 
 					   is_version: is_version, 
 					   visible: true) %>
 	<% elsif signed_in? %>
 			<%= render('shared/article_preview', 
 					   article: article, 
-					   articles: (movable ? articles_ordered : []), 
-					   i: i, 
+					   movable: (movable ? movable : false), 
+					   condition: (condition ? condition : nil), 
 					   is_version: is_version, 
 					   visible: false) %>
 	<% end %>
-
-	<% i+=1 %>
 
 <% end %>
 

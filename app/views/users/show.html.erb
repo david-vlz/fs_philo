@@ -9,7 +9,7 @@
 	<% if @articles_by_user.any? %>
 		<h4 style="margin-top:50px">Beitr&auml;ge von <%= @user.name %></h4>
 		<div class="well">
-			<%= render 'shared/articles_preview', articles: @articles_by_user, is_version: false, movable: false %>
+			<%= render 'shared/articles_preview', articles: @articles_by_user, all_articles: @all_articles_by_user, is_version: false, movable: false %>
 		</div>
 	<% end %>
 	

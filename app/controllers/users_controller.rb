@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find_by_id(params[:id])
-		@articles_by_user = Article.where(user_id: @user.id).paginate(page: params[:page])
+		@all_articles_by_user = Article.where(user_id: @user.id)
+		@articles_by_user = @all_articles_by_user.paginate(page: params[:page])
 	end
 
 

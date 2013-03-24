@@ -1,11 +1,11 @@
-<!-- <span class="separator pull-right">&ensp;</span> -->
 
-<% local_successor = articles.fetch(i+1, articles[0].precursor) %>
+<% local_successor = article.successor_where(condition) %>
 <%= link_to('<i class="icon-arrow-down pull-right"></i>'.html_safe,
-			edit_article_path(articles[i], move: local_successor ? local_successor.id : '0'),
+			edit_article_path(article, move: local_successor ? local_successor.id : '0'),
 			title: 'nach unten schieben' ) %>
 			
-<% local_precursor = articles[i-1].precursor %>
+<% local_precursor = article.precursor_where(condition) %>
+<% local_precursor = local_precursor.precursor if local_precursor %> 
 <%= link_to('<i class="icon-arrow-up pull-right"></i>'.html_safe,
-			edit_article_path(articles[i], move: local_precursor ? local_precursor.id : '0'),
+			edit_article_path(article, move: local_precursor ? local_precursor.id : '0'),
 			title: 'nach oben schieben' ) %>

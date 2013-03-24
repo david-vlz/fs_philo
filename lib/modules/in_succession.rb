@@ -50,15 +50,10 @@ module InSuccession
 		end
 
 		def subset_in_succession(subset)
-			result = []
 			ids = subset.map { |obj| obj.id }
-			self.all_in_succession.each do |object|
-				result.push(object) if ids.include?(object.id)
-			end
-			result
+			self.all_in_succession.select { |obj| ids.include?(obj.id) }
 		end
 
-	
 	end
 
 	def destroy_from_succession
@@ -79,6 +74,14 @@ module InSuccession
 	def precursor=(object)
 		object.move_before(self)
 	end
+
+	def precursor_where(condition)
+		candidate = self.precursor
+		while candidate && not( condition.call(candidate) )
+			candidate = candidate.precursor
+		end
+		candidate
+	end
 	
 	
 	
@@ -93,7 +96,17 @@ module InSuccession
 	def successor=(object)
 		object.move_after(self)
 	end
-	
+
+	def successor_where(condition)
+		candidate = self.successor
+		while candidate && not( condition.call(candidate) )
+			candidate = candidate.successor
+		end
+		candidate
+	end
+
+
+		
 	
 	
 	def move_top

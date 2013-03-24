@@ -7,7 +7,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@articles = Article.page(params[:page]).order('updated_at DESC')
+		@all_articles = Article.order('updated_at DESC')
+		@articles = Article.order('updated_at DESC').paginate(page: params[:page])
 	end
 
 	def new
@@ -24,8 +25,8 @@ class ArticlesController < ApplicationController
 		end
 	end
 	
-	# handles only visibility parameter changes. Actual text/heading changed 
-	# via Mercury editor
+	# handles only visibility and succession parameter changes.
+	# Actual text/heading changed via Mercury editor
 	def edit
 		@article = Article.find(params[:id])
 		if params[:visible]

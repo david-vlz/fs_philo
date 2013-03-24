@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class CategoriesController < ApplicationController
 	
 	include CategoriesHelper
@@ -8,7 +10,9 @@ class CategoriesController < ApplicationController
 		if @category && @category.single_page?
 			@article = @category.articles.first
 		elsif @category
-			@articles = Article.where(category_id: @category.id).paginate(page: params[:page])
+			all_in_category = Article.where(category_id: @category.id)
+			@articles = Article.subset_in_succession(all_in_category).paginate(page: params[:page], per_page: 8)
+			@condition = Proc.new { |article| article.category_id == @category.id }
 		end
 	end
 

@@ -12,7 +12,7 @@
 			<div class="article-edit-links ">
 				<div class="well well-small" style="padding:3px">
 					<%= render('shared/article_edit_links', article: article, is_version: false) %>
-					<%= render('shared/article_move_links', articles: articles, i: i) if articles.any? %>
+					<%= render('shared/article_move_links', article: article, condition: condition) if movable %>
 				</div>
 			</div>
 		</div>
