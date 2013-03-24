@@ -49,4 +49,16 @@ class ArticlesController < ApplicationController
 		@article.save!
 		render text: ''
 	end
+
+	def destroy
+		@article = Article.find(params[:id])
+		if @article && @article.destroy_from_succession
+			flash[:success] = 'Der Beitrag wurde entfernt'
+			redirect_to(@article.category)
+		else
+			flash[:error] = 'Irgendetwas ist schiefgelaufen. Bitte wende dich an den Systemadministrator'
+			redirect_back_or_default(@article.category)
+		end
+	end
+
 end

@@ -45,7 +45,6 @@ module InSuccession
 
 		def create_in_succession(attributes)
 			id = self.last_in_succession.id
-			puts id
 			attributes[:precursor_id] = self.last_in_succession.id
 			self.create(attributes)
 		end
@@ -61,7 +60,11 @@ module InSuccession
 
 	
 	end
-	
+
+	def destroy_from_succession
+		self.extract_from_succession
+		self.destroy
+	end
 	
 	def precursor
 		object = self.class.find_by_id(self.precursor_id)
