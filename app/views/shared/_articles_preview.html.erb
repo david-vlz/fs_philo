@@ -11,8 +11,8 @@
 	<% elsif signed_in? %>
 			<%= render('shared/article_preview', 
 					   article: article, 
-					   movable: (movable ? movable : false), 
-					   condition: (condition ? condition : nil), 
+					   movable: movable, 
+					   condition: condition, 
 					   is_version: is_version, 
 					   visible: false) %>
 	<% end %>
