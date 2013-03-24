@@ -5,4 +5,4 @@
 
 <%= link_to('<i class="icon-plus"></i>'.html_safe, 
 			new_article_path(category: @category.id), 
-			title: 'Beitrag hinzuf&uuml;gen'.html_safe) %>
+			title: 'Beitrag hinzuf&uuml;gen'.html_safe) unless category.single_page %>
