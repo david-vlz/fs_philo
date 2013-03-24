@@ -1,4 +1,4 @@
-<% provide(:title, 'User&uuml;bersicht'.html_safe) %>
+<% provide(:title, 'Benutzer&uuml;bersicht'.html_safe) %>
 <h3>Benutzer&uuml;bersicht</h3>
 <section>
 
@@ -21,8 +21,8 @@
 						<%= link_to('<i class="icon-remove"></i>'.html_safe, 
 									user, 
 									method: :delete, 
-									data: { confirm: "User \"#{user.name}\" wirklich entfernen?" },
-									title: 'User L&ouml;schen'.html_safe ) %>
+									data: { confirm: "Benutzer \"#{user.name}\" wirklich entfernen?" },
+									title: 'Benutzer L&ouml;schen'.html_safe ) %>
 					<% end %>
 				</td>
 			</tr>
