@@ -3,6 +3,13 @@
 			edit_category_path(category), 
 			title: 'Seite bearbeiten' ) %>
 
+<%= link_to('<i class="icon-remove"></i>'.html_safe, 
+			category, 
+			method: :delete, 
+			data: { confirm: 'Diese Seite wirklich mit allen Beitr&auml;gen entfernen?'.html_safe },
+			title: 'Seite L&ouml;schen'.html_safe ) %>
+
 <%= link_to('<i class="icon-plus"></i>'.html_safe, 
 			new_article_path(category: @category.id), 
 			title: 'Beitrag hinzuf&uuml;gen'.html_safe) unless category.single_page %>
+

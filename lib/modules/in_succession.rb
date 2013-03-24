@@ -62,8 +62,10 @@ module InSuccession
 	end
 
 	def destroy_from_succession
-		self.extract_from_succession
-		self.destroy
+		transaction do
+			self.extract_from_succession
+			self.destroy
+		end
 	end
 	
 	def precursor

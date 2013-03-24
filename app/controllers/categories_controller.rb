@@ -57,6 +57,18 @@ class CategoriesController < ApplicationController
 			render 'edit'
 		end
 	end
-	
+
+
+	def destroy
+		@category = Category.find(params[:id])
+		if @category.articles.each { |a| a.destroy_from_succession } \
+		&& @category.destroy_from_succession
+			flash[:success] = "Die Seite und alle verkn&uuml;pften Beitr&auml;ge wurden entfernt".html_safe
+			redirect_to root_path
+		else
+			flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
+			redirect_to root_path
+		end
+	end
 	
 end

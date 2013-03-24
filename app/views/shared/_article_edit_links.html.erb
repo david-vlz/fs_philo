@@ -5,7 +5,7 @@
 					article, 
 					method: :delete, 
 					data: { confirm: "Beitrag \"#{article.title}\" wirklich entfernen?" },
-					title: 'Beitrag L&ouml;schen'.html_safe ) %>
+					title: 'Beitrag L&ouml;schen'.html_safe ) unless article.category.single_page? %>
 
 		<%= link_to('<i class="icon-pencil pull-right"></i>'.html_safe, 
 					'/editor/articles/' + article.id.to_s, 
