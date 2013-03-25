@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'will_paginate/array'
 
 class ArticlesController < ApplicationController
@@ -18,7 +19,7 @@ class ArticlesController < ApplicationController
 		@user = current_user
 		@article = @user.articles.build(category_id: params[:category],
 										title: "Beitrag #{Article.count+1}",
-										body: "Hier einfach weiterschreiben :3",
+										body: "Das ist dein neuer Beitrag! <br> Er ist zunächst für normale Benutzer unsichtbar, damit du ihen in Ruhe bearbeiten kannst. <br> Dafür benutze einfach den Bearbeiten Link oben rechts ^^".html_safe,
 										precursor_id: Article.maximum('precursor_id')+1
 										)
 		if @article && @article.save && @article.move_bottom
