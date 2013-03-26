@@ -13,7 +13,13 @@
 		<%= render('shared/category_edit_links', category: @category) if signed_in? %>
 	</div>
 
-	<%= render 'shared/articles_preview', articles: @articles, condition: @condition, is_version: false, movable: true %>
+	<%= render 'shared/articles_preview', 
+		articles: @articles, 
+		condition: @condition, 
+		is_version: false, 
+		movable: true,
+		outside_category: false 
+	%>
 
 
 <% end %>

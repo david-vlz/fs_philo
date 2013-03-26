@@ -1,3 +1,9 @@
 <% provide(:title, '') %>
 
-<%= render 'shared/articles_preview', articles: @articles, condition: nil, is_version: false, movable: false %>
+<%= render 'shared/articles_preview', 
+	articles: @articles, 
+	condition: nil, 
+	is_version: false, 
+	movable: false, 
+	outside_category: true 
+%>

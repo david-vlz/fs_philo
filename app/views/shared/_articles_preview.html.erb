@@ -7,14 +7,18 @@
 					   movable: (movable ? movable : false), 
 					   condition: (condition ? condition : nil), 
 					   is_version: is_version, 
-					   visible: true) %>
+					   visible: true,
+					   outside_category: outside_category
+			) %>
 	<% elsif signed_in? %>
 			<%= render('shared/article_preview', 
 					   article: article, 
 					   movable: movable, 
 					   condition: condition, 
 					   is_version: is_version, 
-					   visible: false) %>
+					   visible: false,
+					   outside_category: outside_category
+			) %>
 	<% end %>
 
 <% end %>
