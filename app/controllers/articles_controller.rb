@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 		@article = @user.articles.build(category_id: params[:category],
 										title: "Beitrag #{Article.count+1}",
 										preview: "Das ist der erste Absatz deines Beitrags, der als Vorschau verwendet wird<br>",
-										body: "Das ist dein neuer Beitrag! <br><br>Er ist zunächst für normale Benutzer unsichtbar, damit du ihen in Ruhe bearbeiten kannst. <br><br>Dafür benutze einfach den Bearbeiten Link oben rechts ^^".html_safe,
+										body: "^__^ <br><br>Das ist der Hauptteil neuen Beitrags! <br><br>Der ist &uunl;brigens zunächst für normale Benutzer unsichtbar, damit du ihen in Ruhe bearbeiten kannst. <br><br>Dafür benutze einfach den Bearbeiten Link oben rechts.".html_safe,
 										precursor_id: Article.maximum('precursor_id')+1
 										)
 		if @article && @article.save && @article.move_bottom
