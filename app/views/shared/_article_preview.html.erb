@@ -27,6 +27,6 @@
 		</div>
 	</div>
 	<p class="article-preview-text lead">
-		<%= (strip_tags((article.body)[0...1024]+"...")).html_safe %>
+		<%= ((article.preview)[0...512]+"...").html_safe %>
 	</p>
 </article>

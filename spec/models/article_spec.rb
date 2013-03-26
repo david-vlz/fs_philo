@@ -11,6 +11,7 @@
 #  category_id  :integer
 #  visible      :boolean          default(FALSE)
 #  precursor_id :integer
+#  preview      :text
 #
 
 require 'spec_helper'
