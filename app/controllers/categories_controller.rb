@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'will_paginate/array'
 
 class CategoriesController < ApplicationController
@@ -29,7 +31,8 @@ class CategoriesController < ApplicationController
 			if @category.single_page?
 				Article.create_in_succession( 
 					title: @category.name, 
-					body: 'Hier einfach weiterschreiben ;)', 
+					preview: "Das ist der erste Absatz deines Beitrags, der als Vorschau verwendet wird<br>",
+					body: "^__^ <br><br>Das ist der Hauptteil neuen Beitrags! <br><br>Der ist zunächst für normale Benutzer unsichtbar, damit du ihn in Ruhe bearbeiten kannst. <br><br>Dafür benutze einfach den Bearbeiten Link oben rechts.".html_safe,
 					category_id: @category.id,
 					user_id: current_user.id
 				)
