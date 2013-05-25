@@ -55,13 +55,14 @@ body {
 
 header {
 	h1 {
-		a {
+		a, a:hover {
 			color: black;
 		}
 		small {
-			a {
+			a, a:hover {
 				color: #AFAFAF;
 			}
+
 		}
 	}
 }
