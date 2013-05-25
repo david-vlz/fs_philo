@@ -1,12 +1,15 @@
 			<div id="header" class="row-fluid" style="position:relative">
 				<div class="span10">
 					<header class="center page-header">
-						<h1>Fachschaft Philosophie <small>Universit&auml;t zu K&ouml;ln</small></h1>
+						<h1>
+							<%= link_to("Fachschaft Philosophie", root_path) %>
+							<small><%= link_to("Universit&auml;t zu K&ouml;ln".html_safe, "http://www.uni-koeln.de/") %></small>
+						</h1>
 						
 					</header>
 				</div>
 				<div class="span2 logo">
-					<img src="/philos.png" />
+					<%= link_to(image_tag("/philos.png"), root_path) %>
 				</div>
 			</div>
 
