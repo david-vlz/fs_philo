@@ -6,10 +6,11 @@
 $infoText: #3a87ad;
 $infoBackground: #d9edf7;
 
-@import "bootswatch/united/variables";
+
+@import "bootswatch/cosmo/variables";
 @import "bootstrap";
 @import "bootstrap-responsive";
-@import "bootswatch/united/bootswatch";
+@import "bootswatch/cosmo/bootswatch";
 @import "font-awesome";
 
 
@@ -57,13 +58,16 @@ header {
 	h1 {
 		a, a:hover {
 			color: black;
+			white-space: nowrap;
 		}
 		small {
 			a, a:hover {
 				color: #AFAFAF;
+				white-space: nowrap;
 			}
 
 		}
+
 	}
 }
 
