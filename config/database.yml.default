@@ -1,0 +1,19 @@
+common: &common
+  adapter: postgresql
+  host: localhost
+  username: fs_philo
+  password: 
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *common
+  database: fs_philo_dev
+
+test:
+  <<: *common
+  database: fs_philo_test
+
+production:
+  <<: *common
+  database: fs_philo_production
