@@ -14,6 +14,8 @@
 /log/*.log
 /tmp
 
+#Ignore database config with corresponding passwords
+/config/database.yml
 
 # Ignore other unneeded files.
 doc/
