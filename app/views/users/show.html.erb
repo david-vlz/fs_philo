@@ -2,7 +2,7 @@
 <section>
 	
 	<h3><i class="icon-user" style="vertical-align:middle"></i> <%= @user.name %></h3>
-	<p><%= @user.email %></p>
+	
 	<% if @user == current_user %>
 		<p><%= link_to('Profil bearbeiten', edit_user_path(current_user)) %></p>
 	<% end %>
@@ -17,6 +17,8 @@
 				outside_category: true 
 			%>
 		</div>
+	<% else %>
+		<p><%= @user.name %> hat noch keine Beitr&auml;ge verfasst</P>
 	<% end %>
 	
 </section>
