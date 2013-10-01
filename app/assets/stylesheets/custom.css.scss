@@ -77,7 +77,9 @@ header {
 .navbar {
 	.muted {
 		font-style: oblique;
-		text-decoration: line-through !important;
+		text-decoration: underline !important;
+		font-size: small !important;
+		color: #EDEDED !important;
 	}
 	.nav > li > a {
 		border-left: none;
