@@ -2,16 +2,21 @@
 	<div class="row-fluid">
 		<footer class="muted">
 			<div class="span4" id="legal">
+				<!--
 				<a href="#">Impressum</a><br>
 				<a href="#">Philosophisches Seminar</a>
+				-->
 			</div>
 			<div class="span4" id="links">
-				<a href="#">Some Page</a>
+				<%= link_to('Impressum', impressum_path) %></br>
+				<%= link_to('Login', login_path) %>
 			</div>
 			<div class="span4" id="more-links">
+				<!--
 				<a href="#">Noch ein netter Link</a><br>
 				<a href="#">Und noch was</a><br>
 				<a href="#">Und hier kommt auch noch was hin</a>
+				-->
 			</div>
 		</footer>
 	</div>
