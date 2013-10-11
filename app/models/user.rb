@@ -36,16 +36,18 @@ class User < ActiveRecord::Base
   validates(:email, 
     presence: true, 
     format: VALID_EMAIL_REGEX,
-    uniqueness: { 
-      case_sensitive: false 
+    uniqueness: {
+      case_sensitive: false
     }
   )
-  validates(:password, 
+
+  validates(:password,
     presence: true,
-    length: { 
-      minimum: 7 
+    length: {
+      minimum: 7
     }
-  )           
+  )
+
   validates(:password_confirmation, presence: true)
 
 
