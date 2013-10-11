@@ -15,7 +15,8 @@
 
 class Event < ActiveRecord::Base
 
-	attr_accessible :name, :start_at, :end_at, :internal
+	attr_accessible :name, :start_at, :end_at, :internal, :location,
+		:location_link
 
   has_event_calendar
 
