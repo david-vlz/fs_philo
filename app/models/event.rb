@@ -2,13 +2,15 @@
 #
 # Table name: events
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  start_at   :datetime
-#  end_at     :datetime
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  internal   :boolean          default(FALSE)
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  start_at      :datetime
+#  end_at        :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  internal      :boolean          default(FALSE)
+#  location      :string(255)
+#  location_link :string(255)
 #
 
 class Event < ActiveRecord::Base
@@ -20,6 +22,7 @@ class Event < ActiveRecord::Base
   validates(:name, presence: true, length: { maximum: 255, minimum: 3 })
   validates(:start_at, presence: true)
   validates(:end_at, presence: true)
+  validates(:location, presence: true)
 
   validate :end_must_be_after_start, on: :create
 
