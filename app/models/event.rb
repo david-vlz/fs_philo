@@ -15,8 +15,8 @@
 
 class Event < ActiveRecord::Base
 
-	attr_accessible :name, :start_at, :end_at, :internal, :location,
-		:location_link
+  attr_accessible :name, :start_at, :end_at, :internal, :location,
+    :location_link
 
   has_event_calendar
 
@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   validate :end_must_be_after_start, on: :create
 
   def end_must_be_after_start
-  	errors.add(:end_at, 'must be after start_at') if start_at > end_at
+    errors.add(:end_at, 'must be after start_at') if start_at > end_at
   end
 
 end

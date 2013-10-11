@@ -12,20 +12,15 @@
 #
 
 class Category < ActiveRecord::Base
-	
-	include InSuccession
-	
-	attr_accessible :name, :single_page, :visible, :precursor_id 
-	
-	has_many :articles
-	belongs_to :precursor, class_name: 'Category'
 
-	validates(:name, presence: true)
-	validates(:precursor_id, uniqueness: true)
+  include InSuccession
 
-	def insertion_attempt?(new_precursor_id)
-		pre_id = precursor ? precursor.id : 0 	# zero because nil.to_i == 0, ''.to_i == 0
-		pre_id != new_precursor_id.to_i
-	end
+  attr_accessible :name, :single_page, :visible, :precursor_id 
+
+  has_many :articles
+  belongs_to :precursor, class_name: 'Category'
+
+  validates(:name, presence: true)
+  validates(:precursor_id, uniqueness: true)
 
 end
