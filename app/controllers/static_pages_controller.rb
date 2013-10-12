@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 
+  require 'will_paginate/array'
+
   def home
     articles = Article.order('updated_at DESC')
     articles = articles.select { |a| a.visible? } unless signed_in?
