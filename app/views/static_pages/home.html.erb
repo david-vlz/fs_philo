@@ -1,5 +1,7 @@
 <% provide(:title, '') %>
 
+<%= render 'shared/event_panel', events: @events %>
+
 <%= render 'shared/articles_preview', 
   articles: @articles, 
   condition: nil, 

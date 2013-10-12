@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.jcarousel.min
 //= require bootstrap-dropdown
 //= require bootstrap-collapse
 //= require bootstrap-tooltip

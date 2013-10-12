@@ -169,6 +169,19 @@ i.icon-white {
  }
 
 
+/* EVENT PANEL */
+
+div.event-panel {
+	border: 1px solid blue;
+
+	div.ep-event {
+		border: 1px dashed black;
+		// margin-right: 15px;
+	}
+
+}
+
+
 /* MISCELLANEOUS */
 
 h3 {
