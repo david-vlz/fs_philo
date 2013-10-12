@@ -4,7 +4,7 @@ FsPhilo::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
-  resources :categories, :users
+  resources :categories, :users, :events
   resources :sessions, only: [:new, :create, :destroy]
   resources :articles do
   	member { post :mercury_update }

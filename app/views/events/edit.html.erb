@@ -1,0 +1,6 @@
+<% provide(:title, 'Veranstaltung bearbeiten'.html_safe) %>
+
+<h3>Veranstaltung bearbeiten</h3>
+
+<%= render('events/event_form', submit_text: '&Uuml;bernehmen'.html_safe, 
+      event: @event) %>

@@ -54,9 +54,10 @@ jQuery(document).ready(function() {
         <% end %>
         </p>
         <h4><%= event.name %></h4>
-        <p><%= event.location if event.location %><br>
-        Larum</p>
-        <p>Ipsum</p>
+        <p><%= event.location if event.location %></p>
+        <% if signed_in? %>
+          <p><%= link_to('Bearbeiten', edit_event_path(event)) %>
+        <% end %>
       </div>
     </li>
 
