@@ -39,28 +39,12 @@ jQuery(document).ready(function() {
 </style>
 
 <ul id="mycarousel" class="jcarousel-skin-tango" style="">
-
   <% events.each do |event| %>
-
-    <% number_of_days_from_now = (event.start_at.to_date - Date.today).to_i %>
-
     <li class="ep-event">
-      <div>
-        <p class="muted">
-        <% if number_of_days_from_now != 0 then %>
-          In <%= number_of_days_from_now %> Tagen
-        <% else %>
-          Heute
-        <% end %>
-        </p>
-        <h4><%= event.name %></h4>
-        <p><%= event.location if event.location %></p>
-        <% if signed_in? %>
-          <p><%= link_to('Bearbeiten', edit_event_path(event)) %>
-        <% end %>
-      </div>
+      <%= render 'events/event_preview', event: event %>
     </li>
-
   <% end %>
-
 </ul>
+<% if signed_in? %>
+  <%= link_to 'Neue Veranstaltung', new_event_path, class: 'pull-right' %>
+<% end %>

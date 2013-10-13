@@ -12,13 +12,32 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    flash[:success] = ''
     if @event && @event.update_attributes(params[:event])
-      flash[:success] << change_text
+      flash[:success] = change_text
       flash[:success] = flash[:success].html_safe
       redirect_to @event
     else
       render 'edit'
+    end
+  end
+
+  def new
+    @event = Event.new(
+      name: 'Name',
+      start_at: DateTime.now,
+      end_at: DateTime.now + 1.days,
+      location: 'Ort',
+    )
+  end
+
+  def create
+    @event = Event.new(params[:event])
+    if @event && @event.save!
+      flash[:success] = 'Seite erstellt'
+      redirect_to @event
+    else
+      flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
+      redirect_to new_event_path
     end
   end
 
