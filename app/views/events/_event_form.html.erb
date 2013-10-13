@@ -16,9 +16,24 @@
 
   <%= f.label :start_at, 'Beginn' %>
   <%= f.text_field :start_at %>
-
   <%= f.label :end_at, 'Ende' %>
   <%= f.text_field :end_at %>
+
+  <br>
+  <br>
+
+  <%= f.label :internal, 'Art des Termins' %>
+  <%= f.radio_button  :internal, false %>
+  <%= f.label :internal_false, 
+        '&Ouml;ffentlicher Termin, f&uuml;r alle sichtbar'.html_safe, 
+        class: 'box-label' 
+  %>
+  <br>
+  <%= f.radio_button  :internal, true %>
+  <%= f.label :internal_true, 
+        'Interner Termin nur f&uuml;r Fachschaftler'.html_safe, 
+        class: 'box-label' 
+  %>
 
   <br>
   <br>

@@ -4,6 +4,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    if @event.internal? && (not signed_in?)
+      flash[:notice] = "Bitte logge dich ein, um diese Funktion nutzen zu k&ouml;nnen.".html_safe
+      redirect_back_or_to(root_path)
+    end
   end
 
   def edit

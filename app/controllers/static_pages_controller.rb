@@ -8,7 +8,8 @@ class StaticPagesController < ApplicationController
     @articles = @articles.paginate(page: params[:page], per_page: 8)
 
     @events = Event.order('start_at ASC')
-    @events = @events.select { |e| ((e.start_at - DateTime.now) > 0) }
+    @events = @events.select { |e| not e.internal? } unless signed_in?
+    @events = @events.select { |e| (e.start_at - DateTime.now) > 0 }
   end
 
   def impressum

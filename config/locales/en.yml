@@ -3,7 +3,7 @@
 
 en:
   hello: "Hello world"
-  
+
 en:
   activerecord:
     attributes:
@@ -15,3 +15,14 @@ en:
     previous_label: "&#8592;"
     next_label: "&#8594;"
     page_gap: "&hellip;"
+
+en:
+  date_range:
+    long:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{month} %{from_day} %{sep} %{until_day}, %{year}"
+    short:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{month} %{from_day} %{sep} %{until_day}, %{year}"
