@@ -1,5 +1,7 @@
 <% number_of_days_from_now = (event.start_at.to_date - Date.today).to_i %>
+
 <div class="<%= event.internal ? 'muted' : '' %>">
+
   <p class="muted">
   <% if number_of_days_from_now > 0 then %>
     In <%= number_of_days_from_now %> Tagen
@@ -7,11 +9,22 @@
     Heute
   <% end %>
   </p>
+
   <h4><%= link_to(event.name, event) %></h4>
   <small><%= date_range(event.start_at, event.end_at, separator: '-') %></small>
+
   <br>
-  <small><%= event.location if event.location %></small>
+
+  <small>
+    <% if event.location_link then %>
+      <%= link_to(event.location, event.location_link) %>
+    <% else %>
+      <%= event.location %>
+    <% end %>
+  </small>
+
   <% if signed_in? %>
     <p><%= link_to('Bearbeiten', edit_event_path(event)) %>
   <% end %>
+
 </div>

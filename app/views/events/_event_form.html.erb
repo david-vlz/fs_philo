@@ -10,6 +10,15 @@
 
   <%= f.label :location, 'Ort' %>
   <%= f.text_field :location %>
+  <br>
+  <%= f.label :location_link, 'Link zum Ort' %>
+  <small>
+    Ein Link zu einer Seite, auf der der Ort beschrieben wird, z.B.
+    <%= link_to('Google Maps', 'https://maps.google.com') %>,
+    <%= link_to('Uniseiten', 'http://www.uni-koeln.de/uni/gebaeude/liste.html') %>, etc.
+  </small>
+  <br>
+  <%= f.text_field :location_link %>
 
   <br>
   <br>
