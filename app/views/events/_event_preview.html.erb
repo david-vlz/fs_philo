@@ -24,10 +24,10 @@
     <% else %>
       <%= event.location %>
     <% end %>
+    
     <br>
 
     <% if event.articles.any? then %>
-      Mehr:
       <br>
       <% event.articles.each_with_index do |article,i| %>
         <%= ', ' if i > 0 %>
