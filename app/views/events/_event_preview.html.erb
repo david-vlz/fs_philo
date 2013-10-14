@@ -4,7 +4,9 @@
 
   <small>
   <p class="muted">
-  <% if number_of_days_from_now > 0 then %>
+  <% if (event.start_at < DateTime.now) && (DateTime.now < event.end_at) then %>
+    Jetzt
+  <% elsif number_of_days_from_now > 0 then %>
     In <%= number_of_days_from_now %> Tagen
   <% elsif number_of_days_from_now == 0 then %>
     Heute
@@ -29,7 +31,7 @@
       <br>
       <% event.articles.each_with_index do |article,i| %>
         <%= ', ' if i > 0 %>
-        <%= link_to(article.title, article) %>
+        <%= link_to(article.title, article, title: article.preview ) %>
       <% end %>
     <% end %>
 
