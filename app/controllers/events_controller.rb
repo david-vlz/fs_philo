@@ -16,11 +16,23 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    if @event && @event.update_attributes(params[:event])
+    if @event \
+    && @event.update_attributes(params[:event]) then
+      if not params[:article][:id].empty? then
+        add_article_association(params[:article][:id])
+      end
+      if params[:article_destroy_ids] \
+      && params[:article_destroy_ids].any? then
+        params[:article_destroy_ids].each do |id| 
+          puts 'bla' + id
+          remove_article_association id
+        end
+      end
       flash[:success] = change_text
       flash[:success] = flash[:success].html_safe
       redirect_to @event
     else
+      flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
       render 'edit'
     end
   end
@@ -44,5 +56,23 @@ class EventsController < ApplicationController
       redirect_to new_event_path
     end
   end
+
+  private
+
+    def add_article_association(article_id)
+      article = Article.find(article_id)
+      if article then 
+        if not @event.articles(true).exists?(article) then
+          @event.articles.push(article)
+        else
+          true
+        end
+      end
+    end
+
+    def remove_article_association(article_id)
+      article = Article.find(article_id)
+      article && @event.articles.destroy(article)
+    end
 
 end

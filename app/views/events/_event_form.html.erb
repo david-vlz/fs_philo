@@ -47,6 +47,27 @@
   <br>
   <br>
 
+  <%= f.label :article, 'Mit Beitrag verkn&uuml;pfen'.html_safe %>
+  <%= 
+    select('article', 'id', Article.all.collect{ |a| [a.title, a.id] },
+      { include_blank: '-- kein Artikel --' }) 
+  %>
+
+  <br>
+  <br>
+
+  <% if event.articles.any? then %>
+    <%= f.label :articles_destroy, 'Artikelverknüpfung lösen: ' %>
+    <% event.articles.each do |article| %>
+      <%= check_box_tag "article_destroy_ids[]", article.id %>
+      <%= label_tag "article_destroy_#{article.id}", article.title, class: 'box-label' %>
+      <br>
+    <% end %>
+  <% end %>
+
+  <br>
+  <br>
+
   <%= f.submit submit_text, class: 'btn btn-primary' %>
 
 <% end %>

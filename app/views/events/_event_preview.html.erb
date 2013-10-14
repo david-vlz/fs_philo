@@ -2,6 +2,7 @@
 
 <div class="<%= event.internal ? 'muted' : '' %>">
 
+  <small>
   <p class="muted">
   <% if number_of_days_from_now > 0 then %>
     In <%= number_of_days_from_now %> Tagen
@@ -10,21 +11,31 @@
   <% end %>
   </p>
 
-  <h4><%= link_to(event.name, event) %></h4>
-  <small><%= date_range(event.start_at, event.end_at, separator: '-') %></small>
+  <h5><%= link_to(event.name, event) %></h5>
+  <%= date_range(event.start_at, event.end_at, separator: '-') %>
 
   <br>
 
-  <small>
+  
     <% if event.location_link then %>
       <%= link_to(event.location, event.location_link) %>
     <% else %>
       <%= event.location %>
     <% end %>
-  </small>
+    <br>
 
-  <% if signed_in? %>
-    <p><%= link_to('Bearbeiten', edit_event_path(event)) %>
-  <% end %>
+    <% if event.articles.any? then %>
+      Mehr:
+      <br>
+      <% event.articles.each_with_index do |article,i| %>
+        <%= ', ' if i > 0 %>
+        <%= link_to(article.title, article) %>
+      <% end %>
+    <% end %>
+
+    <% if signed_in? %>
+      <p><%= link_to('-- Bearbeiten --', edit_event_path(event)) %>
+    <% end %>
+  </small>
 
 </div>
