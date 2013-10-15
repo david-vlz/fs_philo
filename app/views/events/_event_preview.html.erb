@@ -19,7 +19,7 @@
   <br>
 
   
-    <% if event.location_link then %>
+    <% if event.location_link && (not event.location_link.empty?) then %>
       <%= link_to(event.location, event.location_link) %>
     <% else %>
       <%= event.location %>
