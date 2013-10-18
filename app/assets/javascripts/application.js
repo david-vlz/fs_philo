@@ -16,3 +16,7 @@
 //= require bootstrap-dropdown
 //= require bootstrap-collapse
 //= require bootstrap-tooltip
+//= require jquery.ui.datepicker
+//= require jquery.ui.datepicker-de
+//= require jquery.ui.slider
+//= require jquery-ui-timepicker-addon

@@ -1,3 +1,20 @@
+<script>
+$.timepicker.regional['de'] = {
+  timeOnlyTitle: 'Uhrzeit auswählen',
+  timeText: 'Zeit',
+  hourText: 'Stunde',
+  minuteText: 'Minute',
+  secondText: 'Sekunde',
+  currentText: 'Jetzt',
+  closeText: 'Auswählen',
+  ampm: false
+};
+$.timepicker.setDefaults($.timepicker.regional['de']);
+$(function() {
+  $('.datetimepicker').datetimepicker();
+});
+</script>
+
 <%= form_for(event) do |f| %>
 
   <%= render 'shared/error_messages', object: event %>
@@ -24,9 +41,9 @@
   <br>
 
   <%= f.label :start_at, 'Beginn' %>
-  <%= f.text_field :start_at %>
+  <%= f.text_field :start_at, class: 'datetimepicker' %>
   <%= f.label :end_at, 'Ende' %>
-  <%= f.text_field :end_at %>
+  <%= f.text_field :end_at, class: 'datetimepicker' %>
 
   <br>
   <br>

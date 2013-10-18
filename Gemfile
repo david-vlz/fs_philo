@@ -10,6 +10,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'mercury-rails', '0.9.0'
 gem 'paper_trail', '2.7.0'
 gem 'event-calendar', :require => 'event_calendar'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
