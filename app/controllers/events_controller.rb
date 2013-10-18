@@ -24,7 +24,6 @@ class EventsController < ApplicationController
       if params[:article_destroy_ids] \
       && params[:article_destroy_ids].any? then
         params[:article_destroy_ids].each do |id| 
-          puts 'bla' + id
           remove_article_association id
         end
       end
@@ -48,7 +47,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    if @event && @event.save!
+    if @event && @event.save! then
+      if not params[:article][:id].empty? then
+        add_article_association(params[:article][:id])
+      end
       flash[:success] = 'Seite erstellt'
       redirect_to @event
     else
