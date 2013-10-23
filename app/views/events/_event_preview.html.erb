@@ -6,15 +6,17 @@
   <p class="muted">
   <% if (event.start_at < DateTime.now) && (DateTime.now < event.end_at) then %>
     Jetzt
-  <% elsif number_of_days_from_now > 0 then %>
+  <% elsif number_of_days_from_now > 1 then %>
     In <%= number_of_days_from_now %> Tagen
+  <% elsif number_of_days_from_now == 1 then %>
+    Morgen
   <% elsif number_of_days_from_now == 0 then %>
     Heute
   <% end %>
   </p>
 
   <h5><%= link_to(event.name, event) %></h5>
-  <%= date_range(event.start_at, event.end_at, separator: '-') %>
+  <%= pretty_datetime_range_str(event.start_at, event.end_at) %>
 
   <br>
 
