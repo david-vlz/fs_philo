@@ -9,7 +9,7 @@
 			</div>
 			<div class="span4" id="links">
 				<%= link_to('Impressum', impressum_path) %></br>
-				<%= link_to('Login', login_path) %>
+				<%= link_to('Login', login_path) if not signed_in? %>
 			</div>
 			<div class="span4" id="more-links">
 				<!--
