@@ -2,20 +2,26 @@
 module TimeHelper
 
   def pretty_datetime_range_str(from_dt, until_dt)
-
     complete_date_f = "%d.%m, %H:%M"
-
-    return from_dt.strftime(complete_date_f) if not until_dt
-
-    if from_dt.year == until_dt.year \
-    && from_dt.month == until_dt.month \
-    && from_dt.day == until_dt.day then
-      from_dt.strftime(complete_date_f) + '-' + until_dt.strftime("%H:%M")
+    str_1 = from_dt.strftime(complete_date_f)
+    if not until_dt then
+      str_2 = ''
+    elsif same_day?(from_dt, until_dt) then
+      str_2 = '-' + until_dt.strftime("%H:%M")
     else
-      from_dt.strftime(complete_date_f) + ' - ' \
-      + until_dt.strftime(complete_date_f)
+      str_2 =  ' - ' + until_dt.strftime(complete_date_f)
     end
+    str_1 + str_2
+  end
 
+  def same_day?(dt1, dt2)
+    if dt1.year == dt2.year \
+    && dt1.month == dt2.month \
+    && dt1.day == dt2.day then
+      true
+    else
+      false
+    end
   end
 
 end
