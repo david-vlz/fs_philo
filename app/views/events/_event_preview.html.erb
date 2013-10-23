@@ -1,45 +1,61 @@
-<% number_of_days_from_now = (event.start_at.to_date - Date.today).to_i %>
-
-<div class="<%= event.internal ? 'muted' : '' %>">
 
   <small>
-  <p class="muted">
-  <% if (event.start_at < DateTime.now) && (DateTime.now < event.end_at) then %>
-    Jetzt
-  <% elsif number_of_days_from_now > 1 then %>
-    In <%= number_of_days_from_now %> Tagen
-  <% elsif number_of_days_from_now == 1 then %>
-    Morgen
-  <% elsif number_of_days_from_now == 0 then %>
-    Heute
-  <% end %>
-  </p>
 
-  <h5><%= link_to(event.name, event) %></h5>
-  <%= pretty_datetime_range_str(event.start_at, event.end_at) %>
+    <div class="<%= 'muted' if event.internal %>">
 
-  <br>
+        <p class="muted">
+          <%= number_of_days_from_now_str(event.start_at, event.end_at) %>
+        </p>
 
-  
-    <% if event.location_link && (not event.location_link.empty?) then %>
-      <%= link_to(event.location, event.location_link) %>
-    <% else %>
-      <%= event.location %>
-    <% end %>
-    
-    <br>
+        <h5>
+          <span class="pull-left">
+            <%= link_to(event.name, event) %>
+          </span>
 
-    <% if event.articles.any? then %>
-      <br>
-      <% event.articles.each_with_index do |article,i| %>
-        <%= ', ' if i > 0 %>
-        <%= link_to(article.title, article, title: article.preview ) %>
-      <% end %>
-    <% end %>
+          <% if signed_in? %>
+            <ul class="nav pull-left" style="list-style-type:none">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="icon-pencil"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to('Bearbeiten', edit_event_path(event)) %>
+                  </li>
+                  <li>
+                    <%= 
+                      link_to('Löschen'.html_safe, 
+                        event, 
+                        method: :delete,
+                        data: { confirm: "Veranstaltung \"#{event.name}\" wirklich entfernen?" }) 
+                    %>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          <% end %>
+        </h5>
 
-    <% if signed_in? %>
-      <p><%= link_to('-- Bearbeiten --', edit_event_path(event)) %>
-    <% end %>
+        <p style="clear:both">
+          <%= pretty_datetime_range_str(event.start_at, event.end_at) %>
+        </p>
+
+        <p>
+          <% if event.location_link && (not event.location_link.empty?) then %>
+            <%= link_to(event.location, event.location_link) %>
+          <% else %>
+            <%= event.location %>
+          <% end %>
+        </p>
+
+        <% if event.articles.any? then %>
+          <br>
+          <% event.articles.each_with_index do |article,i| %>
+            <%= ', ' if i > 0 %>
+            <%= link_to(article.title, article, title: article.preview ) %>
+          <% end %>
+        <% end %>
+
+    </div>
+
   </small>
-
-</div>

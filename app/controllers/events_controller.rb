@@ -59,6 +59,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    if @event && @event.destroy then
+      flash[:success] = 'Veranstaltung entfernt'
+      redirect_back_or_to root_path
+    else
+      flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
+      redirect_back_or_to root_path
+    end
+  end
+
   private
 
     def add_article_association(article_id)
