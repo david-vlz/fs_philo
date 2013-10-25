@@ -9,7 +9,12 @@
 			</div>
 			<div class="span4" id="links">
 				<%= link_to('Impressum', impressum_path) %></br>
-				<%= link_to('Login', login_path) %>
+				<%= if signed_in? then 
+						link_to('Logout', logout_path, method: :delete)
+					else 
+						link_to('Login', login_path)
+					end
+				%>
 			</div>
 			<div class="span4" id="more-links">
 				<!--
