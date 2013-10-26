@@ -1,52 +1,44 @@
+<small>
 
-  <small>
+  <div class="<%= 'muted' if event.internal %>">
 
-    <div class="<%= 'muted' if event.internal %>">
+      <p class="muted">
+        <%= number_of_days_from_now_str(event.start_at, event.end_at) %>
+      </p>
 
-        <p class="muted">
-          <%= number_of_days_from_now_str(event.start_at, event.end_at) %>
-        </p>
+      <h5>
+        <span class="pull-left">
+          <%= link_to(event.name, event) %>
+        </span>
 
-        <h5>
-          <span class="pull-left">
-            <%= link_to(event.name, event) %>
-          </span>
-
-          <% if signed_in? %>
-            <%= render 'shared/edit_links', 
-              event: event,
-              links: [
-                ['Bearbeiten', edit_event_path(event)],
-                ['Löschen'.html_safe, 
-                  event, 
-                  method: :delete,
-                  data: { confirm: "Veranstaltung \"#{event.name}\" wirklich entfernen?" }
-                ],
-              ]
-            %> 
-          <% end %>
-        </h5>
-
-        <p style="clear:both">
-          <%= pretty_datetime_range_str(event.start_at, event.end_at) %>
-        </p>
-
-        <p>
-          <% if event.location_link && (not event.location_link.empty?) then %>
-            <%= link_to(event.location, event.location_link) %>
-          <% else %>
-            <%= event.location %>
-          <% end %>
-        </p>
-
-        <% if event.articles.any? then %>
-          <br>
-          <% event.articles.each_with_index do |article,i| %>
-            <%= ', ' if i > 0 %>
-            <%= link_to(article.title, article, title: article.preview ) %>
-          <% end %>
+        <% if signed_in? %>
+          <%= render 'shared/edit_links', 
+            links: edit_links_for_event(event), 
+            pull: 'right'
+          %> 
         <% end %>
+      </h5>
 
-    </div>
+      <p style="clear:both">
+        <%= pretty_datetime_range_str(event.start_at, event.end_at) %>
+      </p>
 
-  </small>
+      <p>
+        <% if event.location_link && (not event.location_link.empty?) then %>
+          <%= link_to(event.location, event.location_link) %>
+        <% else %>
+          <%= event.location %>
+        <% end %>
+      </p>
+
+      <% if event.articles.any? then %>
+        <br>
+        <% event.articles.each_with_index do |article,i| %>
+          <%= ', ' if i > 0 %>
+          <%= link_to(article.title, article, title: article.preview ) %>
+        <% end %>
+      <% end %>
+
+  </div>
+
+</small>

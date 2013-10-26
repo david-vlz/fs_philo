@@ -2,37 +2,37 @@
 <% category = article.category %>
 
 <article>
-	<div class="row-fluid article-preview-heading <%="muted" unless visible%>">
-		<div class="preview-container span<%=spans[0]%>">
-			<h3 class="article-preview-headline">
-				<%= link_to(article.title, article_path(@id=article.id)) %>
-				<% if false && outside_category && category && not(category.single_page) && category.visible %>
-					<span class="category-reference">
-						<small>in <%= link_to(category.name, category_path(category)) %></small>
-					</span>
-				<% end %>
-			</h3>
-		</div>
-		<% if signed_in? %>
-		<div class="preview-container span<%=spans[1]%>">
-			<div class="article-edit-links ">
-				<div class="well well-small" style="padding:3px">
-					<%= render('shared/article_edit_links', article: article, is_version: false) %>
-					<%= render('shared/article_move_links', article: article, condition: condition) if movable %>
-				</div>
-			</div>
-		</div>
-		<% end %>
-		<div class="preview-container span<%=spans[2]%>">
-			<div class="muted article-info">
-				<ul>
-					<li><%= string_from_time(article.updated_at) %></li>
-					<li><%= link_to(article.user.name, user_path(@id=article.user.id)) %></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<p class="article-preview-text lead">
-		<%= ((article.preview)[0...512]+"...").html_safe %>
-	</p>
+  <div class="row-fluid article-preview-heading <%="muted" unless visible%>">
+    <div class="preview-container span<%=spans[0]%>">
+      <h3 class="article-preview-headline">
+        <%= link_to(article.title, article_path(@id=article.id)) %>
+        <% if false && outside_category && category && not(category.single_page) && category.visible %>
+          <span class="category-reference">
+            <small>in <%= link_to(category.name, category_path(category)) %></small>
+          </span>
+        <% end %>
+      </h3>
+    </div>
+    <% if signed_in? %>
+    <div class="preview-container span<%=spans[1]%>">
+      <div class="article-edit-links ">
+        <div class="" style="padding:3px">
+          <%= render 'shared/edit_links', links: edit_links_for_article(article, is_version: false), pull: 'right' %>
+          <%= render 'shared/article_move_links', article: article, condition: condition if movable %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class="preview-container span<%=spans[2]%>">
+      <div class="muted article-info">
+        <ul>
+          <li><%= string_from_time(article.updated_at) %></li>
+          <li><%= link_to(article.user.name, user_path(@id=article.user.id)) %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="article-preview-text lead">
+    <%= ((article.preview)[0...512]+"...").html_safe %>
+  </p>
 </article>

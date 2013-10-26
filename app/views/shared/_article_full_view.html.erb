@@ -1,16 +1,22 @@
 <% provide(:title, article.title) %>
 
 <section>
-	
-	<%= render('shared/article_edit_links', article: article, is_version: is_version) if signed_in? %>
 
-	<h2 id="article_title" data-mercury="simple" style="display:inline"><%= article.title %></h3>
-	<%= render('shared/category_edit_links' , category: @category) if single_page_category && signed_in? %>
-	
-	<article style="margin-top:30px">
-		<div id="article_preview" data-mercury="simple"><%= article.preview.html_safe %></div>
-		<br>
-		<div id="article_body" data-mercury="full"><%= article.body.html_safe %></div>
-	</article>
+  <%= if signed_in? then
+      links = edit_links_for_article article, is_version: is_version
+      if article.category.single_page && not(is_version) then
+        links.concat(edit_links_for_category article.category)
+      end
+      render 'shared/edit_links', links: links, pull: 'right'
+    end
+  %>
+
+  <h2 id="article_title" data-mercury="simple" style="display:inline"><%= article.title %></h3>
+  
+  <article style="margin-top:30px">
+    <div id="article_preview" data-mercury="simple"><%= article.preview.html_safe %></div>
+    <br>
+    <div id="article_body" data-mercury="full"><%= article.body.html_safe %></div>
+  </article>
 
 </section>

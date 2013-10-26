@@ -1,25 +1,27 @@
 <% if @category.single_page? %>
 
-
-	<%= render 'shared/article_full_view', article: @article, is_version: false, single_page_category: true %>
-
+  <%= render 'shared/article_full_view', article: @article, is_version: false, single_page_category: true %>
 
 <% else %>
 
+  <% provide(:title, @category.name) %>
 
-	<% provide(:title, @category.name) %>
-	<div style="margin-bottom:25px">
-		<h2 style="display:inline"><%= @category.name %></h2>
-		<%= render('shared/category_edit_links', category: @category) if signed_in? %>
-	</div>
+  <div style="margin-bottom:25px">
+    <h2 style="display:inline"><%= @category.name %></h2>
+    <%= if signed_in? then 
+          render 'shared/edit_links', 
+            links: edit_links_for_category(@category), 
+            pull: nil
+        end
+    %>
+  </div>
 
-	<%= render 'shared/articles_preview', 
-		articles: @articles, 
-		condition: @condition, 
-		is_version: false, 
-		movable: true,
-		outside_category: false 
-	%>
-
+  <%= render 'shared/articles_preview', 
+    articles: @articles, 
+    condition: @condition, 
+    is_version: false, 
+    movable: true,
+    outside_category: false 
+  %>
 
 <% end %>
