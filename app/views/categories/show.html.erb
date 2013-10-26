@@ -1,6 +1,9 @@
 <% if @category.single_page? %>
 
-  <%= render 'shared/article_full_view', article: @article, is_version: false, single_page_category: true %>
+  <%= render 'shared/article_full_view', 
+    article: @article, 
+    is_version: false 
+  %>
 
 <% else %>
 
@@ -20,8 +23,7 @@
     articles: @articles, 
     condition: @condition, 
     is_version: false, 
-    movable: true,
-    outside_category: false 
+    movable: true
   %>
 
 <% end %>

@@ -6,11 +6,6 @@
     <div class="preview-container span<%=spans[0]%>">
       <h3 class="article-preview-headline">
         <%= link_to(article.title, article_path(@id=article.id)) %>
-        <% if false && outside_category && category && not(category.single_page) && category.visible %>
-          <span class="category-reference">
-            <small>in <%= link_to(category.name, category_path(category)) %></small>
-          </span>
-        <% end %>
       </h3>
     </div>
     <% if signed_in? %>
