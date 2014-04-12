@@ -11,6 +11,11 @@ $.timepicker.regional['de'] = {
 };
 $.timepicker.setDefaults($.timepicker.regional['de']);
 $(function() {
+  var startString = $('#start-date').val()
+  d = new Date(2011, 12, 13, 4, 4)
+  console.log(startString)
+  // $('#start-date').datetimepicker();
+  // $('#end-date').datetimepicker();
   $('.datetimepicker').datetimepicker();
 });
 </script>
@@ -41,9 +46,9 @@ $(function() {
   <br>
 
   <%= f.label :start_at, 'Beginn' %>
-  <%= f.text_field :start_at, class: 'datetimepicker' %>
+  <%= f.text_field :start_at, id: 'start-date', class: 'datetimepicker', value: event.start_at.strftime('%d.%m.%Y %H:%M') %>
   <%= f.label :end_at, 'Ende' %>
-  <%= f.text_field :end_at, class: 'datetimepicker' %>
+  <%= f.text_field :end_at, id: 'end-date', class: 'datetimepicker', value: event.end_at.strftime('%d.%m.%Y %H:%M') %>
 
   <br>
   <br>
