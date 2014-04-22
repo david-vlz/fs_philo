@@ -4,8 +4,8 @@
 	<div class="span6">
 		<%= form_tag sessions_path do %>
 			<div class="field">
-				<%= label_tag :email %>
-				<%= text_field_tag :email, params[:email] %>
+				<%= label_tag :email_or_name, 'Email oder Benutzername' %>
+				<%= text_field_tag :email_or_name, params[:email_or_name] %>
 			</div>
 			<div class="field">
 				<%= label_tag :password, 'Passwort' %>
