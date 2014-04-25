@@ -25,13 +25,14 @@ class Event < ActiveRecord::Base
 
   validates(:name, presence: true, length: { maximum: 255, minimum: 3 })
   validates(:start_at, presence: true)
-  validates(:end_at, presence: true)
   validates(:location, presence: true)
 
   validate :end_must_be_after_start
 
   def end_must_be_after_start
-    errors.add(:end_at, 'must be after start_at') if start_at > end_at
+    if end_at && start_at > end_at
+      errors.add(:end_at, 'Das Ende der Veranstaltung sollte vor dem Anfang liegen')
+    end
   end
 
 end

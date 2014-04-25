@@ -9,7 +9,13 @@ class StaticPagesController < ApplicationController
 
     @events = Event.order('start_at ASC')
     @events = @events.select { |e| not e.internal? } unless signed_in?
-    @events = @events.select { |e| (e.end_at - DateTime.now) > 0 }
+    @events = @events.select do |e| 
+      if e.end_at
+        (e.end_at - DateTime.now) > 0 
+      else
+        e.start_at.today?
+      end
+    end
   end
 
   def impressum

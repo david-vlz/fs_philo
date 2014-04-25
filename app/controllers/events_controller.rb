@@ -40,7 +40,6 @@ class EventsController < ApplicationController
     @event = Event.new(
       name: 'Name',
       start_at: DateTime.now,
-      end_at: DateTime.now + 1.days,
       location: 'Ort',
     )
   end

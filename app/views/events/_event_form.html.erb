@@ -48,12 +48,12 @@ $(function() {
   <%= f.label :start_at, 'Beginn' %>
   <%= f.text_field :start_at, id: 'start-date', class: 'datetimepicker', value: event.start_at.strftime('%d.%m.%Y %H:%M') %>
   <%= f.label :end_at, 'Ende' %>
-  <%= f.text_field :end_at, id: 'end-date', class: 'datetimepicker', value: event.end_at.strftime('%d.%m.%Y %H:%M') %>
+  <%= f.text_field :end_at, id: 'end-date', class: 'datetimepicker', value: (event.end_at.strftime('%d.%m.%Y %H:%M') if event.end_at) %>
 
   <br>
   <br>
 
-  <%= f.label :internal, 'Art des Termins' %>
+  <%= f.label :internal, 'Art' %>
   <%= f.radio_button  :internal, false %>
   <%= f.label :internal_false, 
         '&Ouml;ffentlicher Termin, f&uuml;r alle sichtbar'.html_safe, 
