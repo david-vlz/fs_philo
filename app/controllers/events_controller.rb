@@ -29,7 +29,7 @@ class EventsController < ApplicationController
       end
       flash[:success] = change_text
       flash[:success] = flash[:success].html_safe
-      redirect_to @event
+      redirect_to root_path
     else
       flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
       render 'edit'
@@ -52,7 +52,7 @@ class EventsController < ApplicationController
         add_article_association(params[:article][:id])
       end
       flash[:success] = 'Seite erstellt'
-      redirect_to @event
+      redirect_to root_path
     else
       flash[:error] = 'Da ist etwas schief gelaufen. Bitte kontaktiere einen Administrator'
       redirect_to new_event_path
