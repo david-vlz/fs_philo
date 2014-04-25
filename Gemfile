@@ -24,6 +24,7 @@ group :development do
 end
 
 group :assets do
+  gem "sass", "~> 3.2.5"
   gem 'sass-rails',   '3.2.5'
   gem 'bootswatch-rails'
   gem "font-awesome-rails"
